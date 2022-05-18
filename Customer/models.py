@@ -27,5 +27,5 @@ class update(models.Model):
     def toDict(self):
         return {'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo,'status':self.status,'update_at':self.update_at.strftime('%Y-%m-%d %H:%M:%S'),} 
     class Meta:
-        db_table = "customer"  # change the name of the table
+        db_table = "customer_up"  # change the name of the table
 
