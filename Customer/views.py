@@ -1,8 +1,10 @@
 from datetime import datetime
-from django.shortcuts import render
+from unicodedata import name
+from django.shortcuts import redirect, render
 
 from django.http import HttpResponse 
 from django.shortcuts import render
+from django.urls import reverse
 
 from Customer.models import customer 
 
@@ -13,7 +15,7 @@ from Customer.models import customer
 
 def regist(request):
     '''load the regit form'''
-    return render(request,"web\ re-log\ register.html")
+    return render(request,'web/ re-log/ register.html')
 
 
     
@@ -38,5 +40,46 @@ def doregist(request):
 
     except Exception as err:
         print(err)
-        context = {'info':"Addition Failed!!"}   
-        return render(request,'web\Regist.html',) 
+        context = {'info':"Add Failed!!"}   
+        return render(request,'web\ re-log\ register.html',) 
+
+
+def login(request):
+    '''load the login form'''
+    return render(request,"web/re-log/login.html")
+
+def dologin(request):
+    ''' perform the login operation'''
+    try:
+        if request.POST['code'] != request.session['verifycode']:
+            return redirect(reverse('web_orderhome_login')+"?errinfo=2")
+
+        #Obtain user information based on login account
+        user = customer.objects.get(username=request.POST['username'])
+        Word = request.POST['pass']
+            #Check whether the current user is valid or an administrator
+        if  user.status == 1 or user.status == 6:
+            #identify whether the password is valid
+            # import hashlib
+            # md5 = hashlib.md5()
+            # s = request.POST['pass']+user.password_salt #Get the password from the form and add an interference value
+            # md5.update(s.encode('utf-8')) 
+            
+            if Word == user.password  :
+                print('login successfully!')
+                request.session['webuser'] = user.toDict()
+                return redirect(reverse('web_orders_homepage'))
+            else:
+               return redirect(reverse('web_orderhome_login')+"?errinfo=5")
+
+        else :
+            return redirect(reverse('web_orderhome_login')+"?errinfo=4")
+    except Exception as err:
+        print(err)
+        return redirect(reverse('web_orderhome_login')+"?errinfo=3")
+  
+
+def logout(request):
+    ''' perform the logout operation'''
+    del request.session['webuser']
+    return redirect(reverse('web_orderhome_login'))

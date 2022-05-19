@@ -21,5 +21,5 @@ from Customer import views
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('', views.doregist),
+    path('', views.regist),
 ]
