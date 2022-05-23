@@ -1,4 +1,4 @@
-{% load static %}
+{% load bootstrap5 %}
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
@@ -116,8 +116,8 @@
           </div>
       </div>
       
-      <script src="{% static 'web/js/jquery.min.js' %}"></script>
-      <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'static\js\jquery.min.js' %}"></script>
+      <script src="{% static 'static\js\bootstrap.min.js' %}"></script>
       <div class="col-md-8">
           <!--TAB contents-->
         {% for key,category in categorylist %}  
@@ -129,8 +129,8 @@
   </div>
   <!-- Page body end -->
 
-  <script src="{% static 'web/js/jquery.min.js' %}"></script>
-  <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'static\js\jquery.min.js' %}"></script>
+  <script src="{% static 'static\js\bootstrap.min.js' %}"></script>
   
 
 
