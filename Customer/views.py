@@ -15,8 +15,8 @@ from Customer.models import customer
 
 def regist(request):
     '''load the regit form'''
-    return render(request,'web/ re-log/ register.html')
-
+    # return render(request,'web/ re-log/ register.html')
+    return render(request,'templates/ base.html')
 
     
 
@@ -36,7 +36,7 @@ def doregist(request):
         ob.save()
 
         context = {'info':"Successfully Add!!"}
-        return render(request,'web\index.html',)
+        return render(request,'web\ re-log\ register.html',)
 
     except Exception as err:
         print(err)
@@ -46,13 +46,13 @@ def doregist(request):
 
 def login(request):
     '''load the login form'''
-    return render(request,"web/re-log/login.html")
+    return render(request,"web\ re-log\login.html")
 
 def dologin(request):
     ''' perform the login operation'''
     try:
         if request.POST['code'] != request.session['verifycode']:
-            return redirect(reverse('web_orderhome_login')+"?errinfo=2")
+            return redirect(reverse('web_login')+"?errinfo=2")
 
         #Obtain user information based on login account
         user = customer.objects.get(username=request.POST['username'])
@@ -68,18 +68,18 @@ def dologin(request):
             if Word == user.password  :
                 print('login successfully!')
                 request.session['webuser'] = user.toDict()
-                return redirect(reverse('web_orders_homepage'))
+                return redirect(reverse('web_index'))
             else:
-               return redirect(reverse('web_orderhome_login')+"?errinfo=5")
+               return redirect(reverse('web_login')+"?errinfo=5")
 
         else :
-            return redirect(reverse('web_orderhome_login')+"?errinfo=4")
+            return redirect(reverse('web_login')+"?errinfo=4")
     except Exception as err:
         print(err)
-        return redirect(reverse('web_orderhome_login')+"?errinfo=3")
+        return redirect(reverse('web_login')+"?errinfo=3")
   
 
 def logout(request):
     ''' perform the logout operation'''
     del request.session['webuser']
-    return redirect(reverse('web_orderhome_login'))
+    return redirect(reverse('web_login'))
