@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 
-from Customer.models import customer 
+from Customer.models import customer,update,payment
 
 
 # Create your views here.
@@ -26,11 +26,44 @@ def doregist(request):
         ob=customer()
         ob.username = request.POST.get('username')
         ob.password = request.POST.get('password')
+        ob.create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ob.save()
+
+        context = {'info':"Successfully Add!!"}
+        return render(request,'web\ re-log\ register.html',)
+
+    except Exception as err:
+        print(err)
+        context = {'info':"Add Failed!!"}   
+        return render(request,'web\ re-log\ register.html',) 
+
+
+
+def update(request):
+    try:
+        ob=update()
+        ob.nickname = request.POST.get('username')
         ob.email = request.POST.get('email')
         ob.phoneNo = request.POST.get('phoneNo')
-        ob.address = ""
-        ob.nickname = ""
-        ob.status = 1
+        ob.birthdate = request.POST.get('birthdate')
+        ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        ob.save()
+
+        context = {'info':"Successfully Add!!"}
+        return render(request,'web\ re-log\ register.html',)
+
+    except Exception as err:
+        print(err)
+        context = {'info':"Add Failed!!"}   
+        return render(request,'web\ re-log\ register.html',) 
+
+
+
+def payment(request):
+    try:
+        ob=payment()
+        ob.cardnumber = request.POST.get('username')
+        ob.secureNo = request.POST.get('password')
         ob.create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.save()
