@@ -13,10 +13,10 @@ from Customer.models import customer,update,payment
 
 
 
-def regist(request):
-    '''load the regit form'''
-    # return render(request,'web/ re-log/ register.html')
-    return render(request,'templates/ base.html')
+# def regist(request):
+#     '''load the regit form'''
+#     # return render(request,'web/ re-log/ register.html')
+#     return render(request,'templates/web/re-log/register.html')
 
     
 
@@ -30,16 +30,16 @@ def doregist(request):
         ob.save()
 
         context = {'info':"Successfully Add!!"}
-        return render(request,'web\ re-log\ register.html',)
+        return render(request,'templates/web/bootstrap/blog.html',)
 
     except Exception as err:
         print(err)
         context = {'info':"Add Failed!!"}   
-        return render(request,'web\ re-log\ register.html',) 
+        return render(request,'templates/web/re-log/register.html',) 
 
 
 
-def update(request):
+def Update(request):
     try:
         ob=update()
         ob.nickname = request.POST.get('username')
@@ -50,16 +50,16 @@ def update(request):
         ob.save()
 
         context = {'info':"Successfully Add!!"}
-        return render(request,'web\ re-log\ register.html',)
+        return render(request,'templates/web/re-log/update.html',)
 
     except Exception as err:
         print(err)
         context = {'info':"Add Failed!!"}   
-        return render(request,'web\ re-log\ register.html',) 
+        return render(request,'templates/web/re-log/update.html',) 
 
 
 
-def payment(request):
+def Payment(request):
     try:
         ob=payment()
         ob.cardnumber = request.POST.get('username')

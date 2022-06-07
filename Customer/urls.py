@@ -21,5 +21,6 @@ from Customer import views
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('', views.regist),
+    path('', views.doregist, name='Customer_doregister'),
+    path('update',views.Update, name='Customer_update'),
 ]

@@ -1,10 +1,17 @@
+{# Load the tag library #}
 {% load bootstrap5 %}
-<!DOCTYPE html>
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 <head>
   <meta charset="UTF-8">
   <title>Register</title>
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'css/common.css' %}">
+  {% comment %} <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'web/css/common.css' %}"> {% endcomment %}
   <style type="text/css">
       body{min-height:2000px;padding-top:70px;}
 
@@ -45,7 +52,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">（Medber）</span><span style="font-size:14px;">（Montreal）</span></a>
+          <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">（Montreal）</span></a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
 <!-- 
@@ -75,39 +82,36 @@
           <div >
               <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
                   <div class="panel">
-                      <h2 style="font-size:26px;">Registration</h2>
+                      <h2 style="font-size:26px;">Update</h2>
                   </div>
-                  {% comment %} <form action="{% url 'myadmin_registration_regist' %}" method="post"> {% endcomment %}
+                  {% comment %} <form action="{% url 'Customer_doregister' %}" method="post"> {% endcomment %}
                      
                       <!-- <div class="form-group">
                           <select name="shop_id" class="form-control">
                               <option value="0"> - - shop selection - - </option>
                           </select>
                             </div> -->
-                      <form action="{% url 'myadmin_registration_doregist' %}" method="post">
+                      <form action="{% url 'Customer_update' %}" method="post">
                         {% csrf_token %}
-                          <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
-                          <input type="password" name="password" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
+                          <input type="text" name="nickname" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="nickname">
+                          <input type="Email" name="Email" style="height: 50px; margin-bottom: 5px;" class="form-control" placeholder="Email">
+                          <input type="text" name="phoneNo" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="Phone">
+                          <input type="birthdate" name="birthdate" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="DOB">
 
-                        <input type="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
-
-                        <input type="text" name="email" style="height: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Email">
-
-                        <input type="text" name="phoneNo" style="height: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Phone">
                       <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
 
                       {% comment %} <div class="form-group">
                           <p class="login-box-msg" style="color:red">
                               {% if request.GET.errinfo == '1' %}
-                                  none!
+                                  none！
                               {% elif request.GET.errinfo == '2' %}
-                                 Verification code error!
+                                 Verification code error！
                               {% elif request.GET.errinfo == '3' %}
                                  The login account does not exist!
                               {% elif request.GET.errinfo == '4' %}
-                                  Invalid login account!
+                                  Invalid login account！
                               {% elif request.GET.errinfo == '5' %}
-                                  Incorrect login password!
+                                  Incorrect login password！
                               {% endif %}
                           </p>
                       </div>  {% endcomment %}
@@ -116,8 +120,8 @@
           </div>
       </div>
       
-      <script src="{% static 'static\js\jquery.min.js' %}"></script>
-      <script src="{% static 'static\js\bootstrap.min.js' %}"></script>
+      {% comment %} <script src="{% static 'web/js/jquery.min.js' %}"></script>
+      <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
       <div class="col-md-8">
           <!--TAB contents-->
         {% for key,category in categorylist %}  
@@ -128,9 +132,9 @@
       </div>
   </div>
   <!-- Page body end -->
-
-  <script src="{% static 'static\js\jquery.min.js' %}"></script>
-  <script src="{% static 'static\js\bootstrap.min.js' %}"></script>
+{% comment %} 
+  <script src="{% static 'web/js/jquery.min.js' %}"></script>
+  <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
   
 
 
