@@ -18,7 +18,7 @@ from Customer.models import customer,update,payment
 #     # return render(request,'web/ re-log/ register.html')
 #     return render(request,'templates/web/re-log/register.html')
 
-    
+   
 
 def doregist(request):
     ''' Execute order adding '''
@@ -41,7 +41,7 @@ def doregist(request):
 
 def Update(request):
     try:
-        ob=update()
+        ob=customer()
         ob.nickname = request.POST.get('username')
         ob.email = request.POST.get('email')
         ob.phoneNo = request.POST.get('phoneNo')
