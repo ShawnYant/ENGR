@@ -80,7 +80,7 @@
                     
                     <div class="form-group">
                         <p class="login-box-msg" style="color:red">
-                            {% if request.GET.errinfo == '1' %}
+                            {% comment %} {% if request.GET.errinfo == '1' %}
                                 none！
                             {% elif request.GET.errinfo == '2' %}
                                Verification code error！
@@ -90,7 +90,7 @@
                                 Invalid login account！
                             {% elif request.GET.errinfo == '5' %}
                                 Incorrect login password！
-                            {% endif %}
+                            {% endif %} {% endcomment %}
                         </p>
                     </div>
                 </form>
