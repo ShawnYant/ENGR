@@ -88,9 +88,9 @@ def dologin(request):
     if pa == user.password:
         print('login successfully')
         request.session['customer'] = user.toDict()
-        return redirect(reverse('templates/webwebpage/index.html'))
+        return render(request,'templates/web/re-log/index.html')
     else:
-        return redirect(reverse('Customer_login')+"login fail")
+        return redirect(request,'Customer_login'+"login fail")
 
     # try:
     #     if request.POST['code'] != request.session['verifycode']:
