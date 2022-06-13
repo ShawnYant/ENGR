@@ -6,8 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 
-from Customer.models import customer,update,payment
-
+from Customer.models import customer,update,payment,CustomSession,SessionStore
 
 # Create your views here.
 
@@ -40,6 +39,7 @@ def doregist(request):
 
 
 def Update(request):
+
     try:
         ob=customer()
         ob.nickname = request.POST.get('username')
@@ -79,40 +79,53 @@ def Payment(request):
 
 def login(request):
     '''load the login form'''
-    return render(request,"web\ re-log\login.html")
+    return render(request,"templates/web/re-log/login.html")
 
 def dologin(request):
     ''' perform the login operation'''
-    try:
-        if request.POST['code'] != request.session['verifycode']:
-            return redirect(reverse('web_login')+"?errinfo=2")
+    user = customer.objects.get(username=request.POST['username'])
+    pa = request.POST['pass']
+    if pa == user.password:
+        print('login successfully')
+        request.session['customer'] = user.toDict()
+        return redirect(reverse('templates/webwebpage/index.html'))
+    else:
+        return redirect(reverse('Customer_login')+"login fail")
 
-        #Obtain user information based on login account
-        user = customer.objects.get(username=request.POST['username'])
-        Word = request.POST['pass']
-            #Check whether the current user is valid or an administrator
-        if  user.status == 1 or user.status == 6:
-            #identify whether the password is valid
-            # import hashlib
-            # md5 = hashlib.md5()
-            # s = request.POST['pass']+user.password_salt #Get the password from the form and add an interference value
-            # md5.update(s.encode('utf-8')) 
+    # try:
+    #     if request.POST['code'] != request.session['verifycode']:
+    #         return redirect(reverse('web_login')+"?errinfo=2")
+
+    #     #Obtain user information based on login account
+    #     user = customer.objects.get(username=request.POST['username'])
+    #     Word = request.POST['pass']
+    #         #Check whether the current user is valid or an administrator
+    #     if  user.status == 1 or user.status == 6:
+    #         #identify whether the password is valid
+    #         # import hashlib
+    #         # md5 = hashlib.md5()
+    #         # s = request.POST['pass']+user.password_salt #Get the password from the form and add an interference value
+    #         # md5.update(s.encode('utf-8')) 
             
-            if Word == user.password  :
-                print('login successfully!')
-                request.session['webuser'] = user.toDict()
-                return redirect(reverse('web_index'))
-            else:
-               return redirect(reverse('web_login')+"?errinfo=5")
+    #         if Word == user.password  :
+    #             print('login successfully!')
+    #             request.session['webuser'] = user.toDict()
+    #             return redirect(reverse('web_index'))
+    #         else:
+    #            return redirect(reverse('web_login')+"?errinfo=5")
 
-        else :
-            return redirect(reverse('web_login')+"?errinfo=4")
-    except Exception as err:
-        print(err)
-        return redirect(reverse('web_login')+"?errinfo=3")
+    #     else :
+    #         return redirect(reverse('web_login')+"?errinfo=4")
+    # except Exception as err:
+    #     print(err)
+    #     return redirect(reverse('web_login')+"?errinfo=3")
   
+def index(request):
+
+    return render(request,"templates/web/webpage/index.html")
+
 
 def logout(request):
     ''' perform the logout operation'''
-    del request.session['webuser']
-    return redirect(reverse('web_login'))
+    del request.session['customer']
+    return redirect(reverse('Customer_login'))

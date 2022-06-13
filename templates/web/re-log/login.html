@@ -1,10 +1,10 @@
-{% load staticfile %}
+{% load bootstrap5 %}
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="{% staticfile 'web/css/common.css' %}">
-    <link rel="stylesheet" href="{% staticfile 'web/css/bootstrap.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% 'web/css/common.css' %}">
+    <link rel="stylesheet" href="{%  'web/css/bootstrap.css' %}"> {% endcomment %}
     <style type="text/css">
         body{min-height:2000px;padding-top:70px;}
   
@@ -64,7 +64,7 @@
                 <div class="panel">
                     <h2 style="font-size:26px;">Login</h2>
                 </div>
-                <form action="{% url 'web_orderhome_dologin' %}" method="post" >
+                <form action="{% url 'Customer_dologin' %}" method="post" >
                     {% csrf_token %}
                     <!-- <div class="form-group">
                         <select name="shop_id" class="form-control">
@@ -73,23 +73,23 @@
                     </div> -->
                         <input type="text" name="username" style="height:50px;margin-top: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
                         <input type="password" name="pass" style="height:50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
-                       
-                        
+                        <input type="text" name="code" style="height:50px;display:inline;width:120px;float:left;" class="form-control" placeholder="Verification Code">
+                        {% comment %} <img src="{% url 'web_orderhome_verify'%}" onclick="this.src='{% url 'web_orderhome_verify' %}?sn='+Math.random()" style="float:right;margin:5px 35px;" /> {% endcomment %}
                     
                     <button type="submit" style="width:100%;height:50px;margin-top:50px;" class="btn btn-primary" >Login</button>
                     
                     <div class="form-group">
                         <p class="login-box-msg" style="color:red">
                             {% if request.GET.errinfo == '1' %}
-                                none!
+                                none！
                             {% elif request.GET.errinfo == '2' %}
-                               Verification code error!
+                               Verification code error！
                             {% elif request.GET.errinfo == '3' %}
                                The login account does not exist!
                             {% elif request.GET.errinfo == '4' %}
-                                Invalid login account!
+                                Invalid login account！
                             {% elif request.GET.errinfo == '5' %}
-                                Incorrect login password!
+                                Incorrect login password！
                             {% endif %}
                         </p>
                     </div>
@@ -99,7 +99,7 @@
         </div>
     </div>
     
-    <script src="{% static 'web/js/jquery.min.js' %}"></script>
-    <script src="{% static 'web/js/bootstrap.min.js' %}"></script>
+    {% comment %} <script src="{% static 'web/js/jquery.min.js' %}"></script>
+    <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
 </body>
 </html>

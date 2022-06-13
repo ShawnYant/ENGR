@@ -23,4 +23,7 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', views.doregist, name='Customer_doregister'),
     path('update',views.Update, name='Customer_update'),
+    path('login', views.login, name='Customer_login'),
+    
+
 ]
