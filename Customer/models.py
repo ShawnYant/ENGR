@@ -1,5 +1,6 @@
 from asyncio.windows_events import INFINITE
 from contextlib import nullcontext
+from xmlrpc.client import DateTime
 from django.db import models
 from datetime import datetime
 from django.contrib.sessions.backends.db import SessionStore as DBStore
@@ -32,10 +33,10 @@ class customer(models.Model):
     password = models.CharField(max_length=100, default='123') #password
     create_at = models.DateTimeField(default=datetime.now)    #creat time
     nickname = models.CharField(max_length=50)    #nickname
-    email = models.EmailField(unique= True,default='123@123.com') # EMAIL
-    address = models.CharField(max_length=100,default='123')   #customer address
-    phoneNo = models.CharField(max_length=10,default='123')  #customer phone number
-    birthdate = models.DateTimeField(max_length=10,default=datetime.now)  #customer date of birth
+    email = models.EmailField(unique=False,default='null') # EMAIL
+    address = models.CharField(max_length=100,default='')   #customer address
+    phoneNo = models.CharField(max_length=10,default='')  #customer phone number
+    birthdate = models.DateTimeField(max_length=10,default= datetime.now)  #customer date of birth
     status = models.IntegerField(default=1)    #Status:pending for next sprint
     update_at = models.DateTimeField(default=datetime.now)    #update time
 
@@ -47,20 +48,20 @@ class customer(models.Model):
 
 
 
-class update(models.Model):
-    updateid = models.IntegerField(default=1)
-    nickname = models.CharField(max_length=50)    #nickname
-    email = models.EmailField(unique= True,default='123@123.com') # EMAIL
-    address = models.CharField(max_length=100,default='123')   #customer address
-    phoneNo = models.CharField(max_length=10,default='123')  #customer phone number
-    birthdate = models.DateTimeField(max_length=10,default=datetime.now)  #customer date of birth
-    status = models.IntegerField(default=1)    #Status:pending for next sprint
-    update_at = models.DateTimeField(default=datetime.now)    #update time
+# class update(models.Model):
+#     updateid = models.IntegerField(default=1)
+#     nickname = models.CharField(max_length=50)    #nickname
+#     email = models.EmailField(unique= True,default='123@123.com') # EMAIL
+#     address = models.CharField(max_length=100,default='123')   #customer address
+#     phoneNo = models.CharField(max_length=10,default='123')  #customer phone number
+#     birthdate = models.DateTimeField(max_length=10,default=datetime.now)  #customer date of birth
+#     status = models.IntegerField(default=1)    #Status:pending for next sprint
+#     update_at = models.DateTimeField(default=datetime.now)    #update time
 
-    def toDict(self):
-        return {'updateid':self.updateid,'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo,'status':self.status,'update_at':self.update_at.strftime('%Y-%m-%d %H:%M:%S'),} 
-    class Meta:
-        db_table = "customer_up"  # change the name of the table
+#     def toDict(self):
+#         return {'updateid':self.updateid,'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo,'status':self.status,'update_at':self.update_at.strftime('%Y-%m-%d %H:%M:%S'),} 
+#     class Meta:
+#         db_table = "customer_up"  # change the name of the table
 
 
 class payment(models.Model):

@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 
-from Customer.models import customer,update,payment,CustomSession,SessionStore
+from Customer.models import customer,payment,CustomSession,SessionStore
 
 # Create your views here.
 

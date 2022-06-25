@@ -59,21 +59,5 @@ class Migration(migrations.Migration):
                 'db_table': 'payment',
             },
         ),
-        migrations.CreateModel(
-            name='update',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('updateid', models.IntegerField(default=1)),
-                ('nickname', models.CharField(max_length=50)),
-                ('email', models.EmailField(default='123@123.com', max_length=254, unique=True)),
-                ('address', models.CharField(default='123', max_length=100)),
-                ('phoneNo', models.CharField(default='123', max_length=10)),
-                ('birthdate', models.DateTimeField(default=datetime.datetime.now, max_length=10)),
-                ('status', models.IntegerField(default=1)),
-                ('update_at', models.DateTimeField(default=datetime.datetime.now)),
-            ],
-            options={
-                'db_table': 'customer_up',
-            },
-        ),
+      
     ]
