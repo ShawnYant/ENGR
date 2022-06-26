@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Store',
     'Customer',
     'bootstrap5',
+    # 'customer.apps.CustomerConfig',
 
 
 ]
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'ENGR.wsgi.application'
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 引擎（默认）
 
-CUSTOMER_SESSION_ID = 'Customer' 
+CUSS_SESSION_ID = 'cuss' 
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = 'True'          #clear session when browser closed 
 # # SESSION_COOKIE_NAME ＝ "sessionid"            # Session的cookie保存在浏览器上时的key，即：sessionid＝随机字符串（默认）

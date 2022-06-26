@@ -1,13 +1,15 @@
+from ctypes import GetLastError
 from datetime import datetime
 from unicodedata import name
+from webbrowser import get
 from django.shortcuts import redirect, render
 
 from django.http import HttpResponse 
 from django.shortcuts import render
 from django.urls import reverse
 
-from Customer.models import customer,payment,CustomSession,SessionStore
-
+from Customer.models import customer,payment
+from Customer.cuss import Cuss
 # Create your views here.
 
 
@@ -29,7 +31,7 @@ def doregist(request):
         ob.save()
 
         context = {'info':"Successfully Add!!"}
-        return render(request,'templates/web/bootstrap/blog.html',)
+        return render(request,'templates/base.html',)
 
     except Exception as err:
         print(err)
@@ -39,23 +41,25 @@ def doregist(request):
 
 
 def Update(request):
+    if Cuss.cuss_id == request.POST.get('username'):
+    #     print('login successfully')
+    #     request.session['customer'] = user.toDict()
+        # try:
+            ob=customer()
+            ob.nickname = request.POST.get('username')
+            ob.email = request.POST.get('email')
+            ob.phoneNo = request.POST.get('phoneNo')
+            ob.birthdate = request.POST.get('birthdate')
+            ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            ob.save()
 
-    try:
-        ob=customer()
-        ob.nickname = request.POST.get('username')
-        ob.email = request.POST.get('email')
-        ob.phoneNo = request.POST.get('phoneNo')
-        ob.birthdate = request.POST.get('birthdate')
-        ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        ob.save()
-
-        context = {'info':"Successfully Add!!"}
-        return render(request,'templates/web/re-log/update.html',)
-
-    except Exception as err:
-        print(err)
-        context = {'info':"Add Failed!!"}   
-        return render(request,'templates/web/re-log/update.html',) 
+            context = {'info':"Successfully Add!!"}
+            return render(request,'templates/web/re-log/update.html',)
+    else:
+            # except Exception as err:
+            print('err')
+            context = {'info':"Add Failed!!"}   
+            return render(request,'templates/web/re-log/update.html',) 
 
 
 
@@ -86,9 +90,10 @@ def dologin(request):
     user = customer.objects.get(username=request.POST['username'])
     pa = request.POST['pass']
     if pa == user.password:
+        Cuss.cuss_id = customer.userid
         print('login successfully')
-        request.session['customer'] = user.toDict()
-        return render(request,'templates/web/re-log/index.html')
+        request.session['cuss'] = user.toDict()
+        return render(request,'templates/base.html')
     else:
         return redirect(request,'Customer_login'+"login fail")
 
@@ -122,7 +127,7 @@ def dologin(request):
   
 def index(request):
 
-    return render(request,"templates/web/webpage/index.html")
+    return render(request,"templates/web/re-log/index.html")
 
 
 def logout(request):
