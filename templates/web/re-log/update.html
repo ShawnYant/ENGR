@@ -93,6 +93,7 @@
                             </div> -->
                       <form action="{% url 'Customer_update' %}" method="post">
                         {% csrf_token %}
+                          <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="username">
                           <input type="text" name="nickname" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="nickname">
                           <input type="Email" name="Email" style="height: 50px; margin-bottom: 5px;" class="form-control" placeholder="Email">
                           <input type="text" name="phoneNo" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="Phone">

@@ -91,10 +91,9 @@
                           <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
                           <input type="password" name="password" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
                           <input type="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
-
-                      <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
+                          <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
                        
-                      {% comment %} <div class="form-group">
+                        {% comment %} <div class="form-group">
                           <p class="login-box-msg" style="color:red">
                               {% if request.GET.errinfo == '1' %}
                                   none！
@@ -108,22 +107,22 @@
                                   Incorrect login password！
                               {% endif %}
                           </p>
-                      </div>  {% endcomment %}
-                  </form>
+                        </div>  {% endcomment %}
+                      </form>
               </div>
           </div>
       </div>
       
       {% comment %} <script src="{% static 'web/js/jquery.min.js' %}"></script>
       <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
-      <div class="col-md-8">
+      {% comment %} <div class="col-md-8">
           <!--TAB contents-->
         {% for key,category in categorylist %}  
           <h5 style="padding-bottom:9px;border-bottom:1px solid #eee;color:#BB3D00"><span class="glyphicon glyphicon-list" aria-hidden="true"> {{ category.name }}：</h5>
             <div class="row shoplist">
             </div>
         {% endfor %}
-      </div>
+      </div> {% endcomment %}
   </div>
   <!-- Page body end -->
 {% comment %} 

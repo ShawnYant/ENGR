@@ -23,6 +23,7 @@ from Customer import views
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', views.index,name='index'),
+    path('#', views.aftlogin,name='aftlogin'),
     path('Customer/', include('Customer.urls') ),
     path('dologin',views.dologin,name='Customer_dologin'),
 ]

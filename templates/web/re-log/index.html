@@ -61,11 +61,18 @@
             <span class="icon-bar"></span>
           </button>  {% endcomment %}
           <a class="navbar-brand" href="">
+
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">Montreal</span></a>
             <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-end;">
-            <button onclick="window.location.href='Customer'" type="button" id="Register">Register</button>
-            <button onclick="window.location.href='Customer/login'" type="button" id="login">Login</button>
-            <button onclick="" type="button" id="contact">Contact Us</button>
+            {% comment %} {% if request.session.cuss.username == 'null' %} {% endcomment %}
+             <button onclick="window.location.href='Customer'" type="button" id="Register">Register</button>
+             <button onclick="window.location.href='Customer/login'" type="button" id="login">Login</button>
+             <button onclick="" type="button" id="contact">Contact Us</button>
+            {% comment %} {% else %}
+             <span>{{request.session.cuss.username}}</span
+             <button onclick="window.location.href='Customer/update'" type="button" id="Update">Update</button>
+             <button onclick="" type="button" id="contact">Contact Us</button> 
+            {% endif %}  {% endcomment %}
             <div class="navbar-brand" href=""></div>
           </div>
         </div>
@@ -81,4 +88,11 @@
 </div>
 <script src="bundle.js"></script>
 </body>
+
+<script>
+    {% for msg in messages %}
+        alert('{{ msg.message }}');
+    {% endfor %}
+</script>
+
 </html>

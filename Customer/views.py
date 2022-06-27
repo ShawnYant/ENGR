@@ -10,6 +10,7 @@ from django.urls import reverse
 
 from Customer.models import customer,payment
 from Customer.cuss import Cuss
+from django.contrib import messages
 # Create your views here.
 
 
@@ -17,7 +18,7 @@ from Customer.cuss import Cuss
 def regist(request):
     '''load the regit form'''
     # return render(request,'web/ re-log/ register.html')
-    return render(request,'templates/web/re-log/index.html')
+    return render(request,'templates/web/re-log/register.html')
 
    
 
@@ -29,32 +30,33 @@ def doregist(request):
         ob.password = request.POST.get('password')
         ob.create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.save()
-
+        messages.error(request,'Registration is success!')
         context = {'info':"Successfully Add!!"}
-        return render(request,'/templates/web/re-log/index.html',)
+        return redirect(reverse('index'))
 
     except Exception as err:
         print(err)
         context = {'info':"Add Failed!!"}   
-        return render(request,'/templates/web/re-log/register.html',) 
+        return render(request,'templates/web/re-log/register.html',) 
 
 
 
 def Update(request):
-    if Cuss.cuss_id == request.POST.get('username'):
+    if request.session.cuss.userid == request.POST.get('username'):
     #     print('login successfully')
     #     request.session['customer'] = user.toDict()
         # try:
+            print('123 123')
             ob=customer()
             ob.nickname = request.POST.get('username')
             ob.email = request.POST.get('email')
             ob.phoneNo = request.POST.get('phoneNo')
-            ob.birthdate = request.POST.get('birthdate')
+            # ob.birthdate = request.POST.get('birthdate')
             ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             ob.save()
-
+            print('123 123')
             context = {'info':"Successfully Add!!"}
-            return render(request,'templates/web/re-log/update.html',)
+            return redirect(reverse('aftlogin'))
     else:
             # except Exception as err:
             print('err')
@@ -93,7 +95,8 @@ def dologin(request):
         Cuss.cuss_id = customer.userid
         print('login successfully')
         request.session['cuss'] = user.toDict()
-        return render(request,'templates/base.html')
+        messages.error(request,'login is success!')
+        return redirect(reverse('aftlogin'))
     else:
         return redirect(request,'Customer_login'+"login fail")
 
@@ -128,6 +131,10 @@ def dologin(request):
 def index(request):
 
     return render(request,"templates/web/re-log/index.html")
+
+def aftlogin(request):
+
+    return render(request,"templates/web/re-log/aftlogin.html")
 
 
 def logout(request):

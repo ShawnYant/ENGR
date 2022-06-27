@@ -36,7 +36,8 @@ class customer(models.Model):
     email = models.EmailField(unique=False,default='null') # EMAIL
     address = models.CharField(max_length=100,default='')   #customer address
     phoneNo = models.CharField(max_length=10,default='')  #customer phone number
-    birthdate = models.DateTimeField(max_length=10,default= datetime.now)  #customer date of birth
+    birthdate = models.CharField(max_length=50)
+    # birthdate = models.DateTimeField(max_length=10,default= datetime.now)  #customer date of birth
     status = models.IntegerField(default=1)    #Status:pending for next sprint
     update_at = models.DateTimeField(default=datetime.now)    #update time
 
