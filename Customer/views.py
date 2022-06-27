@@ -14,10 +14,10 @@ from Customer.cuss import Cuss
 
 
 
-# def regist(request):
-#     '''load the regit form'''
-#     # return render(request,'web/ re-log/ register.html')
-#     return render(request,'templates/web/re-log/register.html')
+def regist(request):
+    '''load the regit form'''
+    # return render(request,'web/ re-log/ register.html')
+    return render(request,'templates/web/re-log/index.html')
 
    
 
@@ -31,12 +31,12 @@ def doregist(request):
         ob.save()
 
         context = {'info':"Successfully Add!!"}
-        return render(request,'templates/base.html',)
+        return render(request,'/templates/web/re-log/index.html',)
 
     except Exception as err:
         print(err)
         context = {'info':"Add Failed!!"}   
-        return render(request,'templates/web/re-log/register.html',) 
+        return render(request,'/templates/web/re-log/register.html',) 
 
 
 
