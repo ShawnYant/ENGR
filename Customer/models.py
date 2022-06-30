@@ -33,7 +33,7 @@ class customer(models.Model):
     nickname = models.CharField(max_length=50)    #nickname
     email = models.EmailField(unique=False,default='null') # EMAIL
     address = models.CharField(max_length=1000,default='')   #customer address
-    phoneNo = models.CharField(max_length=10,default='')  #customer phone number
+    phoneNo = models.CharField(max_length=1000,default='')  #customer phone number
     birthdate = models.DateField(null=True)
     # birthdate = models.DateTimeField(max_length=10,default= datetime.now)  #customer date of birth
     status = models.IntegerField(default=1)    #Status:pending for next sprint
