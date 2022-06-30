@@ -1,45 +1,72 @@
+{# Load the tag library #}
 {% load bootstrap5 %}
-<html>
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    {% comment %} <link rel="stylesheet" href="{% 'web/css/common.css' %}">
-    <link rel="stylesheet" href="{%  'web/css/bootstrap.css' %}"> {% endcomment %}
-    <style type="text/css">
-        body{min-height:2000px;padding-top:70px;}
-  
-        .navbar-default{background-color:#ff8800;border-color:#e7e7e7;}
-        .navbar-default .navbar-brand{color:#fff;}
-        .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
-            color: #fff;
-            width:100px;
-            font-size:14px;
-            text-align:center;
-        }
-        .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
-            color:#fff;
-            background-color: #FF4500;
-            width:100px;
-            font-size:14px;
-            text-align:center;
-        }
-        
-    </style>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  {% comment %} <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'web/css/common.css' %}"> {% endcomment %}
+  <style type="text/css">
+      body{min-height:2000px;padding-top:70px;}
+
+      .navbar-default{background-color:#ff8800;border-color:#e7e7e7;}
+      .navbar-default .navbar-brand{color:#fff;}
+      .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
+          color: #fff;
+          width:100px;
+          font-size:14px;
+          text-align:center;
+      }
+      .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
+          color:#fff;
+          background-color: #FF4500;
+          width:100px;
+          font-size:14px;
+          text-align:center;
+      }
+      
+      table tr td{font-size:11px;} 
+      table tr td.price{color:red;}
+      table tr td.num span{color:red;padding:0px 5px}
+      table tr td.num i{border-width:0px;background-color:#ddd;}  
+
+      div.shoplist div.bn{font-size:12px;line-height:25px;}
+      div.shoplist div.bn span.price{color:red;}
+  </style>
 </head>
-<body style="background-color: #FFEFD5;">
-    <nav class="navbar navbar-default navbar-fixed-top" >
-        <div class="container" >
-          <div class="navbar-header">
-            <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button> -->
-            <a class="navbar-brand"  href="#">
-              <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">Montreal</span></a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
+<body style="background-color: PapayaWhip ;">
+  <!-- Header navigation Begins-->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" >
+      <div class="navbar-header">
+        
+        <a class="navbar-brand" href="#">
+          <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">（Montreal）</span></a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+<!-- 
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Order Now</a></li>
+
+          <li><a href="#about">Order In Production</a></li>
+          <li><a href="#contact">History Order</a></li>
+
+        </ul> -->
+
+        <!-- <ul class="nav navbar-nav navbar-right">
+          <li><a href="../navbar/">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"> {{request.session.webuser.nickname}}</a></li>
+      
+        </ul> -->
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
     <!-- 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">Order Now</a></li>
@@ -73,7 +100,7 @@
                     </div> -->
                         <input type="text" name="username" style="height:50px;margin-top: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
                         <input type="password" name="pass" style="height:50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
-                        <input type="text" name="code" style="height:50px;display:inline;width:120px;float:left;" class="form-control" placeholder="Verification Code">
+                        {% comment %} <input type="text" name="code" style="height:50px;display:inline;width:120px;float:left;" class="form-control" placeholder="Verification Code"> {% endcomment %}
                         {% comment %} <img src="{% url 'web_orderhome_verify'%}" onclick="this.src='{% url 'web_orderhome_verify' %}?sn='+Math.random()" style="float:right;margin:5px 35px;" /> {% endcomment %}
                     
                     <button type="submit" style="width:100%;height:50px;margin-top:50px;" class="btn btn-primary" >Login</button>
