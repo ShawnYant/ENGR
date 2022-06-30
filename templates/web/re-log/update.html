@@ -91,11 +91,11 @@
                               <option value="0"> - - shop selection - - </option>
                           </select>
                             </div> -->
-                      <form action="{% url 'Customer_update' %}" method="post">
+                      <form action="{% url 'Customer_DoUpdate' %}" method="post">
                         {% csrf_token %}
-                          <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="username">
+                          {% comment %} <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="username"> {% endcomment %}
                           <input type="text" name="nickname" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="nickname">
-                          <input type="Email" name="Email" style="height: 50px; margin-bottom: 5px;" class="form-control" placeholder="Email">
+                          <input type="Email" name="email" style="height: 50px; margin-bottom: 5px;" class="form-control" placeholder="Email">
                           <input type="text" name="phoneNo" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="Phone">
                           <input type="birthdate" name="birthdate" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="DOB">
 

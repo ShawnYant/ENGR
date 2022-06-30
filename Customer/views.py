@@ -1,5 +1,6 @@
 from ctypes import GetLastError
 from datetime import datetime
+from re import A
 from unicodedata import name
 from webbrowser import get
 from django.shortcuts import redirect, render
@@ -7,6 +8,8 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse 
 from django.shortcuts import render
 from django.urls import reverse
+from mysqlx import Session
+from Customer import cuss
 
 from Customer.models import customer,payment
 from Customer.cuss import Cuss
@@ -40,26 +43,29 @@ def doregist(request):
         return render(request,'templates/web/re-log/register.html',) 
 
 
-
 def Update(request):
-    if request.session.cuss.userid == request.POST.get('username'):
-    #     print('login successfully')
-    #     request.session['customer'] = user.toDict()
-        # try:
-            print('123 123')
-            ob=customer()
-            ob.nickname = request.POST.get('username')
+    #render the update page
+    return render(request,'templates/web/re-log/update.html',) 
+
+
+def DoUpdate(request):
+        try:
+            print("username")
+            print(Cuss.cuss_id)
+            ob=customer.objects.get(username=Cuss.cuss_id)
+            ob.nickname = request.POST.get('nickname')
             ob.email = request.POST.get('email')
             ob.phoneNo = request.POST.get('phoneNo')
-            # ob.birthdate = request.POST.get('birthdate')
+        # ob.birthdate = request.POST.get('birthdate')
             ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             ob.save()
             print('123 123')
             context = {'info':"Successfully Add!!"}
             return redirect(reverse('aftlogin'))
-    else:
-            # except Exception as err:
-            print('err')
+    
+        except Exception as err:
+            err.with_traceback()
+            print(err.__traceback__)
             context = {'info':"Add Failed!!"}   
             return render(request,'templates/web/re-log/update.html',) 
 
@@ -92,7 +98,7 @@ def dologin(request):
     user = customer.objects.get(username=request.POST['username'])
     pa = request.POST['pass']
     if pa == user.password:
-        Cuss.cuss_id = customer.userid
+        Cuss.cuss_id = user.username
         print('login successfully')
         request.session['cuss'] = user.toDict()
         messages.error(request,'login is success!')
