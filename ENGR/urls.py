@@ -29,10 +29,10 @@ urlpatterns = [
     path('', views.index,name='index'),
     path('#', views.aftlogin,name='aftlogin'),
     path('Customer/', include('Customer.urls') ),
-    path('dologin',views.dologin,name='Customer_dologin'),
+    path('dologin/',views.dologin,name='Customer_dologin'),
     path('cart/', include('Cart.urls', namespace='cart')),
     # path('cart/', views.cart_detail, name='cart_detail'),
-    path('', include('Store.urls', namespace='Store')),
+    path('store/', include('Store.urls', namespace='Store')),
 ]
 
 if settings.DEBUG:

@@ -1,10 +1,10 @@
-{% extends "Store/base.html" %}
+{% extends "templates\web\Store\base.html" %}
 {% load static %}
 {% block title %}
-  Your shopping cart
+  Your Shopping cart
 {% endblock %}
 {% block content %}
-  <h1>Your shopping cart</h1>
+  <h1>Your Shopping cart</h1>
   <table class="cart">
     <thead>
       <tr>
@@ -47,8 +47,8 @@
     </tbody>
   </table>
   <p class="text-right">
-    <a href="{% url "shop:product_list" %}" class="button
-    light">Continue shopping</a>
+    <a href="{% url "Store:product_list" %}" class="button
+    light">Continue Shopping</a>
     <a href="#" class="button">Checkout</a>
   </p>
 {% endblock %}
