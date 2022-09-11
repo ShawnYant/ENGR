@@ -19,6 +19,8 @@ from Customer import views
 # from Store import views
 from django.conf import settings
 from django.conf.urls.static import static
+# from Cart import views
+
 
 
 
@@ -28,8 +30,11 @@ urlpatterns = [
     path('#', views.aftlogin,name='aftlogin'),
     path('Customer/', include('Customer.urls') ),
     path('dologin',views.dologin,name='Customer_dologin'),
+    path('cart/', include('Cart.urls', namespace='cart')),
+    # path('cart/', views.cart_detail, name='cart_detail'),
     path('', include('Store.urls', namespace='Store')),
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
