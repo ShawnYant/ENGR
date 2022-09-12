@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Store',
     'Customer',
     'bootstrap5',
+    'payment',
     # 'customer.apps.CustomerConfig',
 
 
@@ -73,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'Cart.context_processors.cart',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -229,6 +231,19 @@ BOOTSTRAP5 = {
         'inline': 'bootstrap5.renderers.InlineFieldRenderer',
     },
 }
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = '3dc8q66nrkds9cxm'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = '6vmfbwb4p7tym8b4'   # Public Key
+BRAINTREE_PRIVATE_KEY = 'b141e276295d251f47a01cfc6a62f9cb'  # Private key
+import braintree
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

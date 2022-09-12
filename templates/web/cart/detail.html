@@ -27,7 +27,14 @@
               </a>
             </td>
             <td>{{ product.name }}</td>
-            <td>{{ item.quantity }}</td>
+            <td>
+              <form action="{% url "cart:cart_add" product.id %}" method="post">
+                {{ item.update_quantity_form.quantity }}
+                {{ item.update_quantity_form.override }}
+                <input type="submit" value="Update">
+                {% csrf_token %}
+              </form>
+            </td>
             <td>
               <form action="{% url "cart:cart_remove" product.id %}" method="post">
                 <input type="submit" value="Remove">
@@ -49,6 +56,8 @@
   <p class="text-right">
     <a href="{% url "Store:product_list" %}" class="button
     light">Continue Shopping</a>
-    <a href="#" class="button">Checkout</a>
+    <a href="{% url "orders:order_create" %}" class="button">
+      Checkout
+    </a>
   </p>
 {% endblock %}

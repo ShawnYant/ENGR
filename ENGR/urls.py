@@ -31,6 +31,8 @@ urlpatterns = [
     path('Customer/', include('Customer.urls') ),
     path('dologin/',views.dologin,name='Customer_dologin'),
     path('cart/', include('Cart.urls', namespace='cart')),
+    path('orders/', include('Order.urls', namespace='orders')),
+    path('payment/', include('payment.urls', namespace='payment')),
     # path('cart/', views.cart_detail, name='cart_detail'),
     path('store/', include('Store.urls', namespace='Store')),
 ]
