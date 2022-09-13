@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from Customer import views
 # from Store import views
-from django.conf import settings
+from . import settings
 from django.conf.urls.static import static
 # from Cart import views
 
@@ -34,7 +34,7 @@ urlpatterns = [
     path('orders/', include('Order.urls', namespace='orders')),
     path('payment/', include('payment.urls', namespace='payment')),
     # path('cart/', views.cart_detail, name='cart_detail'),
-    path('store/', include('Store.urls', namespace='Store')),
+    path('store/', include('Store.urls', namespace='store')),
 ]
 
 if settings.DEBUG:

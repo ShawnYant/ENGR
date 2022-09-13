@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import braintree
 from pathlib import Path
 
 from mysqlx import Session
@@ -41,13 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Cart',
-    'Order',
+    # 'Cart',
+    # 'Order',
     'Store',
     'Customer',
     'bootstrap5',
-    'payment',
-    # 'customer.apps.CustomerConfig',
+    'Payment',
+    'Cart.apps.CartConfig',
 
 
 ]
@@ -160,12 +161,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'templates'),) 
+# STAICTFILES_DIRS = (os.path.join(BASE_DIR, 'templates'),) 
 
 # STATICFILES_DIRS = (
 
@@ -236,7 +237,6 @@ BOOTSTRAP5 = {
 BRAINTREE_MERCHANT_ID = '3dc8q66nrkds9cxm'  # Merchant ID
 BRAINTREE_PUBLIC_KEY = '6vmfbwb4p7tym8b4'   # Public Key
 BRAINTREE_PRIVATE_KEY = 'b141e276295d251f47a01cfc6a62f9cb'  # Private key
-import braintree
 BRAINTREE_CONF = braintree.Configuration(
     braintree.Environment.Sandbox,
     BRAINTREE_MERCHANT_ID,
@@ -252,3 +252,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Stripe settings
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51LhTVvDHKdy2k4RtABxudIopV6iWSIMXlatbicJ9BGVxKh8O1QrH4S9DRrzWyBOar8ysCSdqnrVLtVB8kj8RgKSJ00wJOaj9DY' # Publishable key
+STRIPE_SECRET_KEY = 'sk_test_51LhTVvDHKdy2k4RtWMU0JMNtSzJhSUDISuKSpvhPOENv7aHBabUsGk5c4P3W0CqjdhTqCGub4KUV7276LdhiWOxk00ua1nahj7'      # Secret key
+STRIPE_API_VERSION = '2022-08-01'

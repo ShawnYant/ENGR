@@ -1,47 +1,53 @@
-from django.shortcuts import render
-
-# Create your views here.
-import braintree
-from django.shortcuts import render, redirect, get_object_or_404
-from django.conf import settings
+from decimal import Decimal
+import stripe
+from ENGR import settings
+from django.shortcuts import render, redirect,\
+                             get_object_or_404
 from Order.models import Order
-# instantiate Braintree payment gateway
-gateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)
+from django.urls import  reverse
 
+# create the Stripe instance
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.api_version = settings.STRIPE_API_VERSION
 
 def payment_process(request):
-    order_id = request.session.get('order_id')
+    order_id = request.session.get('order_id', None)
     order = get_object_or_404(Order, id=order_id)
-    total_cost = order.get_total_cost()
     if request.method == 'POST':
-        # retrieve nonce
-        nonce = request.POST.get('payment_method_nonce', None)
-        # create and submit transaction
-        result = gateway.transaction.sale({
-            'amount': f'{total_cost:.2f}',
-            'payment_method_nonce': nonce,
-            'options': {
-                'submit_for_settlement': True
-            }
-        })
-        if result.is_success:
-            # mark the order as paid
-            order.paid = True
-            # store the unique transaction id
-            order.braintree_id = result.transaction.id
-            order.save()
-            return redirect('payment:done')
-        else:
-            return redirect('payment:canceled')
+        success_url = request.build_absolute_uri(
+                        reverse('payment:completed'))
+        cancel_url = request.build_absolute_uri(
+                        reverse('payment:canceled'))
+        # Stripe checkout session data
+        session_data = {
+            'mode': 'payment',
+            'client_reference_id': order.id,
+            'success_url': success_url,
+            'cancel_url': cancel_url,
+            'line_items': []
+        }
+        # add order items to the Stripe checkout session
+        for item in order.items.all():
+            session_data['line_items'].append({
+                'price_data': {
+                    'unit_amount': int(item.price * Decimal('100')),
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': item.product.name,
+                    },
+                },
+                'quantity': item.quantity,
+            })
+        # create Stripe checkout session
+        session = stripe.checkout.Session.create(**session_data)
+        # redirect to Stripe payment form
+        return redirect(session.url, code=303)
     else:
-        # generate token
-        client_token = gateway.client_token.generate()
-        return render(request,
-                      'payment/process.html',
-                      {'order': order,
-                       'client_token': client_token})
+        return render(request, 'payment/process.html', locals())
 
-def payment_done(request):
-    return render(request, 'payment/done.html')
+
+def payment_completed(request):
+    return render(request, 'payment/completed.html')
 def payment_canceled(request):
     return render(request, 'payment/canceled.html')
