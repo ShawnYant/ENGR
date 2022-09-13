@@ -1,11 +1,10 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render
 from .models import OrderItem
 from .forms import OrderCreateForm
-from Cart.models import Cart
-from .tasks import order_created
+from Cart.cart import Cart
+from Order.tasks import order_created
 from django.urls import reverse
 from django.shortcuts import render, redirect
 
