@@ -1,6 +1,7 @@
 from decimal import Decimal
 import json
 from django.conf import settings
+from ENGR.settings import DecimalEncoder
 from Store.models import Product
 
 
@@ -83,7 +84,7 @@ class Cart(object):
 
     def get_total_price(self):
         
-        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+        return sum(json.dumps(item['price'],cls=DecimalEncoder)* item['quantity'] for item in self.cart.values())
 
 
     def clear(self):
