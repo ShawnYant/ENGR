@@ -1,21 +1,21 @@
 from decimal import Decimal
 import json
 from django.conf import settings
-from ENGR.settings import DecimalEncoder
+# from ENGR.settings import DecimalEncoder
 from Store.models import Product
 
 
 class Cart(object):
 
 
-    class DecimalEncoder(json.JSONEncoder):
-        def default(self, obj):
-        #if passed in object is instance of Decimal
-        # convert it to a string
-            if isinstance(obj, Decimal):
-                return str(obj)
-        # otherwise use the default behavior
-            return json.JSONEncoder.default(self, obj)
+    # class DecimalEncoder(json.JSONEncoder):
+    #     def default(self, obj):
+    #     #if passed in object is instance of Decimal
+    #     # convert it to a string
+    #         if isinstance(obj, Decimal):
+    #             return str(obj)
+    #     # otherwise use the default behavior
+    #         return json.JSONEncoder.default(self, obj)
         
 
     def __init__(self, request):
@@ -83,8 +83,7 @@ class Cart(object):
 
 
     def get_total_price(self):
-        
-        return sum(json.dumps(item['price'],cls=DecimalEncoder)* item['quantity'] for item in self.cart.values())
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
 
     def clear(self):

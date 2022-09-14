@@ -15,16 +15,17 @@ import braintree
 from pathlib import Path
 import json
 from mysqlx import Session
+# from decimal import Decimal
 
 
-class DecimalEncoder(json.JSONEncoder):
-    def default(self, obj):
-        #if passed in object is instance of Decimal
-        # convert it to a string
-        if isinstance(obj, Decimal):
-            return str(obj)
-        # otherwise use the default behavior
-        return json.JSONEncoder.default(self, obj)
+# class DecimalEncoder(json.JSONEncoder):
+#     def default(self, obj):
+#         #if passed in object is instance of Decimal
+#         # convert it to a string
+#         if isinstance(obj, Decimal):
+#             return str(obj)
+#         # otherwise use the default behavior
+#         return json.JSONEncoder.default(self, obj)
         
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
