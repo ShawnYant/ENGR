@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from Customer import views
+import Customer.views.Index
+import Customer.views.Aftlogin
+import Customer.views.Dologin
 # from Store import views
 from . import settings
 from django.conf.urls.static import static
@@ -26,10 +28,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index,name='index'),
-    path('#', views.aftlogin,name='aftlogin'),
+    path('', Customer.views.Index.index,name='index'),
+    path('#', Customer.views.Aftlogin.aftlogin,name='aftlogin'),
     path('Customer/', include('Customer.urls') ),
-    path('dologin/',views.dologin,name='Customer_dologin'),
+    path('dologin/', Customer.views.Dologin.dologin,name='Customer_dologin'),
     path('cart/', include('Cart.urls', namespace='cart')),
     path('orders/', include('Order.urls', namespace='orders')),
     # path('payment/', include('payment.urls', namespace='payment')),
