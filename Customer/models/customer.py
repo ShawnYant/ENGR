@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 
 
-class customer(models.Model):
+class Customer(models.Model):
     userid = models.IntegerField(default=1)                       #ID
     username = models.CharField(max_length=50)                 #Account
     password = models.CharField(max_length=100, default='123') #password
@@ -18,6 +18,6 @@ class customer(models.Model):
 
     
     def toDict(self):
-        return {'userid':self.userid,'username':self.username,'password':self.password,'create_at':self.create_at.strftime('%Y-%m-%d %H:%M:%S'),'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo,'birthdate':self.birthdate,'status':self.status,'update_at':self.update_at,} 
+        return {'userid':self.userid,'username':self.username,'password':self.password,'create_at':self.create_at.strftime('%Y-%m-%d %H:%M:%S'),'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo,'birthdate':self.birthdate.strftime('%Y-%m-%d %H:%M:%S'),'status':self.status,'update_at':self.update_at.strftime('%Y-%m-%d %H:%M:%S'),} 
     class Meta:
         db_table = "customer"  # change the name of the table

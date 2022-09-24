@@ -1,5 +1,6 @@
 from decimal import Decimal
 import json
+from xml.etree.ElementTree import tostring
 from django.conf import settings
 # from ENGR.settings import DecimalEncoder
 from Store.models import Product
@@ -71,7 +72,7 @@ class Cart(object):
             cart[str(product.id)]['product'] = product
 
         for item in cart.values():
-            item['price'] = Decimal(item['price'])
+            item['price'] = str(Decimal(item['price']))
             item['total_price'] = item['price'] * item['quantity']
             yield item
 

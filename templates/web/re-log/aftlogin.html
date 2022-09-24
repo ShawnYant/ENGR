@@ -3,11 +3,10 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>ConcordiaDoor</title>
-
-
+    <title>{% block title %}ConcordiaDoor{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
     <style media="screen">
         .container{
             width: 100%;
@@ -67,6 +66,7 @@
             <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-end;">
             <button onclick="" type="button" id="contact">{{request.session.cuss.username}}</button>
             <button onclick="window.location.href='Customer/update'" type="button" id="Update">Update</button>
+            <button onclick="window.location.href='Customer/logout'" type="button" id="Logout">Logout</button>
             <button onclick="" type="button" id="contact">Contact Us</button>
             <div class="navbar-brand" href=""></div>
           </div>

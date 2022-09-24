@@ -35,6 +35,10 @@ class Product(models.Model):
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def toDict(self):
+        return {'category':self.category,'name':self.name, 'slug':self.slug, 'image':self.image, 'description':self.description,'price':str(self.price), 'available':self.available,'created':self.created.strftime('%Y-%m-%d %H:%M:%S'),'updated':self.updated.strftime('%Y-%m-%d %H:%M:%S')} 
+    
     class Meta:
         ordering = ['name']
         indexes = [

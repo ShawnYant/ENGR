@@ -1,11 +1,11 @@
 from datetime import datetime
 from django.shortcuts import render
 from django.shortcuts import render
-from Customer.models.payment import payment
+from Customer.models.payment import Payment
 
 def Payment(request):
     try:
-        ob=payment()
+        ob=Payment()
         ob.cardnumber = request.POST.get('username')
         ob.secureNo = request.POST.get('password')
         ob.create_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

@@ -1,8 +1,13 @@
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.shortcuts import render
+from django.contrib import auth
+
+from Customer.cuss import Cuss
 
 
-def logout(request):
+def Logout(request):
     ''' perform the logout operation'''
-    del request.session['customer']
-    return redirect(reverse('Customer_login'))
+    auth.logout(request)
+    request.session.flush()
+    return redirect(reverse('index'))

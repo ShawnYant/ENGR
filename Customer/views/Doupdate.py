@@ -2,15 +2,15 @@ from datetime import datetime
 from django.shortcuts import redirect, render
 from django.shortcuts import render
 from django.urls import reverse
-from Customer.models.customer import customer
+from Customer.models.customer import Customer
 from Customer.cuss import Cuss
 from django.contrib import messages
 
-def DoUpdate(request):
+def do_Update(request):
         try:
             print("username")
             print(Cuss.cuss_id)
-            ob=customer.objects.get(username=Cuss.cuss_id)
+            ob=Customer.objects.get(username=Cuss.cuss_id)
             ob.nickname = request.POST.get('nickname')
             ob.email = request.POST.get('email')
             ob.address = request.POST.get('address')

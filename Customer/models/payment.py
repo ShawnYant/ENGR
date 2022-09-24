@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import datetime
 
-class payment(models.Model):
+class Payment(models.Model):
     cardnumber = models.CharField(max_length=100)    #cardnumber
     secureNo = models.CharField(max_length= 5)       #security number
     # customerID = models.IntegerField()                 #to pare with the id in class customer
