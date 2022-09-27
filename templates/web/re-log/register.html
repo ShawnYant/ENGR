@@ -16,7 +16,7 @@
   <style type="text/css">
       body{min-height:2000px;padding-top:70px;}
 
-      .navbar-default{background-color:#ff8800;border-color:#e7e7e7;}
+      .navbar-default{background-color:#006bff;border-color:#e7e7e7;}
       .navbar-default .navbar-brand{color:#fff;}
       .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
           color: #fff;
@@ -31,18 +31,7 @@
           font-size:14px;
           text-align:center;
       }
-      
-      table tr td{font-size:11px;} 
-      table tr td.price{color:red;}
-      table tr td.num span{color:red;padding:0px 5px}
-      table tr td.num i{border-width:0px;background-color:#ddd;}  
-
-      div.shoplist div.bn{font-size:12px;line-height:25px;}
-      div.shoplist div.bn span.price{color:red;}
-
-
-    /* The message box is shown when the user clicks on the password field */
-      #message {
+      message {
         display:none;
         background: #f1f1f1;
         color: #000;
@@ -51,12 +40,12 @@
         margin-top: 10px;
       }
 
-      #message p {
+      message p {
         padding: 10px 35px;
         font-size: 18px;
       }
 
-      /* Add a green text color and a checkmark when the requirements are right */
+      {% comment %} /* Add a green text color and a checkmark when the requirements are right */ {% endcomment %}
       .valid {
         color: green;
       }
@@ -64,10 +53,10 @@
       .valid:before {
         position: relative;
         left: -35px;
-        content: "&#10004;";
+        content: "✔";
       }
 
-      /* Add a red text color and an "x" icon when the requirements are wrong */
+      {% comment %} /* Add a red text color and an "x" when the requirements are wrong */ {% endcomment %}
       .invalid {
         color: red;
       }
@@ -75,11 +64,11 @@
       .invalid:before {
         position: relative;
         left: -35px;
-        content: "&#10006;";
+        content: "✖";
       }
   </style>
 </head>
-<body style="background-color: PapayaWhip ;">
+<body>
   <!-- Header navigation Begins-->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container" >
@@ -89,7 +78,7 @@
           <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">（Montreal）</span></a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-<!-- 
+      <!-- 
         <ul class="nav navbar-nav">
           <li class="active"><a href="#">Order Now</a></li>
 
@@ -106,33 +95,28 @@
       </div><!--/.nav-collapse -->
     </div>
   </nav>
-  <!-- Header navigation ends -->
-
-  <!-- Page body start -->
   <div class="container" >
       <div >
         <div  style="margin-top:10px;">
-          <!-- <h1 class="form-heading">registration</h1> -->
           <div >
               <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
                   <div class="panel">
                       <h2 style="font-size:26px;">Registration</h2>
                   </div>
-                  {% comment %} <form action="{% url 'Customer_doregister' %}" method="post"> {% endcomment %}
-                     
-                      <!-- <div class="form-group">
-                          <select name="shop_id" class="form-control">
-                              <option value="0"> - - shop selection - - </option>
-                          </select>
-                            </div> -->
                       <form action="{% url 'Customer_doregister' %}" method="post">
                         {% csrf_token %}
                           <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
-                          <input type="password" name="password" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
-
+                          <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
+                          <div id="message">
+                            <h3>Password must contain the following:</h3>
+                            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                            <p id="number" class="invalid">A <b>number</b></p>
+                            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                          </div>
                           <input type="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
                           <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
-                       
+
                         {% comment %} <div class="form-group">
                           <p class="login-box-msg" style="color:red">
                               {% if request.GET.errinfo == '1' %}
@@ -150,52 +134,32 @@
                         </div>  {% endcomment %}
                       </form>
               </div>
-              <div id="message">
-                <h3>Password must contain the following:</h3>
-                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                <p id="number" class="invalid">A <b>number</b></p>
-                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-              </div>
+            
               
           </div>
       </div>
-      
-      {% comment %} <script src="{% static 'web/js/jquery.min.js' %}"></script>
-      <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
-      {% comment %} <div class="col-md-8">
-          <!--TAB contents-->
-        {% for key,category in categorylist %}  
-          <h5 style="padding-bottom:9px;border-bottom:1px solid #eee;color:#BB3D00"><span class="glyphicon glyphicon-list" aria-hidden="true"> {{ category.name }}：</h5>
-            <div class="row shoplist">
-            </div>
-        {% endfor %}
-      </div> {% endcomment %}
   </div>
-  <!-- Page body end -->
-{% comment %} 
-  <script src="{% static 'web/js/jquery.min.js' %}"></script>
-  <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
+
   <script>
-    var myInput = document.getElementById("psw");
+    var myInput = document.getElementById("password");
     var letter = document.getElementById("letter");
     var capital = document.getElementById("capital");
     var number = document.getElementById("number");
     var length = document.getElementById("length");
-    
-    // When the user clicks on the password field, show the message box
+      
+      // When the user clicks on the password field, show the message box
     myInput.onfocus = function() {
       document.getElementById("message").style.display = "block";
     }
-    
-    // When the user clicks outside of the password field, hide the message box
+      
+      // When the user clicks outside of the password field, hide the message box
     myInput.onblur = function() {
       document.getElementById("message").style.display = "none";
     }
-    
-    // When the user starts to type something inside the password field
+      
+      // When the user starts to type something inside the password field
     myInput.onkeyup = function() {
-      // Validate lowercase letters
+        // Validate lowercase letters
       var lowerCaseLetters = /[a-z]/g;
       if(myInput.value.match(lowerCaseLetters)) {
         letter.classList.remove("invalid");
@@ -203,9 +167,9 @@
       } else {
         letter.classList.remove("valid");
         letter.classList.add("invalid");
-    }
-    
-      // Validate capital letters
+      }
+      
+        // Validate capital letters
       var upperCaseLetters = /[A-Z]/g;
       if(myInput.value.match(upperCaseLetters)) {
         capital.classList.remove("invalid");
@@ -214,8 +178,8 @@
         capital.classList.remove("valid");
         capital.classList.add("invalid");
       }
-    
-      // Validate numbers
+      
+        // Validate numbers
       var numbers = /[0-9]/g;
       if(myInput.value.match(numbers)) {
         number.classList.remove("invalid");
@@ -224,8 +188,8 @@
         number.classList.remove("valid");
         number.classList.add("invalid");
       }
-    
-      // Validate length
+      
+        // Validate length
       if(myInput.value.length >= 8) {
         length.classList.remove("invalid");
         length.classList.add("valid");
@@ -233,13 +197,13 @@
         length.classList.remove("valid");
         length.classList.add("invalid");
       }
-    }
-    </script>
+      }
+      </script>
 
-    <script>
-      {% for msg in messages %}
-          alert('{{ msg.message }}');
-      {% endfor %}
-    </script>
-
+      <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+      </script>
+</body>
 <html>

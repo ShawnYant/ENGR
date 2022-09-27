@@ -18,6 +18,9 @@ class Customer(models.Model):
 
     
     def toDict(self):
-        return {'userid':self.userid,'username':self.username,'password':self.password,'create_at':self.create_at.strftime('%Y-%m-%d %H:%M:%S'),'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo,'birthdate':self.birthdate.strftime('%Y-%m-%d %H:%M:%S'),'status':self.status,'update_at':self.update_at.strftime('%Y-%m-%d %H:%M:%S'),} 
+        if(self.update_at is None):
+            return {'userid':self.userid,'username':self.username,'password':self.password,'create_at':self.create_at.strftime('%Y-%m-%d %H:%M:%S'),'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo, 'birthdate': '','status':self.status,'update_at':'',} 
+        else:
+            return {'userid':self.userid,'username':self.username,'password':self.password,'create_at':self.create_at.strftime('%Y-%m-%d %H:%M:%S'),'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo, 'birthdate': self.birthdate.strftime('%Y-%m-%d %H:%M:%S'),'status':self.status,'update_at':self.update_at.strftime('%Y-%m-%d %H:%M:%S'),} 
     class Meta:
         db_table = "customer"  # change the name of the table

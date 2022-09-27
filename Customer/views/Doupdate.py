@@ -21,11 +21,11 @@ def do_Update(request):
             ob.save()
             print('123 123')
             context = {'info':"Successfully Add!!"}
-            return redirect(reverse('aftlogin'))
+            return redirect(reverse('aft_login'))
 
         except Exception as err:
-            err.with_traceback()
-            # print(customer.unique_error_message)
-            print(err.__traceback__)
+            # err.with_traceback()
+            # # print(customer.unique_error_message)
+            # print(err.__traceback__)
             context = {'info':"Add Failed!!"}   
             return render(request,'templates/web/re-log/update.html',) 

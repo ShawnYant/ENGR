@@ -29,7 +29,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Customer.views.Index.Index,name='index'),
-    path('#', Customer.views.Aftlogin.aft_login,name='aftlogin'),
     path('Customer/', include('Customer.urls') ),
     # path('dologin/', Customer.views.Dologin.dologin,name='Customer_dologin'),
     path('cart/', include('Cart.urls', namespace='cart')),
