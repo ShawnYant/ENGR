@@ -114,7 +114,7 @@
                             <p id="number" class="invalid">A <b>number</b></p>
                             <p id="length" class="invalid">Minimum <b>8 characters</b></p>
                           </div>
-                          <input type="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
+                          <input type="confirm_password" id="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
                           <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
 
                         {% comment %} <div class="form-group">
@@ -200,10 +200,26 @@
       }
       </script>
 
+      <script type="text/javascript">
+        window.onload = function () {
+            var txtPassword = document.getElementById("password");
+            var txtConfirmPassword = document.getElementById("confirm_password");
+            txtPassword.onchange = ConfirmPassword;
+            txtConfirmPassword.onkeyup = ConfirmPassword;
+            function ConfirmPassword() {
+                txtConfirmPassword.setCustomValidity("");
+                if (txtPassword.value != txtConfirmPassword.value) {
+                    txtConfirmPassword.setCustomValidity("Passwords do not match.");
+                }
+            }
+        }
+      </script>
+
       <script>
         {% for msg in messages %}
             alert('{{ msg.message }}');
         {% endfor %}
       </script>
+      
 </body>
 <html>

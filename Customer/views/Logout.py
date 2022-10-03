@@ -11,6 +11,7 @@ def Logout(request):
     ''' perform the logout operation'''
     
     # for sesskey in request.session.keys():
+   
     del request.session['cuss']
     auth.logout(request)
     return redirect(reverse('index'))

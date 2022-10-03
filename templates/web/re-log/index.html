@@ -6,10 +6,12 @@
     <title>{% block title %}ConcordiaDoor{% endblock %}</title>
     <link href="{% static "css/base.css" %}" rel="stylesheet">
     <style media="screen">
+
         .container{
             width: 100%;
             height: 100%;
         }
+
         .logo{
             margin: 106px 0 0;
             height: 200px;
@@ -63,9 +65,9 @@
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">Montreal</span></a>
             <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-end;">
             {% comment %} {% if request.session.cuss.username == 'null' %} {% endcomment %}
-             <button onclick="window.location.href='Customer'" type="button" id="Register">Register</button>
-             <button onclick="window.location.href='Customer/login'" type="button" id="login">Login</button>
-             <button onclick="" type="button" id="contact">Contact Us</button>
+             <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="window.location.href='Customer'" type="button" id="Register">Register</button>
+             <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="window.location.href='Customer/login'" type="button" id="login">Login</button>
+             <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="" type="button" id="contact">Contact Us</button>
             {% comment %} {% else %}
              <span>{{request.session.cuss.username}}</span
              <button onclick="window.location.href='Customer/update'" type="button" id="Update">Update</button>
@@ -80,7 +82,7 @@
     <div class="logo"></div>
     <div class="searchTool">
         <input>
-        <button onclick="href='www.google.com'" type="button" id="Search">Search</button>
+        <button style=background-color:#5993bb;border-color:#e7e7e7;position: center onclick="href='www.google.com'" type="button" id="Search">Search</button>
     </div>
     <div class="lable_marker"></div>
 </div>
