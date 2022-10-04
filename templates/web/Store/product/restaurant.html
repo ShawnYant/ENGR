@@ -1,0 +1,35 @@
+{% extends "templates/web/Store/base.html" %}
+{% load static %}
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Restaurants{% endif %}
+{% endblock %}
+{% block content %}
+  <div id="sidebar">
+    <h3>Categories</h3>
+    <ul>
+      <li {% if not category %}class="selected"{% endif %}>
+        <a href="{% url "store:restaurant_list" %}">All</a>
+      </li>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %}class="selected"
+        {% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div id="main" class="restaurant-list">
+    <h1>{% if category %}{{ category.name }}{% else %}Restaurant
+    {% endif %}</h1>
+    {% for restaurant in restaurants %}
+      <div class="restaurant">
+        <a href="{{ restaurant.get_absolute_url }}">
+          <img src="{% if restaurant.image %}{{ restaurant.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        </a>
+        <a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a>
+        <br>
+     
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
