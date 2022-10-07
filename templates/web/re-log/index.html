@@ -1,10 +1,20 @@
+{% comment %} {%extends 'templates\base.html'%} {% endcomment %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>{% block title %}ConcordiaDoor{% endblock %}</title>
-    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link href="{% static 'bootstrap5/css/base.css'%}" rel="stylesheet">
     <style media="screen">
 
         .container{
