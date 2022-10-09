@@ -1,29 +1,10 @@
-{# Load the tag library #}
-{% load bootstrap5 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-
-{# Display a form #}
-{% comment %} <form action="/url/to/submit/" method="post" class="form">
-  {% csrf_token %}
-
-  {% bootstrap_form form %}
-
-  {% bootstrap_button button_type="submit" content="OK" %}
-  {% bootstrap_button button_type="reset" content="Cancel" %}
-
-</form> {% endcomment %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>{% block title %}ConcordiaDoor{% endblock %}</title>
-    <link href="{% bootstrap_css %}" rel="stylesheet">
+    <link href="{% static 'bootstrap5/css/bootdtrap.css'%}" rel="stylesheet">
     <style media="screen">
 
         .container{
@@ -34,7 +15,7 @@
         .logo{
             margin: 106px 0 0;
             height: 200px;
-            background: url("../../static/images/cslp_logo_1.png")center no-repeat;
+            background: url("bootstrap5\images\cslp_logo_1.png")center no-repeat;
             background-size: 270px 90px;
         }
 
@@ -69,56 +50,12 @@
     </style>
 </head>
 <body>
-    {% block content %}
-<!-- Header navigation Begins-->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      {% comment %} <div class="navbar-header" style="width: 100%;"> {% endcomment %}
-       {% comment %} <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>  {% endcomment %}
-        <a class="navbar-brand" href="">
-
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">Montreal</span></a>
-          <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-end;">
-          {% comment %} {% if request.session.cuss.username == 'null' %} {% endcomment %}
-           <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="window.location.href='Customer'" type="button" id="Register">Register</button>
-           <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="window.location.href='Customer/login'" type="button" id="login">Login</button>
-           <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="" type="button" id="contact">Contact Us</button>
-          {% comment %} {% else %}
-           <span>{{request.session.cuss.username}}</span
-           <button onclick="window.location.href='Customer/update'" type="button" id="Update">Update</button>
-           <button onclick="" type="button" id="contact">Contact Us</button> 
-          {% endif %}  {% endcomment %}
-          <div class="navbar-brand" href=""></div>
-        </div>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-<body>
-<div class="container">
-  <div class="logo"></div>
-  <div class="searchTool">
-      <input>
-      <button style=background-color:#5993bb;border-color:#e7e7e7;position: center onclick="href='www.google.com'" type="button" id="Search">Search</button>
+  <div>
+    {%block content%}
+    {%endblock%}
   </div>
-  <div class="lable_marker"></div>
-</div>
-<script src="bundle.js"></script>
 </body>
 
-<script>
-  {% for msg in messages %}
-      alert('{{ msg.message }}');
-  {% endfor %}
-</script>
-
-</html>    
-    
 
 
-    {% endblock content %}
-</body>
 </html>

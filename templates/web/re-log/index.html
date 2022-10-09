@@ -1,69 +1,9 @@
-{% comment %} {%extends 'templates\base.html'%} {% endcomment %}
-{# Load the tag library #}
-{% load bootstrap5 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-{% load static %}
+{% extends 'templates\base.html' %}
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}ConcordiaDoor{% endblock %}</title>
-    <link href="{% static 'bootstrap5/css/base.css'%}" rel="stylesheet">
-    <style media="screen">
-
-        .container{
-            width: 100%;
-            height: 100%;
-        }
-
-        .logo{
-            margin: 106px 0 0;
-            height: 200px;
-            background: url("../../static/images/cslp_logo_1.png")center no-repeat;
-            background-size: 270px 90px;
-        }
-
-
-        .searchTool input{
-            border: 1px solid #d3dcd8;
-            border-radius: 2px;
-            width: 666px;
-            outline: none;
-            height: 39px;
-            box-shadow: 0 2px 3px #bbbab6;
-            font-size: 17px;
-            text-indent: 14px;
-        }
-        .searchTool a{
-            position: relative;
-            left: 630px;
-            top:-43px;
-            display: inline-block;
-            width: 37px;
-            height: 43px;
-            background: url("../../static/image/mic.PNG") no-repeat;
-            background-size: 37px 60px;
-
-
-        }
-        .searchTool{
-            margin: -25px auto;
-            height:42px;
-            width: 664px;
-        }
-    </style>
-</head>
-<body>
-    <!-- Header navigation Begins-->
+{%block content%}
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
-        {% comment %} <div class="navbar-header" style="width: 100%;"> {% endcomment %}
+        <div class="navbar-header" style="width: 100%;">
          {% comment %} <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only"></span>
             <span class="icon-bar"></span>
@@ -87,22 +27,20 @@
           </div>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-<body>
-<div class="container">
-    <div class="logo"></div>
-    <div class="searchTool">
+            <div class="container">
+        <div class="logo"></div>
+        <div class="searchTool">
         <input>
         <button style=background-color:#5993bb;border-color:#e7e7e7;position: center onclick="href='www.google.com'" type="button" id="Search">Search</button>
-    </div>
-    <div class="lable_marker"></div>
-</div>
-<script src="bundle.js"></script>
-</body>
-
+        </div>
+        <div class="lable_marker"></div>
+        <script src="bundle.js"></script>
 <script>
     {% for msg in messages %}
         alert('{{ msg.message }}');
     {% endfor %}
 </script>
 
-</html>
+{%endblock%}
+
+

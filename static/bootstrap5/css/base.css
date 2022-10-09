@@ -328,3 +328,43 @@ form div.field {
     color:#666;
     border-radius:4px;
 }
+.container{
+    width: 100%;
+    height: 100%;
+}
+
+.logo{
+    margin: 106px 0 0;
+    height: 200px;
+    background: url("../../static/images/cslp_logo_1.png")center no-repeat;
+    background-size: 270px 90px;
+}
+
+
+.searchTool input{
+    border: 1px solid #d3dcd8;
+    border-radius: 2px;
+    width: 666px;
+    outline: none;
+    height: 39px;
+    box-shadow: 0 2px 3px #bbbab6;
+    font-size: 17px;
+    text-indent: 14px;
+}
+.searchTool a{
+    position: relative;
+    left: 630px;
+    top:-43px;
+    display: inline-block;
+    width: 37px;
+    height: 43px;
+    background: url("../../static/image/mic.PNG") no-repeat;
+    background-size: 37px 60px;
+
+
+}
+.searchTool{
+    margin: -25px auto;
+    height:42px;
+    width: 664px;
+}
