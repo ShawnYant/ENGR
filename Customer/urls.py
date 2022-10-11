@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from Customer.views import Aftlogin,Dologin,Doregist,Doupdate,Login,Update,Logout,Regist
+from Store.views import search
 # from Customer.views.Doregist import do_regist
 # from Customer.views.Regist import Regist
 
@@ -30,4 +31,5 @@ urlpatterns = [
     path('dologin', Dologin.do_login, name='Customer_dologin'),
     path('logout', Logout.Logout, name='Customer_logout'),
     path('#',Aftlogin.aft_login,name='aft_login'),
+    path('search',search.Search, name='Store_dosearch'),
     ]

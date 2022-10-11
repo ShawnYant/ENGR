@@ -1,48 +1,7 @@
+{% extends 'templates\base.html' %}
+<!DOCTYPE html>
+{%block content%}
 
-{# Load the tag library #}
-{% load bootstrap5 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-<head>
-  <meta charset="UTF-8">
-  <title>Login</title>
-  {% comment %} <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'web/css/common.css' %}"> {% endcomment %}
-  <style type="text/css">
-      body{min-height:2000px;padding-top:70px;}
-
-      .navbar-default{background-color:#006bff;border-color:#e7e7e7;}
-      .navbar-default .navbar-brand{color:#fff;}
-      .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
-          color: #fff;
-          width:100px;
-          font-size:14px;
-          text-align:center;
-      }
-      .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
-          color:#fff;
-          background-color: #FF4500;
-          width:100px;
-          font-size:14px;
-          text-align:center;
-      }
-      
-      table tr td{font-size:11px;} 
-      table tr td.price{color:red;}
-      table tr td.num span{color:red;padding:0px 5px}
-      table tr td.num i{border-width:0px;background-color:#ddd;}  
-
-      div.shoplist div.bn{font-size:12px;line-height:25px;}
-      div.shoplist div.bn span.price{color:red;}
-  </style>
-</head>
-<body>
-  <!-- Header navigation Begins-->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container" >
       <div class="navbar-header">
@@ -129,5 +88,4 @@
     
     {% comment %} <script src="{% static 'web/js/jquery.min.js' %}"></script>
     <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
-</body>
-</html>
+{% endblock %}

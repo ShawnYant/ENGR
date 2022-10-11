@@ -175,6 +175,7 @@ STATIC_URL = '/static/bootstrap5/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/bootstrap5'),
 )
+STATIC_ROOT = "static/property_TEMP"
 
 # STAICTFILES_DIRS = (os.path.join(BASE_DIR, 'templates'),) 
 

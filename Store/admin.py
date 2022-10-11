@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Category, Product, Restaurant
+from Store.models.Category import Category
+from Store.models.Product import Product
+from Store.models.Restaurant import Restaurant
 # Register your models here.
 
 

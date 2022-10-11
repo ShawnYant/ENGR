@@ -1,10 +1,19 @@
 {% load static %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}ConcordiaDoor{% endblock %}</title>
-    <link href="{% static 'bootstrap5/css/bootdtrap.css'%}" rel="stylesheet">
+    <link href="{% static 'static/bootstrap5/css/bootstrap.min.css'%}" rel="stylesheet">
     <style media="screen">
 
         .container{
@@ -47,6 +56,35 @@
             height:42px;
             width: 664px;
         }
+        .imgBox{
+            position:absolute;
+            bottom: center;
+            border-top: 2px solid cadetblue;
+            overflow: hidden;
+
+        }
+
+        .imgBox img{
+            position:absolute;
+            bottom: center;
+            
+            margin: 0 auto;
+            padding-top: 30px;
+
+        }
+
+        .img1{
+            display: block;
+        }
+
+        .img2{
+            display: none;
+        }
+
+        .img3{
+            display: none;
+        }
+
     </style>
 </head>
 <body>

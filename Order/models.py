@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
-from Store.models import Product
+from Store.models.Product import Product
 
 class Order(models.Model):
     first_name = models.CharField(max_length=50)

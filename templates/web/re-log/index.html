@@ -4,42 +4,60 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header" style="width: 100%;">
-         {% comment %} <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>  {% endcomment %}
           <a class="navbar-brand" href="">
-
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">Montreal</span></a>
             <div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-end;">
-            {% comment %} {% if request.session.cuss.username == 'null' %} {% endcomment %}
-             <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="window.location.href='Customer'" type="button" id="Register">Register</button>
-             <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="window.location.href='Customer/login'" type="button" id="login">Login</button>
-             <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="" type="button" id="contact">Contact Us</button>
-            {% comment %} {% else %}
-             <span>{{request.session.cuss.username}}</span
-             <button onclick="window.location.href='Customer/update'" type="button" id="Update">Update</button>
-             <button onclick="" type="button" id="contact">Contact Us</button> 
-            {% endif %}  {% endcomment %}
+                <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="window.location.href='Customer'" type="button" id="Register">Register</button>
+                <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="window.location.href='Customer/login'" type="button" id="login">Login</button>
+                <button style=background-color:#5993bb;border-color:#e7e7e7 onclick="" type="button" id="contact">Contact Us</button>
             <div class="navbar-brand" href=""></div>
           </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+      <div id="navbar" class="navbar-collapse collapse">
             <div class="container">
+            </div>
+        </div>
         <div class="logo"></div>
         <div class="searchTool">
-        <input>
-        <button style=background-color:#5993bb;border-color:#e7e7e7;position: center onclick="href='www.google.com'" type="button" id="Search">Search</button>
+        <form action="{% url 'store:store_dosearch' %}" method="post" >
+          {% csrf_token %}
+          <input  type="text" name="search" style="height:50px;margin-top: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Please enter something you want to eat today!">
+          <button style=background-color:#5993bb;border-color:#e7e7e7;position: center type="button">Search</button>
+        </form>
         </div>
         <div class="lable_marker"></div>
         <script src="bundle.js"></script>
+        <div>
+        
+        <div class="imgBox">
+            
+            <img class="img-slide img1" src="static\bootstrap5\images\bimbimbum.jpg" alt="1">
+            <img class="img-slide img2" src="static\bootstrap5\images\wok.jpg" alt="2">
+            <img class="img-slide img3" src="" alt="3">
+        </div>
+        <script type="text/javascript">
+          var index=0;
+          //效果
+          function ChangeImg() {
+              index++;
+              var a=document.getElementsByClassName("img-slide");
+              if(index>=a.length) index=0;
+              for(var i=0;i<a.length;i++){
+                  a[i].style.display='none';
+              }
+              a[index].style.display='block';
+          }
+          //设置定时器，每隔两秒切换一张图片
+          setInterval(ChangeImg,3000);
+        </script>
+        </div>
+
 <script>
     {% for msg in messages %}
         alert('{{ msg.message }}');
     {% endfor %}
 </script>
+
 
 {%endblock%}
 
