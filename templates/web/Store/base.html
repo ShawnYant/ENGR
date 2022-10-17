@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <title>{% block title %}ConcordiaDoor{% endblock %}</title>
-    <link href="{% static 'bootstrap5/css/bootdtrap.css' %}" rel="stylesheet">
+    <link href="{% static 'bootstrap5/css/base.css' %}" rel="stylesheet">
   </head>
   <body>
     <div id="header">
@@ -12,17 +12,17 @@
     </div>
     <div id="subheader">
       <div class="cart">
-        {% with total_items=cart|length %}
+        {% comment %} {% with total_items=cart|length %}
         {% if total_items > 0 %}
           Your cart:
           <a href="{% url "cart:cart_detail" %}">
             {{ total_items }} item{{ total_items|pluralize }},
             ${{ cart.get_total_price }}
           </a>
-        {%  elif not order  %}
+        {%  elif not order  %} {% endcomment %}
           Your cart is empty.
-        {% endif %}
-      {% endwith %}
+        {% comment %} {% endif %}
+      {% endwith %} {% endcomment %}
       </div>
     </div>
     <div id="content">

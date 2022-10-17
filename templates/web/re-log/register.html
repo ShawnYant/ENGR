@@ -1,118 +1,257 @@
 {% extends 'templates\base.html' %}
 <!DOCTYPE html>
 {%block content%}
-  <style type="text/css">
+<style type="text/css">
 
-      message {
-        display:none;
-        background: #f1f1f1;
-        color: #000;
-        position: relative;
-        padding: 20px;
-        margin-top: 10px;
-      }
+    message {
+      display:none;
+      background: #f1f1f1;
+      color: #000;
+      position: relative;
+      padding: 20px;
+      margin-top: 10px;
+    }
 
-      message p {
-        padding: 10px 35px;
-        font-size: 18px;
-      }
+    message p {
+      padding: 10px 35px;
+      font-size: 18px;
+    }
 
-      {% comment %} /* Add a green text color and a checkmark when the requirements are right */ {% endcomment %}
-      .valid {
-        color: green;
-      }
+    {% comment %} /* Add a green text color and a checkmark when the requirements are right */ {% endcomment %}
+    .valid {
+      color: green;
+    }
 
-      .valid:before {
-        position: relative;
-        left: -35px;
-        content: "✔";
-      }
+    .valid:before {
+      position: relative;
+      left: -35px;
+      content: "✔";
+    }
 
-      {% comment %} /* Add a red text color and an "x" when the requirements are wrong */ {% endcomment %}
-      .invalid {
-        color: red;
-      }
+    {% comment %} /* Add a red text color and an "x" when the requirements are wrong */ {% endcomment %}
+    .invalid {
+      color: orange;
+    }
 
-      .invalid:before {
-        position: relative;
-        left: -35px;
-        content: "✖";
-      }
-  </style>
-</head>
-<body>
-  <!-- Header navigation Begins-->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container" >
-      <div class="navbar-header">
-        
-        <a class="navbar-brand" href="#">
-          <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">（Montreal）</span></a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-      <!-- 
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Order Now</a></li>
+    .invalid:before {
+      position: relative;
+      left: -35px;
+      content: "✖";
+    }
+</style>
 
-          <li><a href="#about">Order In Production</a></li>
-          <li><a href="#contact">History Order</a></li>
-
-        </ul> -->
-
-        <!-- <ul class="nav navbar-nav navbar-right">
-          <li><a href="../navbar/">
-                  <span class="glyphicon glyphicon-user" aria-hidden="true"> {{request.session.webuser.nickname}}</a></li>
-      
-        </ul> -->
-      </div><!--/.nav-collapse -->
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
     </div>
-  </nav>
-  <div class="container" >
-      <div >
-        <div  style="margin-top:10px;">
-          <div >
-              <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
-                  <div class="panel">
-                      <h2 style="font-size:26px;">Registration</h2>
-                  </div>
-                      <form action="{% url 'Customer_doregister' %}" method="post">
-                        {% csrf_token %}
-                          <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
-                          <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
-                          <div id="message">
-                            <h3>Password must contain the following:</h3>
-                            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-                            <p id="number" class="invalid">A <b>number</b></p>
-                            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                          </div>
-                          <input type="confirm_password" id="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
-                          <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
-
-                        {% comment %} <div class="form-group">
-                          <p class="login-box-msg" style="color:red">
-                              {% if request.GET.errinfo == '1' %}
-                                  none！
-                              {% elif request.GET.errinfo == '2' %}
-                                 Verification code error！
-                              {% elif request.GET.errinfo == '3' %}
-                                 The login account does not exist!
-                              {% elif request.GET.errinfo == '4' %}
-                                  Invalid login account！
-                              {% elif request.GET.errinfo == '5' %}
-                                  Incorrect login password！
-                              {% endif %}
-                          </p>
-                        </div>  {% endcomment %}
-                      </form>
-              </div>
-            
-              
-          </div>
-      </div>
   </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+  
+<nav class="site-nav">
+  <div class="container">
+    <div class="menu-bg-wrap">
+      <div class="site-navigation">
+        <a href="../" class="logo m-0 float-start">ConcordiaDoor</a>
 
-  <script>
+        <ul
+          class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+        >
+          <li class="active"><a href="../">Home</a></li>
+          <li class="has-children">
+            <a href="">Customer</a>
+            <ul class="dropdown">
+              <li><a onclick="window.location.href='login'" type="button" id="login">Login</a></li>
+              <li><a onclick="window.location.href=''" type="button" id="Register">Register</a></li>
+              {% comment %} <li class="has-children">
+                <a href="#">Dropdown</a>
+                <ul class="dropdown">
+                  <li><a href="#">Sub Menu One</a></li>
+                  <li><a href="#">Sub Menu Two</a></li>
+                  <li><a href="#">Sub Menu Three</a></li>
+                </ul>
+              </li> {% endcomment %}
+            </ul>
+          </li>
+          <li><a href="templates\web\Store\product\restaurant.html">Restaurants</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+
+        <a
+          href="#"
+          class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+          data-toggle="collapse"
+          data-target="#main-navbar"
+        >
+          <span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div  class="hero page-inner overlay" style="background-image: url('/static/bootstrap5/images/hero_bg_1.jpg')">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">Register</h1>
+        <div class="container" >
+          <div >
+            <div  style="margin-top:10px;">
+              <div >
+                  <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
+                      <div class="panel">
+                          {% comment %} <h2 style="font-size:26px;">Registration</h2> {% endcomment %}
+                      </div>
+                          <form action="{% url 'Customer_doregister' %}" method="post">
+                            {% csrf_token %}
+                              <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
+                              <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
+                              <div id="message">
+                                <h3 style="color:white">Password must contain the following:</h3>
+                                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                                <p id="number" class="invalid">A <b>number</b></p>
+                                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                              </div>
+                              <input type="password" id="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
+                              <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
+
+                              <div class="form-group">
+                              <p class="login-box-msg" style="color:red">
+                                  {% comment %} {% if request.GET.errinfo == '1' %}
+                                      none！
+                                  {% elif request.GET.errinfo == '2' %}
+                                      Verification code error！
+                                  {% elif request.GET.errinfo == '3' %}
+                                      The login account does not exist!
+                                  {% elif request.GET.errinfo == '4' %}
+                                      Invalid login account！
+                                  {% elif request.GET.errinfo == '5' %}
+                                      Incorrect login password！
+                                  {% endif %}
+                              </p> {% endcomment %}
+                              </div>  
+                          </form>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Contact</h3>
+          <address>Somewhere in Montreal Quebec Canada </address>
+          <ul class="list-unstyled links">
+            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+            <li>
+              <a href="mailto:info@mydomain.com">info@ConcordiaDoor.com</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Sources</h3>
+          <ul class="list-unstyled float-start links">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Vision</a></li>
+            <li><a href="#">Mission</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+          <!-- <ul class="list-unstyled float-start links">
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Creative</a></li>
+          </ul> -->
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Links</h3>
+          <ul class="list-unstyled links">
+            <li><a href="#">Our Vision</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+
+          <ul class="list-unstyled social">
+            <li>
+              <a href="#"><span class="icon-instagram"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-twitter"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-facebook"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-linkedin"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-pinterest"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-dribbble"></span></a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <!-- 
+          **==========
+          NOTE: 
+          Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+          **==========
+        -->
+
+        <p>
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          . All Rights Reserved. &mdash; Designed with love by
+          <a href="https://untree.co">Untree.co</a>
+          <!-- License information: https://untree.co/license/ -->
+        </p>
+        <div>
+          Distributed by
+          <a href="https://themewagon.com/" target="_blank">themewagon</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+
+
+<script>
     var myInput = document.getElementById("password");
     var letter = document.getElementById("letter");
     var capital = document.getElementById("capital");
@@ -170,27 +309,27 @@
         length.classList.add("invalid");
       }
       }
-      </script>
+</script>
 
-      <script type="text/javascript">
-        window.onload = function () {
-            var txtPassword = document.getElementById("password");
-            var txtConfirmPassword = document.getElementById("confirm_password");
-            txtPassword.onchange = ConfirmPassword;
-            txtConfirmPassword.onkeyup = ConfirmPassword;
-            function ConfirmPassword() {
-                txtConfirmPassword.setCustomValidity("");
-                if (txtPassword.value != txtConfirmPassword.value) {
-                    txtConfirmPassword.setCustomValidity("Passwords do not match.");
-                }
-            }
-        }
-      </script>
+<script type="text/javascript">
+  window.onload = function () {
+      var txtPassword = document.getElementById("password");
+      var txtConfirmPassword = document.getElementById("confirm_password");
+      txtPassword.onchange = ConfirmPassword;
+      txtConfirmPassword.onkeyup = ConfirmPassword;
+      function ConfirmPassword() {
+          txtConfirmPassword.setCustomValidity("");
+          if (txtPassword.value != txtConfirmPassword.value) {
+              txtConfirmPassword.setCustomValidity("Passwords do not match.");
+          }
+      }
+  }
+</script>
 
-      <script>
-        {% for msg in messages %}
-            alert('{{ msg.message }}');
-        {% endfor %}
-      </script>
-      
+<script>
+  {% for msg in messages %}
+      alert('{{ msg.message }}');
+  {% endfor %}
+</script>
+
 {% endblock %}

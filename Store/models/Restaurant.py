@@ -3,9 +3,7 @@ from django.urls import reverse
 from Store.models.Category import Category
 
 class Restaurant(models.Model):
-    category = models.ForeignKey(Category,
-                                 related_name='restaurant',
-                                 on_delete=models.CASCADE,)
+    category = models.ManyToManyField(Category)
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     image = models.ImageField(upload_to='products/%Y/%m/%d',

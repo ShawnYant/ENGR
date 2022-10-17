@@ -10,6 +10,8 @@ from django.contrib import messages
 import mysql.connector
 import traceback
 
+from ENGR.settings import CUSS_SESSION_ID
+
 
 def do_login(request):
     ''' perform the login operation'''

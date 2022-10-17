@@ -1,98 +1,44 @@
 {% load static %}
 {# Load the tag library #}
 {% load bootstrap5 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}ConcordiaDoor{% endblock %}</title>
-    <link href="{% static 'static/bootstrap5/css/bootstrap.min.css'%}" rel="stylesheet">
-    <style media="screen">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="Untree.co" />
+        <link rel="shortcut icon" href="/static/bootstrap5/favicon.png" />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+        />
 
-        .container{
-            width: 100%;
-            height: 100%;
-        }
+        <meta name="description" content="" />
+        <meta name="keywords" content="bootstrap, bootstrap5" /> 
+        <link rel="stylesheet" type="text/css" href="/static/fonts/icomoon/style.css" />
+        <link rel="stylesheet" type="text/css" href="/static/fonts/flaticon/font/flaticon.css" /> 
 
-        .logo{
-            margin: 106px 0 0;
-            height: 200px;
-            background: url("bootstrap5\images\cslp_logo_1.png")center no-repeat;
-            background-size: 270px 90px;
-        }
-
-
-        .searchTool input{
-            border: 1px solid #d3dcd8;
-            border-radius: 2px;
-            width: 666px;
-            outline: none;
-            height: 39px;
-            box-shadow: 0 2px 3px #bbbab6;
-            font-size: 17px;
-            text-indent: 14px;
-        }
-        .searchTool a{
-            position: relative;
-            left: 630px;
-            top:-43px;
-            display: inline-block;
-            width: 37px;
-            height: 43px;
-            background: url("../../static/image/mic.PNG") no-repeat;
-            background-size: 37px 60px;
+        {% comment %} <link rel="stylesheet" type="text/css" href='static/bootstrap5/css/bootstrap-grid.css'> {% endcomment %}
+        {% comment %} <link rel="stylesheet" type="text/css" href="static/bootstrap5/css/bootstrap-reboot.css"> {% endcomment %}
+        {% comment %} <link rel="stylesheet" type="text/css" href="static/bootstrap5/css/bootstrap-utilities.css">  {% endcomment %}
+        {% comment %} <link rel="stylesheet" type="text/css" href="static/bootstrap5/css/bootstrap.css"> {% endcomment %}
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap5/css/tiny-slider.css" />
+        {% comment %} <link rel="stylesheet" type="text/css" href="static/bootstrap5/css/aos.css" /> {% endcomment %}
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap5/css/style.css" /> 
 
 
-        }
-        .searchTool{
-            margin: -25px auto;
-            height:42px;
-            width: 664px;
-        }
-        .imgBox{
-            position:absolute;
-            bottom: center;
-            border-top: 2px solid cadetblue;
-            overflow: hidden;
 
-        }
+        {% comment %} <link rel="preconnect" href="https://fonts.googleapis.com" /> {% endcomment %}
+        {% comment %} <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> {% endcomment %}
 
-        .imgBox img{
-            position:absolute;
-            bottom: center;
-            
-            margin: 0 auto;
-            padding-top: 30px;
 
-        }
-
-        .img1{
-            display: block;
-        }
-
-        .img2{
-            display: none;
-        }
-
-        .img3{
-            display: none;
-        }
-
-    </style>
-</head>
-<body>
-  <div>
-    {%block content%}
-    {%endblock%}
-  </div>
-</body>
+    </head>
+    <body>
+    <div>
+        {%block content%}
+        {%endblock%}
+    </div>
+    </body>
 
 
 

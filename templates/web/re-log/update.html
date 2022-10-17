@@ -1,81 +1,222 @@
+{% extends 'templates\base.html' %}
+<!DOCTYPE html>
+{%block content%}
 
-{# Load the tag library #}
-{% load bootstrap5 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-<head>
-  <meta charset="UTF-8">
-  <title>Register</title>
-  {% comment %} <link rel="stylesheet" href="{% static 'web/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'web/css/common.css' %}"> {% endcomment %}
-  <style type="text/css">
-      body{min-height:2000px;padding-top:70px;}
-
-      .navbar-default{background-color:#006bff;border-color:#e7e7e7;}
-      .navbar-default .navbar-brand{color:#fff;}
-      .navbar-default .navbar-nav > li > a,.navbar-default .navbar-nav > li > a:visited {
-          color: #fff;
-          width:100px;
-          font-size:14px;
-          text-align:center;
-      }
-      .navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:visited,.navbar-default .navbar-nav li a:hover,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav li a:active {
-          color:#fff;
-          background-color: #FF4500;
-          width:100px;
-          font-size:14px;
-          text-align:center;
-      }
-      
-      table tr td{font-size:11px;} 
-      table tr td.price{color:red;}
-      table tr td.num span{color:red;padding:0px 5px}
-      table tr td.num i{border-width:0px;background-color:#ddd;}  
-
-      div.shoplist div.bn{font-size:12px;line-height:25px;}
-      div.shoplist div.bn span.price{color:red;}
-  </style>
-</head>
-<body>
-  <!-- Header navigation Begins-->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container" >
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">
-          <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> <span style="font-weight:bold;">ConcordiaDoor</span><span style="font-size:14px;">（Montreal）</span></a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-<!-- 
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Order Now</a></li>
-
-          <li><a href="#about">Order In Production</a></li>
-          <li><a href="#contact">History Order</a></li>
-
-        </ul> -->
-
-        <!-- <ul class="nav navbar-nav navbar-right">
-          <li><a href="../navbar/">
-                  <span class="glyphicon glyphicon-user" aria-hidden="true"> {{request.session.webuser.nickname}}</a></li>
-      
-        </ul> -->
-      </div><!--/.nav-collapse -->
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
     </div>
-  </nav>
-  <!-- Header navigation ends -->
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+  
+<nav class="site-nav">
+  <div class="container">
+    <div class="menu-bg-wrap">
+      <div class="site-navigation">
+        <a href="../" class="logo m-0 float-start">ConcordiaDoor</a>
 
-  <!-- Page body start -->
+        <ul
+          class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+        >
+          <li class="active"><a href="../">Home</a></li>
+          <li class="has-children">
+            <a href="">Customer</a>
+            <ul class="dropdown">
+              <li><a onclick="window.location.href='login'" type="button" id="login">Login</a></li>
+              <li><a onclick="window.location.href=''" type="button" id="Register">Register</a></li>
+              {% comment %} <li class="has-children">
+                <a href="#">Dropdown</a>
+                <ul class="dropdown">
+                  <li><a href="#">Sub Menu One</a></li>
+                  <li><a href="#">Sub Menu Two</a></li>
+                  <li><a href="#">Sub Menu Three</a></li>
+                </ul>
+              </li> {% endcomment %}
+            </ul>
+          </li>
+          <li><a href="templates\web\Store\product\restaurant.html">Restaurants</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+
+        <a
+          href="#"
+          class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+          data-toggle="collapse"
+          data-target="#main-navbar"
+        >
+          <span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div  class="hero page-inner overlay" style="background-image: url('/static/bootstrap5/images/hero_bg_1.jpg')">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">Update</h1>
+        <div class="container" >
+          <div >
+            <div  style="margin-top:10px;">
+              <div >
+                  <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
+                      <div class="panel">
+                          {% comment %} <h2 style="font-size:26px;">Registration</h2> {% endcomment %}
+                      </div>
+                      <form action="{% url 'Customer_DoUpdate' %}" method="post">
+                        {% csrf_token %}
+                          {% comment %} <input type="text" name="username" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="username"> {% endcomment %}
+                          <input type="text" name="nickname" style="height: 50px; margin-top: 30px;margin-bottom: 5px;" class="form-control"  placeholder="Nickname">
+                          <input type="Email" name="email" style="height: 50px; margin-bottom: 5px;" class="form-control" placeholder="Email">
+                          <input type="text" name="phoneNo" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="Phone">
+                          <input type="text" name="address" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="Address">
+                          <input type="birthdate" name="birthdate" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="DOB YYYY-MM-DD">
+                          <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
+                                {% comment %} <div class="form-group">
+                                    <p class="login-box-msg" style="color:red">
+                                        {% if request.GET.errinfo == '1' %}
+                                            none！
+                                        {% elif request.GET.errinfo == '2' %}
+                                          Verification code error！
+                                        {% elif request.GET.errinfo == '3' %}
+                                          The login account does not exist!
+                                        {% elif request.GET.errinfo == '4' %}
+                                            Invalid login account！
+                                        {% elif request.GET.errinfo == '5' %}
+                                            Incorrect login password！
+                                        {% endif %}
+                                    </p>
+                                </div>  {% endcomment %}
+                      </form>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Contact</h3>
+          <address>Somewhere in Montreal Quebec Canada </address>
+          <ul class="list-unstyled links">
+            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+            <li>
+              <a href="mailto:info@mydomain.com">info@ConcordiaDoor.com</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Sources</h3>
+          <ul class="list-unstyled float-start links">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Vision</a></li>
+            <li><a href="#">Mission</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+          <!-- <ul class="list-unstyled float-start links">
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Creative</a></li>
+          </ul> -->
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Links</h3>
+          <ul class="list-unstyled links">
+            <li><a href="#">Our Vision</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+
+          <ul class="list-unstyled social">
+            <li>
+              <a href="#"><span class="icon-instagram"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-twitter"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-facebook"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-linkedin"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-pinterest"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-dribbble"></span></a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <!-- 
+          **==========
+          NOTE: 
+          Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+          **==========
+        -->
+
+        <p>
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          . All Rights Reserved. &mdash; Designed with love by
+          <a href="https://untree.co">Untree.co</a>
+          <!-- License information: https://untree.co/license/ -->
+        </p>
+        <div>
+          Distributed by
+          <a href="https://themewagon.com/" target="_blank">themewagon</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+
+
+<script>
+  {% for msg in messages %}
+      alert('{{ msg.message }}');
+  {% endfor %}
+</script>
+
+{% endblock %}
+
+
   <div class="container" >
       <div >
         <div  style="margin-top:10px;">
@@ -125,15 +266,7 @@
       
       {% comment %} <script src="{% static 'web/js/jquery.min.js' %}"></script>
       <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
-      <div class="col-md-8">
-          <!--TAB contents-->
-        {% for key,category in categorylist %}  
-          <h5 style="padding-bottom:9px;border-bottom:1px solid #eee;color:#BB3D00"><span class="glyphicon glyphicon-list" aria-hidden="true"> {{ category.name }}：</h5>
-            <div class="row shoplist">
-            </div>
-        {% endfor %}
-      </div>
-  </div>
+   
   <!-- Page body end -->
 {% comment %} 
   <script src="{% static 'web/js/jquery.min.js' %}"></script>
@@ -142,4 +275,3 @@
 
 
 
-<html>

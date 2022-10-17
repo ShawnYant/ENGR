@@ -9,7 +9,7 @@ from Cart.forms import CartAddProductForm
 def restaurant_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    restaurants = Restaurant.objects.filter()
+    restaurants = Restaurant.objects.all()
     if category_slug:
         category = get_object_or_404(Category, 
                                      slug=category_slug)

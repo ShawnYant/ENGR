@@ -1,6 +1,8 @@
-{% extends 'templates\base.html' %}
+{% extends "templates/base.html" %}
 <!DOCTYPE html>
-{%block content%}
+{% block content %}
+
+
 
 <div class="site-mobile-menu site-navbar-target">
   <div class="site-mobile-menu-header">
@@ -15,17 +17,26 @@
   <div class="container">
     <div class="menu-bg-wrap">
       <div class="site-navigation">
-        <a href="../" class="logo m-0 float-start">ConcordiaDoor</a>
+        <a href="" class="logo m-0 float-start">ConcordiaDoor</a>
 
         <ul
           class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
-        >
-          <li class="active"><a href="../">Home</a></li>
+          >
+          <li class="active"><a href="">Home</a></li>
           <li class="has-children">
-            <a href="">Customer</a>
+            {% if cuss != null %}
+            <a href="">{{cuss.username}}</a>
             <ul class="dropdown">
-              <li><a onclick="window.location.href=''" type="button" id="login">Login</a></li>
-              <li><a onclick="window.location.href='./regist'" type="button" id="Register">Register</a></li>
+              <li><a onclick="location='update'" type="button" id="Update">Update</a></li>
+              <li><a onclick="location='logout'" type="button" id="Logout">Logout</a></li>
+            </ul>
+              {% else %}
+              <a href="">Customer</a>
+              <ul class="dropdown">
+                <li><a onclick="window.location.href='Customer/login'" type="button" id="login">Login</a></li>
+                <li><a onclick="window.location.href='Customer'" type="button" id="Register">Register</a></li>
+            </ul>
+            {% endif %}
               {% comment %} <li class="has-children">
                 <a href="#">Dropdown</a>
                 <ul class="dropdown">
@@ -34,7 +45,6 @@
                   <li><a href="#">Sub Menu Three</a></li>
                 </ul>
               </li> {% endcomment %}
-            </ul>
           </li>
           <li><a href="templates\web\Store\product\restaurant.html">Restaurants</a></li>
           <li><a href="about.html">About</a></li>
@@ -56,45 +66,74 @@
 
 <div
   class="hero page-inner overlay"
-  style="background-image: url('/static/bootstrap5/images/hero_bg_1.jpg')"
+  style="background-image: url('images/hero_bg_1.jpg')"
   >
   <div class="container">
     <div class="row justify-content-center align-items-center">
       <div class="col-lg-9 text-center mt-5">
-        <h1 class="heading" data-aos="fade-up">Login</h1>
+        <h1 class="heading" data-aos="fade-up">Result</h1>
 
-        <div class="container" style="margin-top:10px;" >
-          {% comment %} <h1 class="form-heading">login Form</h1> {% endcomment %}
-          <div >
-              <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
-                  <div class="panel">
-                  </div>
-                  <form action="{% url 'Customer_dologin' %}" method="post" >
-                      {% csrf_token %}
-                          <input type="text" name="username" style="height:50px;margin-top: 50px;margin-bottom: 5px;" class="form-control"  placeholder="Account">
-                          <input type="password" name="pass" style="height:50px;margin-bottom: 5px;" class="form-control" placeholder="Password">
-                          <button type="submit" style="width:100%;height:50px;margin-top:50px;" class="btn btn-primary" >Login</button>
-                          <div class="form-group">
-                          <p class="login-box-msg" style="color:red">
-                              {% comment %} {% if request.GET.errinfo == '1' %}
-                                  none！
-                              {% elif request.GET.errinfo == '2' %}
-                                  Verification code error！
-                              {% elif request.GET.errinfo == '3' %}
-                                  The login account does not exist!
-                              {% elif request.GET.errinfo == '4' %}
-                                  Invalid login account！
-                              {% elif request.GET.errinfo == '5' %}
-                                  Incorrect login password！
-                              {% endif %} {% endcomment %}
-                          </p>
-                      </div>
-                  </form>
-                  <spam style="color:white">Don't have an account?<a href="/Customer"><spam style="color:orange">Register now</spam></a></spam>
-              </div>
-          </div>
-        </div>
+        <nav
+          aria-label="breadcrumb"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          > 
+          <ol class="breadcrumb text-center justify-content-center">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li
+              class="breadcrumb-item active text-white-50"
+              aria-current="page"
+              >
+              Result
+            </li>
+          </ol>
+        </nav>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="row mb-5 align-items-center">
+      <div class="col-lg-6 text-center mx-auto">
+        <h2 class="font-weight-bold text-primary heading">
+          {{result}}
+        </h2>
+      </div>
+        <div>
+          
+            <div class="restaurant">
+              <a href="{{ result }}">
+                <img src="{{ result.image.url }}"{{result.image}} class="img-fluid" >
+              </a>
+              <a href="{{ result.get_absolute_url }}">{{ result.name }}</a>
+              {% comment %} <a href="{{ result.get_absolute_url }}">{{ r. }}</a> {% endcomment %}
+              <br>
+            </div>
+          
+            {% comment %} <div
+              id="property-nav"
+              class="controls"
+              tabindex="0"
+              aria-label="Carousel Navigation"
+              >
+              <span
+                class="prev"
+                data-controls="prev"
+                aria-controls="property"
+                tabindex="-1"
+                >Prev</span
+              >
+              <span
+                class="next"
+                data-controls="next"
+                aria-controls="property"
+                tabindex="-1"
+                >Next</span
+              >
+            </div> {% endcomment %}
+        </div>
     </div>
   </div>
 </div>
@@ -105,12 +144,12 @@
       <div class="col-lg-4">
         <div class="widget">
           <h3>Contact</h3>
-          <address>Somewhere in Montreal Quebec Canada </address>
+          <address>43 Raymouth Rd. Baltemoer, London 3910</address>
           <ul class="list-unstyled links">
             <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
             <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
             <li>
-              <a href="mailto:info@mydomain.com">info@ConcordiaDoor.com</a>
+              <a href="mailto:info@mydomain.com">info@mydomain.com</a>
             </li>
           </ul>
         </div>
@@ -128,14 +167,14 @@
             <li><a href="#">Terms</a></li>
             <li><a href="#">Privacy</a></li>
           </ul>
-          <!-- <ul class="list-unstyled float-start links">
+          <ul class="list-unstyled float-start links">
             <li><a href="#">Partners</a></li>
             <li><a href="#">Business</a></li>
             <li><a href="#">Careers</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Creative</a></li>
-          </ul> -->
+          </ul>
         </div>
         <!-- /.widget -->
       </div>
@@ -203,21 +242,56 @@
   </div>
   <!-- /.container -->
 </div>
+<!-- /.site-footer -->
+
+<!-- Preloader -->
+{% comment %} <div id="overlayer"></div>
+<div class="loader">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div> {% endcomment %}
+
+<script type="text/javascript" src="/static/bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/tiny-slider.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/aos.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/navbar.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/counter.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/custom.js"></script> 
 
 
-<script>
-  {% for msg in messages %}
-      alert('{{ msg.message }}');
-  {% endfor %}
-</script>
 
 
-<script type="text/javascript" src="static/bootstrap5/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="static/bootstrap5/js/tiny-slider.js"></script>
-<script type="text/javascript" src="static/bootstrap5/js/aos.js"></script>
-<script type="text/javascript" src="static/bootstrap5/js/navbar.js"></script>
-<script type="text/javascript" src="static/bootstrap5/js/counter.js"></script>
-<script type="text/javascript" src="static/bootstrap5/js/custom.js"></script>
-    {% comment %} <script src="{% static 'web/js/jquery.min.js' %}"></script>
-    <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
+
+  {% comment %} <div>
+    <h3>Categories</h3>
+    <ul>
+      <li {% if not category %}class="selected"{% endif %}>
+        <a href="{% url "store:restaurant_list" %}">All</a>
+      </li>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %}class="selected"
+        {% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div id="main" class="restaurant-list">
+    <h1>Restaurant
+    </h1>
+    {% for r in result %}
+      <div class="restaurant">
+        <a href="{{ result.get_absolute_url }}">
+          <img src="{% if r.image %}{{ r.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        </a>
+        <a href="{{ result.get_absolute_url }}">{{ r.name }}</a>
+        <a href="{{ result.get_absolute_url }}">{{ r.category }}</a>
+        <br>
+      
+      </div>
+    {% endfor %}
+    <p>result:{{result}}</p>
+  
+  </div> {% endcomment %}
 {% endblock %}
