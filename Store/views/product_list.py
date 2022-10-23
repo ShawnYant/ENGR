@@ -4,16 +4,16 @@ from Store.models.Product import Product
 from Store.models.Restaurant import Restaurant
 from Cart.forms import CartAddProductForm
 # Create your views here.
-def product_list(request, category_slug=None):
-    category = None
-    categories = Category.objects.all()
+def product_list(request, restaurant_slug=None):
+    restaurant = None
+    restaurants = Restaurant.objects.all()
     products = Product.objects.filter(available=True)
-    if category_slug:
-        category = get_object_or_404(Category, 
-                                     slug=category_slug)
-        products = products.filter(category=category)
+    if restaurant_slug:
+        restaurant = get_object_or_404(Restaurant, 
+                                     slug=restaurant_slug)
+        products = products.filter(restaurant=restaurant)
     return render(request,
                   'templates\web\Store\product\list.html',
-                  {'category': category,
-                   'categories': categories,
+                  {'restaurant': restaurant,
+                   'restaurants': restaurants,
                    'products': products})

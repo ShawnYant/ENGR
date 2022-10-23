@@ -3,7 +3,7 @@ import json
 from xml.etree.ElementTree import tostring
 from django.conf import settings
 # from ENGR.settings import DecimalEncoder
-from Store.models import Product
+from Store.models.Product import Product
 
 
 class Cart(object):

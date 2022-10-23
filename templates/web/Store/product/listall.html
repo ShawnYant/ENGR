@@ -25,7 +25,7 @@
           <li class="active"><a href="">Home</a></li>
           <li class="has-children">
             {% if cuss != null %}
-            <a href="">{{cuss.username}}</a>
+            <a href="">{{cuss}}</a>
             <ul class="dropdown">
               <li><a onclick="location='update'" type="button" id="Update">Update</a></li>
               <li><a onclick="location='logout'" type="button" id="Logout">Logout</a></li>
@@ -33,8 +33,8 @@
               {% else %}
               <a href="">Customer</a>
               <ul class="dropdown">
-                <li><a onclick="window.location.href='Customer/login'" type="button" id="login">Login</a></li>
-                <li><a onclick="window.location.href='Customer'" type="button" id="Register">Register</a></li>
+                <li><a onclick="window.location.href='../Customer/login'" type="button" id="login">Login</a></li>
+                <li><a onclick="window.location.href='../Customer'" type="button" id="Register">Register</a></li>
             </ul>
             {% endif %}
               {% comment %} <li class="has-children">
@@ -64,30 +64,28 @@
   </div>
 </nav>
 
-<div
-  class="hero page-inner overlay"
-  style="background-image: url('images/hero_bg_1.jpg')"
-  >
+<div class="hero">
   <div class="container">
     <div class="row justify-content-center align-items-center">
-      <div class="col-lg-9 text-center mt-5">
-        <h1 class="heading" data-aos="fade-up">Result</h1>
-
-        <nav
-          aria-label="breadcrumb"
+      <div class="col-lg-9 text-center">
+        <h1 class="heading" data-aos="fade-up">
+          Easiest way to find what to eat
+        </h1>
+        <form
+          action="{% url 'store:store_dosearch' %}"
+          method="post" 
+          class="narrow-w form-search d-flex align-items-stretch mb-3"
           data-aos="fade-up"
           data-aos-delay="200"
-          > 
-          <ol class="breadcrumb text-center justify-content-center">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li
-              class="breadcrumb-item active text-white-50"
-              aria-current="page"
-              >
-              Result
-            </li>
-          </ol>
-        </nav>
+        >{% csrf_token %}
+          <input
+            type="text"
+            name="search"
+            class="form-control px-4"
+            placeholder="Enter food type or name or restaurants e.g. cafe"
+          />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
       </div>
     </div>
   </div>
@@ -98,45 +96,70 @@
     <div class="row mb-5 align-items-center">
       <div class="col-lg-6 text-center mx-auto">
         <h2 class="font-weight-bold text-primary heading">
-          {{result}}
+          Restaurants
         </h2>
       </div>
-        <div>
-          
-            <div class="restaurant">
-              <a href="{{ result }}">
-                <img src="{{ result.image.url }}"{{result.image}} class="img-fluid" >
-              </a>
-              <a href="{{ result.get_absolute_url }}">{{ result.name }}</a>
-              {% comment %} <a href="{{ result.get_absolute_url }}">{{ r. }}</a> {% endcomment %}
-              <br>
-            </div>
-          
-            {% comment %} <div
-              id="property-nav"
-              class="controls"
-              tabindex="0"
-              aria-label="Carousel Navigation"
-              >
-              <span
-                class="prev"
-                data-controls="prev"
-                aria-controls="property"
-                tabindex="-1"
-                >Prev</span
-              >
-              <span
-                class="next"
-                data-controls="next"
-                aria-controls="property"
-                tabindex="-1"
-                >Next</span
-              >
-            </div> {% endcomment %}
-        </div>
     </div>
   </div>
 </div>
+<div class="section section-properties">
+  {% comment %} var= {% endcomment %}
+<div class="container">
+  <div class="row">
+  {%for l in result%}
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <div class="property-item mb-30">
+          <a href="property-single.html" class="img">
+            <img src="{{l.image.url}}"{{l.image}} alt="Image" class="img-fluid" />
+          </a>
+
+          <div class="property-content">
+            <div class="price mb-2"><span>{{l.name}}</span></div>
+            <div>
+              <span class="d-block mb-2 text-black-50"
+                >{{l.address}}</span
+              >
+              <span class="city d-block mb-3">{{l.address}}</span>
+
+              <div class="specs d-flex mb-4">
+                <span class="d-block d-flex align-items-center me-3">
+                  {% comment %} <span class="icon-bed me-2"></span> {% endcomment %}
+                  {% comment %} <span class="caption">{{l.get_absolute_url}}</span> {% endcomment %}
+                </span>
+                <span class="d-block d-flex align-items-center">
+                  {% comment %} <span class="icon-bath me-2"></span> {% endcomment %}
+                  {% comment %} <span class="caption">2 baths</span> {% endcomment %}
+                </span>
+              </div>
+              
+              <a
+                href="{{l.get_absolute_url}}"
+                class="btn btn-primary py-2 px-3"
+                >See details</a
+              >
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    {% comment %} <div class="row align-items-center py-5">
+      <div class="col-lg-3">Pagination (1 of 10)</div>
+      <div class="col-lg-6 text-center">
+        <div class="custom-pagination">
+          <a href="#">1</a>
+          <a href="#" class="active">2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+        </div>
+      </div> {% endcomment %}
+
+  {%endfor%}
+</div>
+</div>
+
+</div>
+
 
 <div class="site-footer">
   <div class="container">
@@ -295,3 +318,35 @@
   
   </div> {% endcomment %}
 {% endblock %}
+
+
+{% comment %} {% block content %}
+  <div id="sidebar">
+    <h3>Categories</h3>
+    <ul>
+      <li {% if not category %}class="selected"{% endif %}>
+        <a href="{% url "store:restaurant_list" %}">All</a>
+      </li>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %}class="selected"
+        {% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div id="main" class="restaurant-list">
+    <h1>{% if category %}{{ category.name }}{% else %}Restaurant
+    {% endif %}</h1>
+    {% for restaurant in restaurants %}
+      <div class="restaurant">
+        <a href="{{ restaurant.get_absolute_url }}">
+          <img src="{% if restaurant.image %}{{ restaurant.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        </a>
+        <a href="{{ restaurant.get_absolute_url }}">{{ restaurant.name }}</a>
+        <br>
+     
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %} {% endcomment %}

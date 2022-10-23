@@ -1,57 +1,7 @@
 {% extends 'templates\base.html' %}
 <!DOCTYPE html>
 {%block content%}
-<div class="site-mobile-menu site-navbar-target">
-  <div class="site-mobile-menu-header">
-    <div class="site-mobile-menu-close">
-      <span class="icofont-close js-menu-toggle"></span>
-    </div>
-  </div>
-  <div class="site-mobile-menu-body"></div>
-</div>
 
-<nav class="site-nav">
-  <div class="container">
-    <div class="menu-bg-wrap">
-      <div class="site-navigation">
-        <a href="" class="logo m-0 float-start">ConcordiaDoor</a>
-
-        <ul
-          class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
-        >
-          <li class="active"><a href="">Home</a></li>
-          <li class="has-children">
-            <a href="">Customer</a>
-            <ul class="dropdown">
-              <li><a onclick="window.location.href='Customer/login'" type="button" id="login">Login</a></li>
-              <li><a onclick="window.location.href='Customer'" type="button" id="Register">Register</a></li>
-              {% comment %} <li class="has-children">
-                <a href="#">Dropdown</a>
-                <ul class="dropdown">
-                  <li><a href="#">Sub Menu One</a></li>
-                  <li><a href="#">Sub Menu Two</a></li>
-                  <li><a href="#">Sub Menu Three</a></li>
-                </ul>
-              </li> {% endcomment %}
-            </ul>
-          </li>
-          <li><a href="templates\web\Store\product\restaurant.html">Restaurants</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-
-        <a
-          href="#"
-          class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-          data-toggle="collapse"
-          data-target="#main-navbar"
-        >
-          <span></span>
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
 
 <div class="hero">
     {% comment %} This is the slided back ground{% endcomment %}
@@ -91,6 +41,8 @@
             />
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
+          {% comment %} <button type="submit" class="btn btn-primary" 
+            action="{% url 'store:restaurant_list'%}">Restaurants</button> {% endcomment %}
         </div>
       </div>
     </div>
@@ -107,8 +59,7 @@
       <div class="col-lg-6 text-lg-end">
         <p>
           <a
-            href="#"
-            target="_blank"
+            onclick="window.location.href='store/list'" type="button" id="Restaurant"
             class="btn btn-primary text-white py-3 px-4"
             >View all Restaurants</a
           >
@@ -121,24 +72,24 @@
           <div class="property-slider">
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_1.jpg" alt="Image" class="img-fluid" />
+                <img src="media/products/2022/10/19/wok.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
-                <div class="price mb-2"><span>$1,291,000</span></div>
+                <div class="price mb-2"><span> </span></div>
                 <div>
                   <span class="d-block mb-2 text-black-50"
-                    >5232 California Fake, Ave. 21BC</span
+                    >5232 ST.Catherin,</span
                   >
                   <span class="city d-block mb-3">WoKCafe</span>
 
                   <div class="specs d-flex mb-4">
                     <span class="d-block d-flex align-items-center me-3">
-                      <span class="icon-bed me-2"></span>
+                      {% comment %} <span class="caption">Ingrediant</span> {% endcomment %}
                       <span class="caption">rice</span>
                     </span>
                     <span class="d-block d-flex align-items-center">
-                      <span class="icon-bath me-2"></span>
+                      {% comment %} <span class="caption">Ingrediant</span> {% endcomment %}
                       <span class="caption">beef</span>
                     </span>
                   </div>
@@ -155,24 +106,24 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_2.jpg" alt="Image" class="img-fluid" />
+                <img src="media\products\2022\10\19\bimbimbum.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
-                <div class="price mb-2"><span>$1,291,000</span></div>
+                <div class="price mb-2"><span></span></div>
                 <div>
                   <span class="d-block mb-2 text-black-50"
-                    >5232 California Fake, Ave. 21BC</span
+                    >2310 atwater</span
                   >
                   <span class="city d-block mb-3">Korean Poulet</span>
 
                   <div class="specs d-flex mb-4">
                     <span class="d-block d-flex align-items-center me-3">
-                      <span class="icon-bed me-2"></span>
+                      {% comment %} <span class="icon-bed me-2"></span> {% endcomment %}
                       <span class="caption">Fired Chicken</span>
                     </span>
                     <span class="d-block d-flex align-items-center">
-                      <span class="icon-bath me-2"></span>
+                      {% comment %} <span class="icon-bath me-2"></span> {% endcomment %}
                       <span class="caption">bimbimbum</span>
                     </span>
                   </div>
@@ -189,25 +140,25 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_3.jpg" alt="Image" class="img-fluid" />
+                <img src="media/products/2022/10/19/tacco.jpeg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
-                <div class="price mb-2"><span>$1,291,000</span></div>
+                <div class="price mb-2"><span></span></div>
                 <div>
                   <span class="d-block mb-2 text-black-50"
-                    >5232 California Fake, Ave. 21BC</span
+                    >5232 Bishop</span
                   >
-                  <span class="city d-block mb-3">California, USA</span>
+                  <span class="city d-block mb-3">Amigos</span>
 
                   <div class="specs d-flex mb-4">
                     <span class="d-block d-flex align-items-center me-3">
-                      <span class="icon-bed me-2"></span>
-                      <span class="caption">2 beds</span>
+                      {% comment %} <span class="icon-bed me-2"></span> {% endcomment %}
+                      <span class="caption">taccos</span>
                     </span>
                     <span class="d-block d-flex align-items-center">
-                      <span class="icon-bath me-2"></span>
-                      <span class="caption">2 baths</span>
+                      {% comment %} <span class="icon-bath me-2"></span> {% endcomment %}
+                      <span class="caption">fired icecream</span>
                     </span>
                   </div>
 

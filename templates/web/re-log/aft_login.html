@@ -19,10 +19,10 @@
 
         <ul
           class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
-        >
+          >
           <li class="active"><a href="">Home</a></li>
           <li class="has-children">
-            <a href="">{{cuss.username}}</a>
+            <a href="">{{cuss}}</a>
             <ul class="dropdown">
               <li><a onclick="location='update'" type="button" id="Update">Update</a></li>
               <li><a onclick="location='logout'" type="button" id="Logout">Logout</a></li>
@@ -36,7 +36,7 @@
               </li> {% endcomment %}
             </ul>
           </li>
-          <li><a href="templates\web\Store\product\restaurant.html">Restaurants</a></li>
+          <li><a onclick="window.location.href='../store/list'" type="button" id="Restaurant">Restaurants</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
@@ -46,7 +46,7 @@
           class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
           data-toggle="collapse"
           data-target="#main-navbar"
-        >
+          >
           <span></span>
         </a>
       </div>
@@ -59,15 +59,15 @@
     <div class="hero-slide">
       <div
         class="img overlay"
-        style="background-image: url('static/bootstrap5/images/hero_bg_3.jpg')"
+        style="background-image: url('../static/bootstrap5/images/hero_bg_3.jpg')"
       ></div>
       <div
         class="img overlay"
-        style="background-image: url('static/bootstrap5/images/hero_bg_2.jpg')"
+        style="background-image: url('../static/bootstrap5/images/hero_bg_2.jpg')"
       ></div>
       <div
         class="img overlay"
-        style="background-image: url('static/bootstrap5/images/hero_bg_1.jpg')"
+        style="background-image: url('../static/bootstrap5/images/hero_bg_1.jpg')"
       ></div>
     </div>
 
@@ -122,7 +122,7 @@
           <div class="property-slider">
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_1.jpg" alt="Image" class="img-fluid" />
+                <img src="../static/bootstrap5/images/img_1.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
@@ -156,7 +156,7 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_2.jpg" alt="Image" class="img-fluid" />
+                <img src="../static/bootstrap5/images/img_2.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
@@ -190,7 +190,7 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_3.jpg" alt="Image" class="img-fluid" />
+                <img src="../static/bootstrap5/images/img_3.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
@@ -224,7 +224,7 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_4.jpg" alt="Image" class="img-fluid" />
+                <img src="../static/bootstrap5/images/img_4.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
@@ -258,7 +258,7 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_5.jpg" alt="Image" class="img-fluid" />
+                <img src="../static/bootstrap5/images/img_5.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
@@ -292,7 +292,7 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_6.jpg" alt="Image" class="img-fluid" />
+                <img src="../static/bootstrap5/images/img_6.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
@@ -326,7 +326,7 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_7.jpg" alt="Image" class="img-fluid" />
+                <img src="../static/bootstrap5/images/img_7.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
@@ -360,7 +360,7 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_8.jpg" alt="Image" class="img-fluid" />
+                <img src="../static/bootstrap5/images/img_8.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
@@ -394,7 +394,7 @@
 
             <div class="property-item">
               <a href="property-single.html" class="img">
-                <img src="static/bootstrap5/images/img_1.jpg" alt="Image" class="img-fluid" />
+                <img src="../static/bootstrap5/images/img_1.jpg" alt="Image" class="img-fluid" />
               </a>
 
               <div class="property-content">
@@ -568,7 +568,7 @@
   </div>
 </div> {% endcomment %}
 
-<nav class="navbar navbar-default navbar-fixed-top">
+{% comment %} <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header" style="width: 100%;">
       <a class="navbar-brand" href="">
@@ -597,7 +597,15 @@
     <script src="bundle.js"></script>
     <div>
 
-</nav> 
+</nav>  {% endcomment %}
+
+
+<script type="text/javascript" src="../static/bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="../static/bootstrap5/js/tiny-slider.js"></script>
+<script type="text/javascript" src="../static/bootstrap5/js/aos.js"></script>
+<script type="text/javascript" src="../static/bootstrap5/js/navbar.js"></script>
+<script type="text/javascript" src="../static/bootstrap5/js/counter.js"></script>
+<script type="text/javascript" src="../static/bootstrap5/js/custom.js"></script>
 
 <script>
     {% for msg in messages %}

@@ -4,8 +4,6 @@ from Store.models.Product import Product
 from Store.models.Restaurant import Restaurant
 from Cart.forms import CartAddProductForm
 
-
-
 def restaurant_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
@@ -14,8 +12,10 @@ def restaurant_list(request, category_slug=None):
         category = get_object_or_404(Category, 
                                      slug=category_slug)
         restaurants = restaurants.filter(category=category)
+
     return render(request,
                   'templates/web/Store/product/restaurant.html',
                   {'category': category,
                    'categories': categories,
                    'restaurants': restaurants})
+

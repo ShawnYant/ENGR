@@ -24,13 +24,15 @@ def do_login(request):
                 print('login successfully')
                 request.session['cuss'] = user.toDict()
                 messages.error(request,'login is success!')
-                return redirect(reverse('aft_login'))
+                return redirect(reverse('aft_login'), {'cus': Cuss.cuss_id})
+                
         else:
                 messages.error(request,'Wrong password!')
                 return redirect(reverse('Customer_login'))
         # else:
         #     messages.error(request,'Wrong !')
         #     return redirect(reverse('Customer_login'))
+        
     except:
         traceback.print_exc()
         messages.error(request,'User does not exist!')

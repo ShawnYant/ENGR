@@ -18,6 +18,8 @@ from Store.views import restaurant_list
 from Store.views import product_detail
 from Store.views import product_list
 from Store.views import search
+from Store.views import list
+
 app_name = 'store'
 urlpatterns = [
     path('', restaurant_list.restaurant_list, name='restaurant_list'),
@@ -26,4 +28,5 @@ urlpatterns = [
     path('<int:id>/<slug:slug>/', product_detail.product_detail,
          name='product_detail'),
     path('search',search.Search, name='store_dosearch'),
+    path('list',list.List_all, name='list_restaurants'),
 ]

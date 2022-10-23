@@ -17,9 +17,10 @@ class Restaurant(models.Model):
     # available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    address = models.CharField(max_length=200,default='null')
 
     def toDict(self):
-        return {'category':self.category,'name':self.name, 'slug':self.slug, 'image':self.image, 'description':self.description,'created':self.created.strftime('%Y-%m-%d %H:%M:%S'),'updated':self.updated.strftime('%Y-%m-%d %H:%M:%S')} 
+        return {'category':self.category,'name':self.name, 'slug':self.slug, 'image':self.image, 'description':self.description,'created':self.created.strftime('%Y-%m-%d %H:%M:%S'),'updated':self.updated.strftime('%Y-%m-%d %H:%M:%S'),'address':self.address} 
     
     class Meta:
         ordering = ['name']

@@ -7,7 +7,7 @@ from Store.models.Restaurant import Restaurant
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.db.models import Q
-
+from django.contrib import messages
 from Store.views import restaurant_list
 
 
@@ -28,7 +28,7 @@ def Search(request):
         for r in Q_Restaurant or Q_Product:
             print(r)
             print(r.name)
-            print(r.category)
+            # print(r.category)
             print(r.get_absolute_url)
             
         # Q_Catagory = Category.objects.filter(name__contains=name)
@@ -38,7 +38,7 @@ def Search(request):
         # categories = Category.objects.all()
         # restaurants = Restaurant.objects.all()
         for r in  Q_Product or Q_Restaurant:
-            return render(request, 'templates/web/re-log/result.html',
+            return render(request, 'templates/web/Store/result.html',
                                 {'result':r})
 
             # if name in Q_Restaurant:
@@ -61,5 +61,6 @@ def Search(request):
 
         return errorcode
     except:
+        messages.error(request,'food does not exist!')
         traceback.print_exc()
         return redirect(reverse('index'))

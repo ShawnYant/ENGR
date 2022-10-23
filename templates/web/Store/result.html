@@ -1,0 +1,298 @@
+{% extends "templates/base.html" %}
+<!DOCTYPE html>
+{% block content %}
+
+
+
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
+
+<nav class="site-nav">
+  <div class="container">
+    <div class="menu-bg-wrap">
+      <div class="site-navigation">
+        <a href="" class="logo m-0 float-start">ConcordiaDoor</a>
+
+        <ul
+          class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+          >
+          <li class="active"><a href="">Home</a></li>
+          <li class="has-children">
+            {% if cuss %}
+            <a href="">{{cuss}}</a>
+            <ul class="dropdown">
+              <li><a onclick="location='update'" type="button" id="Update">Update</a></li>
+              <li><a onclick="location='logout'" type="button" id="Logout">Logout</a></li>
+            </ul>
+              {% else %}
+              <a href="">Customer</a>
+              <ul class="dropdown">
+                <li><a onclick="window.location.href='../Customer/login'" type="button" id="login">Login</a></li>
+                <li><a onclick="window.location.href='../Customer'" type="button" id="Register">Register</a></li>
+            </ul>
+            {% endif %}
+              {% comment %} <li class="has-children">
+                <a href="#">Dropdown</a>
+                <ul class="dropdown">
+                  <li><a href="#">Sub Menu One</a></li>
+                  <li><a href="#">Sub Menu Two</a></li>
+                  <li><a href="#">Sub Menu Three</a></li>
+                </ul>
+              </li> {% endcomment %}
+          </li>
+          <li><a href="templates\web\Store\product\restaurant.html">Restaurants</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+
+        <a
+          href="#"
+          class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+          data-toggle="collapse"
+          data-target="#main-navbar"
+        >
+          <span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div
+  class="hero page-inner overlay"
+  style="background-image: url('images/hero_bg_1.jpg')"
+  >
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">Result</h1>
+
+        <nav
+          aria-label="breadcrumb"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          > 
+          <ol class="breadcrumb text-center justify-content-center">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li
+              class="breadcrumb-item active text-white-50"
+              aria-current="page"
+              >
+              Result
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="row mb-5 align-items-center">
+      <div class="col-lg-6 text-center mx-auto">
+        <h2 class="font-weight-bold text-primary heading">
+          {{result.name}}
+        </h2>
+      </div>
+        <div>
+            <div class="restaurant">
+              <a href="{{ result }}">
+                <img src="{{ result.image.url }}"{{result.image}} class="img-fluid" >
+              </a>
+              <a href="{{ result.get_absolute_url }}">{{ result.name }}</a>
+              {% comment %} <a href="{{ result.get_absolute_url }}">{{ r. }}</a> {% endcomment %}
+              <br>
+            </div>
+          
+            {% comment %} <div
+              id="property-nav"
+              class="controls"
+              tabindex="0"
+              aria-label="Carousel Navigation"
+              >
+              <span
+                class="prev"
+                data-controls="prev"
+                aria-controls="property"
+                tabindex="-1"
+                >Prev</span
+              >
+              <span
+                class="next"
+                data-controls="next"
+                aria-controls="property"
+                tabindex="-1"
+                >Next</span
+              >
+            </div> {% endcomment %}
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Contact</h3>
+          <address>43 Raymouth Rd. Baltemoer, London 3910</address>
+          <ul class="list-unstyled links">
+            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+            <li>
+              <a href="mailto:info@mydomain.com">info@mydomain.com</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Sources</h3>
+          <ul class="list-unstyled float-start links">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Vision</a></li>
+            <li><a href="#">Mission</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+          <ul class="list-unstyled float-start links">
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Creative</a></li>
+          </ul>
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Links</h3>
+          <ul class="list-unstyled links">
+            <li><a href="#">Our Vision</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+
+          <ul class="list-unstyled social">
+            <li>
+              <a href="#"><span class="icon-instagram"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-twitter"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-facebook"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-linkedin"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-pinterest"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-dribbble"></span></a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <!-- 
+          **==========
+          NOTE: 
+          Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+          **==========
+        -->
+
+        <p>
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          . All Rights Reserved. &mdash; Designed with love by
+          <a href="https://untree.co">Untree.co</a>
+          <!-- License information: https://untree.co/license/ -->
+        </p>
+        <div>
+          Distributed by
+          <a href="https://themewagon.com/" target="_blank">themewagon</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.site-footer -->
+
+<!-- Preloader -->
+{% comment %} <div id="overlayer"></div>
+<div class="loader">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div> {% endcomment %}
+
+<script type="text/javascript" src="/static/bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/tiny-slider.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/aos.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/navbar.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/counter.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/custom.js"></script> 
+
+
+
+
+
+  {% comment %} <div>
+    <h3>Categories</h3>
+    <ul>
+      <li {% if not category %}class="selected"{% endif %}>
+        <a href="{% url "store:restaurant_list" %}">All</a>
+      </li>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %}class="selected"
+        {% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div id="main" class="restaurant-list">
+    <h1>Restaurant
+    </h1>
+    {% for r in result %}
+      <div class="restaurant">
+        <a href="{{ result.get_absolute_url }}">
+          <img src="{% if r.image %}{{ r.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        </a>
+        <a href="{{ result.get_absolute_url }}">{{ r.name }}</a>
+        <a href="{{ result.get_absolute_url }}">{{ r.category }}</a>
+        <br>
+      
+      </div>
+    {% endfor %}
+    <p>result:{{result}}</p>
+  
+  </div> {% endcomment %}
+
+  
+{% endblock %}
