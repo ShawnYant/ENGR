@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import render
-
+from Customer.cuss import Cuss
 
 def Login(request):
     '''load the login form'''
-    return render(request,"templates/web/re-log/login.html")
+    a= Cuss.cuss_id
+    return render(request,"templates/web/re-log/login.html",{'cus':a})

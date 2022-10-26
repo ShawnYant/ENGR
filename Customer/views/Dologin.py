@@ -1,16 +1,10 @@
-from ast import Pass
-from select import select
-from sqlite3 import Cursor, connect
-from traceback import print_stack
 from django.shortcuts import redirect,render
 from django.urls import reverse
 from Customer.models.customer import Customer
 from Customer.cuss import Cuss
 from django.contrib import messages
-import mysql.connector
 import traceback
 
-from ENGR.settings import CUSS_SESSION_ID
 
 
 def do_login(request):
@@ -22,9 +16,11 @@ def do_login(request):
         if pa == user.password:
                 Cuss.cuss_id = user.username
                 print('login successfully')
-                request.session['cuss'] = user.toDict()
+                request.session['cuss'] = user.username
+                a=request.session['cuss']
+                print(a)
                 messages.error(request,'login is success!')
-                return redirect(reverse('aft_login'), {'cus': Cuss.cuss_id})
+                return render(request,'templates/web/re-log/aft_login.html',{'cus':Cuss.cuss_id})
                 
         else:
                 messages.error(request,'Wrong password!')

@@ -8,9 +8,10 @@ from django.contrib import messages
 
 def do_Update(request):
         try:
-            print("username")
-            print(Cuss.cuss_id)
-            ob=Customer.objects.get(username=Cuss.cuss_id)
+            b=Cuss.cuss_id
+            print('username')
+            print(b)
+            ob=Customer.objects.get(username=request.session.get('cuss'))
             ob.nickname = request.POST.get('nickname')
             ob.email = request.POST.get('email')
             ob.address = request.POST.get('address')
@@ -19,9 +20,9 @@ def do_Update(request):
             ob.update_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             messages.error(request,'update is success!')
             ob.save()
-            print('123 123')
+         
             context = {'info':"Successfully Add!!"}
-            return redirect(reverse('aft_login'))
+            return render(request,'templates/web/re-log/aft_login.html',{'cus':b})
 
         except Exception as err:
             # err.with_traceback()

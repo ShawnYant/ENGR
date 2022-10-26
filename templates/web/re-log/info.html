@@ -1,15 +1,185 @@
-{% extends "myadmin/base.html" %}
-{% block main_body %}                
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h4>
-        Information Suggestion:
-      </h4>
-    </section>
+{% extends 'templates\base.html' %}
+<!DOCTYPE html>
+{%block content%}
 
-    <div class="pad margin no-print">
-      <div class="callout callout-info" style="margin-bottom: 0!important;padding-left: 50px">
-        <h3><i class="fa fa-exclamation-triangle"></i>  &nbsp; {{ info }}</h3>
+
+<div  class="hero page-inner overlay" style="background-image: url('/static/bootstrap5/images/hero_bg_1.jpg')">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">Update</h1>
+        <div class="container" >
+          <div >
+            <div  style="margin-top:10px;">
+              <div >
+                  <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
+                      <div class="panel">
+                          {% comment %} <h2 style="font-size:26px;">Registration</h2> {% endcomment %}
+                      </div>
+
+                      {% if user.nickname %}
+                      <form action="{% url  %}" method="post">
+                        {% csrf_token %}
+                          <b> Nickname : {{user.nickname}}</b>
+                          <b> Email : {{user.email}}</b>
+                          <input type="text" name="phoneNo" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="Phone">
+                          <input type="text" name="address" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="Address">
+                          <input type="birthdate" name="birthdate" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="DOB YYYY-MM-DD">
+                          <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
+                      </form>
+                      {% else %}
+                      <form action="{% url  %}" method="post">
+                        {% csrf_token %}
+                          <b> username : {{user.username}}</b>
+                          <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
+                      </form>
+                      {% endif %}
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Contact</h3>
+          <address>Somewhere in Montreal Quebec Canada </address>
+          <ul class="list-unstyled links">
+            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+            <li><a href="tel://11234567890">+1(123)-456-7890</a></li>
+            <li>
+              <a href="mailto:info@mydomain.com">info@ConcordiaDoor.com</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Sources</h3>
+          <ul class="list-unstyled float-start links">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Vision</a></li>
+            <li><a href="#">Mission</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+          <!-- <ul class="list-unstyled float-start links">
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Creative</a></li>
+          </ul> -->
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <div class="widget">
+          <h3>Links</h3>
+          <ul class="list-unstyled links">
+            <li><a href="#">Our Vision</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+
+          <ul class="list-unstyled social">
+            <li>
+              <a href="#"><span class="icon-instagram"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-twitter"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-facebook"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-linkedin"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-pinterest"></span></a>
+            </li>
+            <li>
+              <a href="#"><span class="icon-dribbble"></span></a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.widget -->
+      </div>
+      <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <!-- 
+          **==========
+          NOTE: 
+          Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+          **==========
+        -->
+
+        <p>
+          Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          . All Rights Reserved. &mdash; Designed with love by
+          <a href="https://untree.co">Untree.co</a>
+          <!-- License information: https://untree.co/license/ -->
+        </p>
+        <div>
+          Distributed by
+          <a href="https://themewagon.com/" target="_blank">themewagon</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+</div>
+
+
+<script>
+  {% for msg in messages %}
+      alert('{{ msg.message }}');
+  {% endfor %}
+</script>
+
+
+
+<script type="text/javascript" src="/static/bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/tiny-slider.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/aos.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/navbar.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/counter.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/custom.js"></script> 
+
+
+
 {% endblock %}
+
+
+ 
+      
+      {% comment %} <script src="{% static 'web/js/jquery.min.js' %}"></script>
+      <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
+   
+  <!-- Page body end -->
+{% comment %} 
+  <script src="{% static 'web/js/jquery.min.js' %}"></script>
+  <script src="{% static 'web/js/bootstrap.min.js' %}"></script> {% endcomment %}
+  
+
+
+

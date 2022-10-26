@@ -76,8 +76,8 @@ class Cuss(object):
     #     return sum(Decimal(item['price']) * item['quantity'] for item in self.cuss.values())
 
 
-    # def clear(self):
-    #     # remove cuss from session
-    #     del self.session[settings.cuss_SESSION_ID]
-    #     self.save()
+    def clear(self):
+        # remove cuss from session
+        del self.session[settings.cuss_SESSION_ID]
+        self.save()
 
