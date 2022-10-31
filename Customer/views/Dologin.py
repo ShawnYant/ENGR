@@ -18,9 +18,11 @@ def do_login(request):
                 print('login successfully')
                 request.session['cuss'] = user.username
                 a=request.session['cuss']
+                b=Cuss.cuss_id
                 print(a)
+                print(b)
                 messages.error(request,'login is success!')
-                return render(request,'templates/web/re-log/aft_login.html',{'cus':Cuss.cuss_id})
+                return render(request,'templates/web/re-log/aft_login.html',{'cus':a})
                 
         else:
                 messages.error(request,'Wrong password!')

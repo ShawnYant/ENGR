@@ -85,8 +85,8 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'Cart.context_processors.cart',
                 'django.contrib.messages.context_processors.messages',
+                'Cart.context_processors.cart',
             ],
         },
     },
@@ -94,7 +94,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ENGR.wsgi.application'
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'  # 引擎（默认）
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 引擎（默认）
 
 CUSS_SESSION_ID = 'cuss' 
 
@@ -114,7 +114,7 @@ CART_SESSION_ID = 'cart'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True         # 是否关闭浏览器使得Session过期（默认）
 
-SESSION_SAVE_EVERY_REQUEST = False            # 是否每次请求都保存Session，默认修改之后才保存（默认）
+SESSION_SAVE_EVERY_REQUEST = True            # 是否每次请求都保存Session，默认修改之后才保存（默认）
 
 
 # # Database

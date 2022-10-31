@@ -54,39 +54,54 @@
               <div class="menu-bg-wrap">
                 <div class="site-navigation">
                   <a href="/" class="logo m-0 float-start">ConcordiaDoor</a>
-                {% if cus == 'NULL' %}
-                  <ul
-                    class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
-                  >
-                    <li class="active"><a href="/">Home</a></li>
-                    <li class="has-children">
-                      <a >Customer</a>
-                      <ul class="dropdown">
-                        <li><a onclick="window.location.href='/Customer/login'" type="button" id="Login">Login</a></li>
-                        <li><a onclick="window.location.href='/Customer'" type="button" id="Register">Register</a></li>
 
+                {% if cus %}
+                  <ul
+                  class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+                  >
+                  <li class="active"><a href="">Home</a></li>
+                  <li class="has-children">
+                      <a >{{cus}}</a>
+                      <ul class="dropdown">
+                          <li><a onclick="window.location.href='/Customer/listinfo'" type="button" id="Myprofile">Myprofile</a></li>
+                          <li><a onclick="window.location.href='/Customer/update'" type="button" id="Update">Update</a></li>
+                          <li><a onclick="window.location.href='/Customer/logout'" type="button" id="Logout">Logout</a></li>
                       </ul>
-                    </li>
-                    <li><a onclick="window.location.href='/store/list'" type="button" id="Restaurant">Restaurants</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                  </li>
+                  <li><a onclick="window.location.href='../store/list'" type="button" id="Restaurant">Restaurants</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="contact.html">Contact Us</a></li>
                   </ul>
+                  
                 {% else %}
-                    <ul
-                    class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
-                    >
-                    <li class="active"><a href="">Home</a></li>
-                    <li class="has-children">
-                        <a >{{cus}}</a>
-                        <ul class="dropdown">
-                            <li><a onclick="location='update'" type="button" id="Myprofile">Myprofile</a></li>
-                            <li><a onclick="window.location.href='/Customer/update'" type="button" id="Update">Update</a></li>
-                            <li><a onclick="window.location.href='/Customer/logout'" type="button" id="Logout">Logout</a></li>
-                        </ul>
-                    </li>
-                    <li><a onclick="window.location.href='../store/list'" type="button" id="Restaurant">Restaurants</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                  <ul
+                  class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+                  >
+                  <li class="active"><a href="/">Home</a></li>
+                  <li class="has-children">
+                    <a >Customer</a>
+                    <ul class="dropdown">
+                      <li><a onclick="window.location.href='/Customer/login'" type="button" id="Login">Login</a></li>
+                      <li><a onclick="window.location.href='/Customer'" type="button" id="Register">Register</a></li>
+                      <li class="has-children">
+                        <div class="dropdown">
+                        {% comment %} {% with total_items=cart|length %} {% endcomment %}
+                          {% comment %} {% if total_items > 0 %} {% endcomment %}
+                            {% comment %} <a>Your cart:</a> {% endcomment %}
+                            {% comment %} <a href="{% url "cart:cart_detail" %}"> {% endcomment %}
+                              {% comment %} {{ total_items }} item{{ total_items|pluralize }}, {% endcomment %}
+                              {% comment %} ${{ cart.get_total_price }} {% endcomment %}
+                            {% comment %} </a> {% endcomment %}
+                          {% comment %} {% else %} {% endcomment %}
+                            {% comment %} Your cart is empty. {% endcomment %}
+                          {% comment %} {% endif %} {% endcomment %}
+                        {% comment %} {% endwith %} {% endcomment %}
+                      </div></li>
+                    </ul>
+                  </li>
+                  <li><a onclick="window.location.href='/store/list'" type="button" id="Restaurant">Restaurants</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="contact.html">Contact Us</a></li>
                   </ul>
                 {% endif %}
 
@@ -102,8 +117,113 @@
               </div>
             </div>
           </nav>
+
         {%block content%}
         {%endblock%}
+        <div class="site-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="widget">
+                  <h3>Contact</h3>
+                  <address>Somewhere in Montreal Quebec Canada </address>
+                  <ul class="list-unstyled links">
+                    <li><a href="tel://11234567890">+1(110)-110-1110</a></li>
+                    <li><a href="tel://11234567890">+1(110)-110-1110</a></li>
+                    <li>
+                      <a href="mailto:info@mydomain.com">info@ConcordiaDoor.com</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.widget -->
+              </div>
+              <!-- /.col-lg-4 -->
+              <div class="col-lg-4">
+                <div class="widget">
+                  <h3>Sources</h3>
+                  <ul class="list-unstyled float-start links">
+                    <li><a href="#">About us</a></li>
+                    {% comment %} <li><a href="#">Services</a></li> {% endcomment %}
+                    {% comment %} <li><a href="#">Vision</a></li> {% endcomment %}
+                    {% comment %} <li><a href="#">Mission</a></li> {% endcomment %}
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Privacy</a></li>
+                  </ul>
+                  <!-- <ul class="list-unstyled float-start links">
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Creative</a></li>
+                  </ul> -->
+                </div>
+                <!-- /.widget -->
+              </div>
+              <!-- /.col-lg-4 -->
+              <div class="col-lg-4">
+                <div class="widget">
+                  <h3>Links</h3>
+                  <ul class="list-unstyled links">
+                    <li><a href="#">Our Vision</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Contact us</a></li>
+                  </ul>
+        
+                  <ul class="list-unstyled social">
+                    <li>
+                      <a href="#"><span class="icon-instagram"></span></a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="icon-twitter"></span></a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="icon-facebook"></span></a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="icon-linkedin"></span></a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="icon-pinterest"></span></a>
+                    </li>
+                    <li>
+                      <a href="#"><span class="icon-dribbble"></span></a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.widget -->
+              </div>
+              <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+        
+            <div class="row mt-5">
+              <div class="col-12 text-center">
+                <!-- 
+                  **==========
+                  NOTE: 
+                  Please don't remove this copyright link unless you buy the license here https://untree.co/license/  
+                  **==========
+                -->
+        
+                <p>
+                  Copyright &copy;
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  . All Rights Reserved. &mdash; Designed with love by
+                  <a href="https://untree.co">Untree.co</a>
+                  <!-- License information: https://untree.co/license/ -->
+                </p>
+                <div>
+                  Distributed by
+                  <a href="https://themewagon.com/" target="_blank">themewagon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.container -->
+        </div>
     </div>
     </body>
 

@@ -10,7 +10,7 @@ from django.http import HttpResponse
 # from django.urls import reverse
 # from shop.models import Product
 class Cuss(object):
-    cuss_id = NULL
+    cuss_id = None
     def __init__(self, request):
         """
         Initialize the cuss.
@@ -78,6 +78,6 @@ class Cuss(object):
 
     def clear(self):
         # remove cuss from session
-        del self.session[settings.cuss_SESSION_ID]
+        del self.session[settings.CUSS_SESSION_ID]
         self.save()
 

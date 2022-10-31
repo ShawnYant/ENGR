@@ -4,5 +4,5 @@ from Customer.cuss import Cuss
 
 def Login(request):
     '''load the login form'''
-    a= Cuss.cuss_id
+    a=Cuss.cuss_id
     return render(request,"templates/web/re-log/login.html",{'cus':a})

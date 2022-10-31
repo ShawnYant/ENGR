@@ -1,24 +1,59 @@
-{% extends "templates/web/Store/base.html" %}
-{% load static %}
-{% block title %}
-  {{ product.name }}
-{% endblock %}
+{% extends "templates/base.html" %}
+{% load static%}
 {% block content %}
-  <div class="product-detail">
-    <img src="{% if product.image %}{{ product.image.url }}{% else %}
-    {% static "img/no_image.png" %}{% endif %}">
-    <h1>{{ product.name }}</h1>
-    <h2>
-      <a href="{{ product.category.get_absolute_url }}">
-        {{ product.category }}
-      </a>
-    </h2>
-    <p class="price">${{ product.price }}</p>
-    <form action="{% url "cart:cart_add" product.id %}" method="post">
-      {{ cart_product_form }}
-      {% csrf_token %}
-      <input type="submit" value="Add to cart">
-    </form>    
-    {{ product.description|linebreaks }}
+<div
+  class="hero page-inner overlay"
+  style="background-image: url('images/hero_bg_1.jpg')"
+  >
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">{{ product.name }}</h1>
+
+        <nav
+          aria-label="breadcrumb"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          > 
+          <ol class="breadcrumb text-center justify-content-center">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li
+              class="breadcrumb-item active text-white-50"
+              aria-current="page"
+              >
+              {{ product.restaurant }}
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
   </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="row mb-5 align-items-center">
+      <div class="product-detail">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}
+        {% static "img/no_image.png" %}{% endif %}">
+        <h1>{{ product.name }}</h1>
+        <h2>
+          <a href="{{ product.get_absolute_url }}">
+            {{ product.restaurant }}
+          </a>
+        </h2>
+        <p class="price">${{ product.price }}</p>
+        <form action="{% url "cart:cart_add" product.id %}" method="post">
+          {{ cart_product_form }}
+          {% csrf_token %}
+          <input type="submit" value="Add to cart">
+        </form>    
+        {{ product.description|linebreaks }}
+      </div>   
+    </div>
+  </div>
+</div>
+
+
+
 {% endblock %}

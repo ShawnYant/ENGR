@@ -9,14 +9,18 @@ from ENGR import settings
 
 def Logout(request):
     ''' perform the logout operation'''
-    
-    # for Cuss.cuss_id in request.session.keys():
-    # Cuss.clear
-    # del request.session['cuss']
-    auth.logout(request)
+    # try:
+    # a=request.session['cuss']
+    # if Cuss.cuss_id:
+    # # for Cuss.cuss_id in request.session.keys():
+    #     Cuss.clear
+    # elif a:
+    del request.session['cuss']
+            # request.session.delete()
+    # print(request.session['cuss'])
     print(Cuss.cuss_id)
     return redirect(reverse('Customer_login'))
-    # user = getattr(request, 'user', None)
+        # user = getattr(request, 'user', None)
     # if hasattr(user, 'is_authenticated') and not user.is_authenticated():
     #     user = None
     # Customer.send(sender=user.__class__, request=request, user=user)

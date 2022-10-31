@@ -22,11 +22,14 @@ from Store.views import list
 
 app_name = 'store'
 urlpatterns = [
-    path('', restaurant_list.restaurant_list, name='restaurant_list'),
-    path('<slug:category_slug>/', product_list.product_list,
-         name='product_list_by_category'),
+    path('<slug:category_slug>/', restaurant_list.restaurant_list, name='restaurant_list_by_category'),
+    # path('<slug:category_slug>/', product_list.product_list,
+    #      name='product_list_by_category'),
     path('<int:id>/<slug:slug>/', product_detail.product_detail,
          name='product_detail'),
     path('search',search.Search, name='store_dosearch'),
     path('list',list.List_all, name='list_restaurants'),
+    path('', product_list.product_list, name='product_list'),
+
+    
 ]

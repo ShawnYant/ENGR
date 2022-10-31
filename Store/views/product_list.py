@@ -13,7 +13,7 @@ def product_list(request, restaurant_slug=None):
                                      slug=restaurant_slug)
         products = products.filter(restaurant=restaurant)
     return render(request,
-                  'templates\web\Store\product\list.html',
+                  'templates/web/Store/product/list.html',
                   {'restaurant': restaurant,
                    'restaurants': restaurants,
                    'products': products})

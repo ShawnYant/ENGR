@@ -1,0 +1,20 @@
+{% extends "templates/base.html" %}
+{% load static %}
+{% block title %}
+  {{ restaurant.name }}
+{% endblock %}
+{% block content %}
+  <div class="restaurant-detail">
+    <img src="{% if restaurant.image %}{{ restaurant.image.url }}{% else %}
+    {% static "img/no_image.png" %}{% endif %}">
+    <h1>{{ restaurant.name }}</h1>
+    <h2>
+      <a href="{{ restaurant.category.get_absolute_url }}">
+        {{ restaurant.category }}
+      </a>
+    </h2>
+    <p class="price">${{ restaurant.price }}</p>
+      
+    {{ restaurant.description|linebreaks }}
+  </div>
+{% endblock %}

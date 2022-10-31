@@ -17,29 +17,16 @@ def Search(request):
     try:
         name = request.POST['search']
         print(name)
-        # _vals = {'name':name}
-        # Q(slug__contains=name)
-        # Q_Catagory = Category.objects.filter(slug__icontains=name)
-        # print(Q_Catagory)
         Q_Product = Product.objects.filter(slug__icontains=name)
         print(Q_Product)
         Q_Restaurant = Restaurant.objects.filter(slug__icontains=name)
         print(Q_Restaurant)
-        for r in Q_Restaurant or Q_Product:
-            print(r)
-            print(r.name)
-            # print(r.category)
-            print(r.get_absolute_url)
-            
-        # Q_Catagory = Category.objects.filter(name__contains=name)
-        # Q_Product = Product.objects.filter(name__contains=name)
-        # Q_Restaurant = Restaurant.objects.filter(name__contains=name)
-        
-        # categories = Category.objects.all()
-        # restaurants = Restaurant.objects.all()
-        for r in  Q_Product or Q_Restaurant:
-            return render(request, 'templates/web/Store/result.html',
-                                {'result':r})
+
+        # r= Q_Product and Q_Restaurant
+              
+        return render(request, 'templates/web/Store/result.html',
+                                {'resultP':Q_Product,
+                                'resultR':Q_Restaurant})
 
             # if name in Q_Restaurant:
             #     # context = {'result': Q_Restaurant}
@@ -59,7 +46,7 @@ def Search(request):
             # 
         print("it is here")
 
-        return errorcode
+        
     except:
         messages.error(request,'food does not exist!')
         traceback.print_exc()

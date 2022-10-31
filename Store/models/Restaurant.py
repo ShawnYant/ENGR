@@ -9,12 +9,6 @@ class Restaurant(models.Model):
     image = models.ImageField(upload_to='products/%Y/%m/%d',
                               blank=True)
     description = models.TextField(blank=True)
-    # price = models.DecimalField(max_digits=10,
-    #                             decimal_places=2)
-    # # models.FloatField(max_length=200)
-    # # models.Field(max_digits=10,decimal_places=1)
-    # # models.CharField(max_length=200)
-    # available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     address = models.CharField(max_length=200,default='null')
@@ -33,5 +27,5 @@ class Restaurant(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('store:restaurant_list',
+        return reverse('store:restaurant_list_by_category',
                        args=[self.slug])
