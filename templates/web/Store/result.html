@@ -7,7 +7,7 @@
 
 <div
   class="hero page-inner overlay"
-  style="background-image: url('images/hero_bg_1.jpg')"
+  style="background-image: url('/static/bootstrap5/images/hero_bg_1.jpg')"
   >
   <div class="container">
     <div class="row justify-content-center align-items-center">
@@ -38,37 +38,53 @@
   <div class="container">
     <div class="row mb-5 align-items-center">
       {% for r in resultP %}
-      <div class="col-lg-6 text-center mx-auto">
-        <h2 class="font-weight-bold text-primary heading">
-          {{r.name}}
-        </h2>
-      </div>
-          <div>
-            <div class="restaurant">
-              {% comment %} <a href="{{ result }}"> {% endcomment %}
-                <img src="{{ r.image.url }}"{{r.image}} class="img-fluid" >
-              </a>
-              <a href="{{ r.get_absolute_url }}">{{ r.name }}</a>
-              {% comment %} <a href="{{ result.get_absolute_url }}">{{ r. }}</a> {% endcomment %}
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <div class="property-item mb-30">
+          <a class="img">
+            <img src="{{r.image.url}}"{{r.image}} alt="Image" class="img-fluid" />
+          </a>
+          <div class="property-content">
+            <div class="price mb-2"><span>{{r.name}}</span></div>
+            <div>
+              <span class="d-block mb-2 text-black-50"
+                ><a class="btn btn-primary py-2 px-3" href="{{ r.get_absolute_url }}">{{ r.name }}</a></span
+              >
+              <span class="city d-block mb-3">{{r.restaurant}}</span>
+              <div class="specs d-flex mb-4">
+                <span class="d-block d-flex align-items-center me-3">
+                  {% comment %} <span class="icon-bed me-2"></span> {% endcomment %}
+                  {% comment %} <span class="caption">{{l.get_absolute_url}}</span> {% endcomment %}
+                </span>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
       {% endfor %}
       {% for r in resultR %}
-      <div class="col-lg-6 text-center mx-auto">
-        <h2 class="font-weight-bold text-primary heading">
-          {{r.name}}
-        </h2>
-      </div>
-          <div>
-            <div class="restaurant">
-              {% comment %} <a href="{{ result }}"> {% endcomment %}
-                <img src="{{ r.image.url }}"{{r.image}} class="img-fluid" >
-              </a>
-              <a href="{{ r.get_absolute_url }}">{{ r.name }}</a>
-              {% comment %} <a href="{{ result.get_absolute_url }}">{{ r. }}</a> {% endcomment %}
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <div class="property-item mb-30">
+          <a class="img">
+            <img src="{{r.image.url}}"{{r.image}} alt="Image" class="img-fluid" />
+          </a>
+          <div class="property-content">
+            <div class="price mb-2"><span>{{r.name}}</span></div>
+            <div>
+              <span class="d-block mb-2 text-black-50"
+                ><a class="btn btn-primary py-2 px-3" href="{{ r.get_absolute_url }}">{{ r.name }}</a></span
+              >
+              <span class="city d-block mb-3">{{r.address}}</span>
+              <div class="specs d-flex mb-4">
+                <span class="d-block d-flex align-items-center me-3">
+                  {% comment %} <span class="icon-bed me-2"></span> {% endcomment %}
+                  {% comment %} <span class="caption">{{l.get_absolute_url}}</span> {% endcomment %}
+                </span>
+              </div>
             </div>
           </div>
-      {% endfor %}     
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </div>

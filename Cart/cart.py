@@ -67,7 +67,7 @@ class Cart(object):
             print(cart[str(product.id)]['total_price'])
             print(product.toDict())
             
-        yield  cart[str(product.id)]
+            yield  cart[str(product.id)]
 
     def __len__(self):
         """

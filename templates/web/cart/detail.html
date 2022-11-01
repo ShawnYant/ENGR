@@ -53,7 +53,8 @@
                 <tr>
                   <td>
                     <a href="{{ item.get_absolute_url }}">
-                      <img src="{{ item.image_url }}">
+                      <img class="img" style="max-width:25%;
+                      max-height:25%;" src="{{ item.image_url }}">
                       {% comment %} {% else %}{% static "img/no_image.png" %}{% endif %}"> {% endcomment %}
                     </a>
                   </td>

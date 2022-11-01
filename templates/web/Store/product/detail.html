@@ -16,7 +16,7 @@
           data-aos-delay="200"
           > 
           <ol class="breadcrumb text-center justify-content-center">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href='/Customer/login'>Home</a></li>
             <li
               class="breadcrumb-item active text-white-50"
               aria-current="page"
@@ -33,16 +33,21 @@
 <div class="section">
   <div class="container">
     <div class="row mb-5 align-items-center">
-      <div class="product-detail">
-        <img src="{% if product.image %}{{ product.image.url }}{% else %}
-        {% static "img/no_image.png" %}{% endif %}">
-        <h1>{{ product.name }}</h1>
-        <h2>
-          <a href="{{ product.get_absolute_url }}">
+      <div class="property-item mb-30">
+        <a href="product.get_absolute_url" class="img">
+          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="Image" class="img-fluid" />
+        </a>
+        <div class="property-content">
+          <div class="price mb-2"><span>{{ product.name }}</span></div>
+          <div class="price mb-2"><span><a href="{{ product.get_absolute_url }}">
             {{ product.restaurant }}
-          </a>
-        </h2>
-        <p class="price">${{ product.price }}</p>
+          </a></span></div>
+          <div>
+            <span class="d-block mb-2 text-black-50"
+              > ${{ product.price }}</span
+            >
+          </div>
+        </div>
         <form action="{% url "cart:cart_add" product.id %}" method="post">
           {{ cart_product_form }}
           {% csrf_token %}

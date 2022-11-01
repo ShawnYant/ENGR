@@ -1,35 +1,55 @@
 {% extends "templates/base.html" %}
 {% load static %}
-{% block title %}
-  {% if category %}{{ category.name }}{% else %}Products{% endif %}
-{% endblock %}
+
 {% block content %}
-  <div id="sidebar">
-    <h3>Categories</h3>
-    <ul>
-      <li {% if not category %}class="selected"{% endif %}>
-        <a href="{% url "store:product_list" %}">All</a>
-      </li>
-      {% for c in categories %}
-        <li {% if category.slug == c.slug %}class="selected"
-        {% endif %}>
-          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div id="main" class="product-list">
-    <h1>{% if category %}{{ category.name }}{% else %}Products
-    {% endif %}</h1>
-    {% for product in products %}
-      <div class="item">
-        <a href="{{ product.get_absolute_url }}">
-          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-        </a>
-        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-        <br>
-        ${{ product.price }}
+<div class="hero">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center">
+        <h1 class="heading" data-aos="fade-up">
+          Easiest way to find what to eat
+        </h1>
+        <form
+          action="{% url 'store:store_dosearch' %}"
+          method="post" 
+          class="narrow-w form-search d-flex align-items-stretch mb-3"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >{% csrf_token %}
+          <input
+            type="text"
+            name="search"
+            class="form-control px-4"
+            placeholder="Enter food type or name or restaurants e.g. cafe"
+          />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
       </div>
-    {% endfor %}
+    </div>
   </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h1>Products</h1>
+    {% for product in products %}
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <div class="property-item mb-30">
+          <a href="product.get_absolute_url" class="img">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="Image" class="img-fluid" />
+          </a>
+          <div class="property-content">
+            <div class="price mb-2"><span><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></span></div>
+            <div>
+              <span class="d-block mb-2 text-black-50"
+                > ${{ product.price }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    {%endfor%}
+  </div>
+</div>
+  
 {% endblock %}
