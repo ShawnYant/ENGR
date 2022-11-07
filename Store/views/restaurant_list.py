@@ -3,6 +3,7 @@ from Store.models.Category import Category
 from Store.models.Product import Product
 from Store.models.Restaurant import Restaurant
 from Cart.forms import CartAddProductForm
+from Customer.cuss import Cuss
 
 def restaurant_list(request, category_slug=None):
     category = None
@@ -17,5 +18,6 @@ def restaurant_list(request, category_slug=None):
                   'templates/web/Store/product/restaurant.html',
                   {'category': category,
                    'categories': categories,
-                   'restaurants': restaurants})
+                   'restaurants': restaurants,
+                   'cus':Cuss.cuss_id})
 

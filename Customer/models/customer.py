@@ -12,15 +12,14 @@ class Customer(models.Model):
     address = models.CharField(max_length=1000,default='')   #customer address
     phoneNo = models.CharField(max_length=1000,default='')  #customer phone number
     birthdate = models.DateField(null=True)
-    # birthdate = models.DateTimeField(max_length=10,default= datetime.now)  #customer date of birth
+   #customer date of birth
     status = models.IntegerField(default=1)    #Status:pending for next sprint
     update_at = models.DateTimeField(null=True)    #update time
 
     
     def toDict(self):
-        # if(self.update_at is None):
+
             return {'userid':self.userid,'username':self.username,'password':self.password,'create_at':self.create_at.strftime('%Y-%m-%d %H:%M:%S'),'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo, 'birthdate': '','status':self.status,'update_at':'',} 
-        # else:
-            # return {'userid':self.userid,'username':self.username,'password':self.password,'create_at':self.create_at.strftime('%Y-%m-%d %H:%M:%S'),'nickname':self.nickname,'email':self.email,'address':self.address,'phoneNo':self.phoneNo, 'birthdate': self.birthdate.strftime('%Y-%m-%d %H:%M:%S'),'status':self.status,'update_at':self.update_at.strftime('%Y-%m-%d %H:%M:%S'),} 
+
     class Meta:
         db_table = "customer"  # change the name of the table

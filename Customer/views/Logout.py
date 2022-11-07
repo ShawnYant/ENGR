@@ -18,8 +18,9 @@ def Logout(request):
     del request.session['cuss']
             # request.session.delete()
     # print(request.session['cuss'])
+    Cuss.cuss_id = None
     print(Cuss.cuss_id)
-    return redirect(reverse('Customer_login'))
+    return render ( request,'templates/web/re-log/login.html', { 'cus' : Cuss.cuss_id})
         # user = getattr(request, 'user', None)
     # if hasattr(user, 'is_authenticated') and not user.is_authenticated():
     #     user = None

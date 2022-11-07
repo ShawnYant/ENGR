@@ -59,14 +59,26 @@
                   <ul
                   class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
                   >
-                  <li class="active"><a href="">Home</a></li>
+                  <li class="active"><a href="/../">Home</a></li>
                   <li class="has-children">
                       <a >{{cus}}</a>
                       <ul class="dropdown">
                           <li><a onclick="window.location.href='/Customer/listinfo'" type="button" id="Myprofile">Myprofile</a></li>
                           <li><a onclick="window.location.href='/Customer/update'" type="button" id="Update">Update</a></li>
                           <li><a onclick="window.location.href='/Customer/logout'" type="button" id="Logout">Logout</a></li>
+                          {% with total_items=cart|length %}
+                          {% if total_items > 0 %}
+                            <a>Your cart:</a>
+                            <a href="{% url "cart:cart_detail" %}">
+                              {{ total_items }} item{{ total_items|pluralize }},
+                              ${{ cart.get_total_price }}
+                            </a>
+                          {% else %}
+                            Your cart is empty.
+                          {% endif %}
+                        {% endwith %}
                       </ul>
+
                   </li>
                   <li><a onclick="window.location.href='../store/list'" type="button" id="Restaurant">Restaurants</a></li>
                   <li><a href="about.html">About</a></li>
@@ -85,17 +97,6 @@
                       <li><a onclick="window.location.href='/Customer'" type="button" id="Register">Register</a></li>
                       <li class="has-children">
                         <div class="dropdown">
-                        {% comment %} {% with total_items=cart|length %} {% endcomment %}
-                          {% comment %} {% if total_items > 0 %} {% endcomment %}
-                            {% comment %} <a>Your cart:</a> {% endcomment %}
-                            {% comment %} <a href="{% url "cart:cart_detail" %}"> {% endcomment %}
-                              {% comment %} {{ total_items }} item{{ total_items|pluralize }}, {% endcomment %}
-                              {% comment %} ${{ cart.get_total_price }} {% endcomment %}
-                            {% comment %} </a> {% endcomment %}
-                          {% comment %} {% else %} {% endcomment %}
-                            {% comment %} Your cart is empty. {% endcomment %}
-                          {% comment %} {% endif %} {% endcomment %}
-                        {% comment %} {% endwith %} {% endcomment %}
                       </div></li>
                     </ul>
                   </li>

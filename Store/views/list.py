@@ -6,6 +6,8 @@ from Store.models.Category import Category
 from Store.models.Product import Product
 from Store.models.Restaurant import Restaurant
 import MySQLdb
+from Customer.cuss import Cuss
+
 
 def List_all(request):
     list = Restaurant.objects.all()
@@ -14,4 +16,5 @@ def List_all(request):
     
     return render(request, 
                     'templates\web\Store\product\listall.html',
-                   {'result':list},)
+                   {'result':list,
+                    'cus':Cuss.cuss_id})

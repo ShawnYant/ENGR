@@ -1,24 +1,60 @@
-{% extends "templates/web/Store/base.html" %}
-{% block title %}
-  Checkout
-{% endblock %}
+{% extends "templates/base.html" %}
+{% load static %}
+
 {% block content %}
-  <h1>Checkout</h1>
-  <div class="order-info">
-    <h3>Your order</h3>
-    <ul>
-      {% for item in cart %}
-        <li>
-          {{ item.quantity }}x {{ item.product.name }}
-          <span>${{ item.total_price }}</span>
-        </li>
-      {% endfor %}
-    </ul>
-    <p>Total: ${{ cart.get_total_price }}</p>
+<div
+  class="hero page-inner overlay"
+  style="background-image: url('~/static/bootstrap5/images/hero_bg_1.jpg')"
+  >
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">Checking out?</h1>
+
+        <nav
+          aria-label="breadcrumb"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          > 
+          <ol class="breadcrumb text-center justify-content-center">
+            <li class="breadcrumb-item"><a href="/../../">Home</a></li>
+            <li
+              class="breadcrumb-item active text-white-50"
+              aria-current="page"
+              >
+              
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
   </div>
-  <form method="post" class="order-form">
-    {{ form.as_p }}
-    <p><input type="submit" value="Place order"></p>
-    {% csrf_token %}
-  </form>
+</div>
+
+
+<div class="section">
+  <div class="container">
+    <h1>Checkout</h1>
+    <div class="order-info">
+      <h3>Your order</h3>
+      <ul>
+        {% for item in cart %}
+          <li>
+            {{ item.quantity }}x {{ item.name }}
+            <span>${{ item.total_price }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      <p>Total: ${{ cart.get_total_price }}</p>
+    </div>
+    <form method="post" class="order-form">
+      {{ form.as_p }}
+      <p><input type="submit" value="Place order"></p>
+      {% csrf_token %}
+    </form>
+  </div>
+</div>
+
+  
 {% endblock %}
+

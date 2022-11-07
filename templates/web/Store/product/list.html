@@ -3,6 +3,22 @@
 
 {% block content %}
 <div class="hero">
+    <div class="hero-slide">
+      <div
+        class="img overlay"
+        style="background-image: url('/static/bootstrap5/images/hero_bg_3.jpg')"
+      ></div>
+      {% comment %} <div
+        class="img overlay"
+        style="background-image: url('/static/bootstrap5/images/hero_bg_2.jpg')"
+      ></div>
+      <div
+        class="img overlay"
+        style="background-image: url('/static/bootstrap5/images/hero_bg_1.jpg')"
+      ></div> {% endcomment %}
+    </div>
+
+
   <div class="container">
     <div class="row justify-content-center align-items-center">
       <div class="col-lg-9 text-center">
@@ -29,9 +45,20 @@
   </div>
 </div>
 
+<div class="section">
+  <div class="container">
+    <div class="row mb-5 align-items-center">
+      <div class="col-lg-6 text-center mx-auto">
+        <h2 class="font-weight-bold text-primary heading">
+          Products
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section section-properties">
 <div class="container">
   <div class="row">
-    <h1>Products</h1>
     {% for product in products %}
       <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
         <div class="property-item mb-30">
@@ -52,4 +79,13 @@
   </div>
 </div>
   
+
+
+<script type="text/javascript" src="/static/bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/tiny-slider.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/aos.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/navbar.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/counter.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/custom.js"></script>  
+
 {% endblock %}

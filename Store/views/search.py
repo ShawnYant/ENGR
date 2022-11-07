@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.db.models import Q
 from django.contrib import messages
 from Store.views import restaurant_list
+from Customer.cuss import Cuss
 
 
 
@@ -26,7 +27,8 @@ def Search(request):
               
         return render(request, 'templates/web/Store/result.html',
                                 {'resultP':Q_Product,
-                                'resultR':Q_Restaurant})
+                                'resultR':Q_Restaurant,
+                                'cus': Cuss.cuss_id})
 
             # if name in Q_Restaurant:
             #     # context = {'result': Q_Restaurant}

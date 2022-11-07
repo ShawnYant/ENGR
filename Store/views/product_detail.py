@@ -3,6 +3,7 @@ from Store.models.Category import Category
 from Store.models.Product import Product
 from Store.models.Restaurant import Restaurant
 from Cart.forms import CartAddProductForm
+from Customer.cuss import Cuss
 # Create your views here.
 def product_detail(request, id, slug):
     product = get_object_or_404(Product,
@@ -13,4 +14,5 @@ def product_detail(request, id, slug):
     return render(request,
                   'templates/web/Store/product/detail.html',
                   {'product': product,
-                   'cart_product_form': cart_product_form})
+                   'cart_product_form': cart_product_form,
+                   'cus': Cuss.cuss_id})

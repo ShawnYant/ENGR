@@ -3,6 +3,7 @@ from Store.models.Category import Category
 from Store.models.Product import Product
 from Store.models.Restaurant import Restaurant
 from Cart.forms import CartAddProductForm
+from Customer.cuss import Cuss
 # Create your views here.
 def product_list(request, restaurant_slug=None):
     restaurant = None
@@ -16,4 +17,5 @@ def product_list(request, restaurant_slug=None):
                   'templates/web/Store/product/list.html',
                   {'restaurant': restaurant,
                    'restaurants': restaurants,
-                   'products': products})
+                   'products': products,
+                   'cus': Cuss.cuss_id})

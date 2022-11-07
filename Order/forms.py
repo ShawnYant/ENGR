@@ -1,7 +1,20 @@
 from django import forms
-from .models import Order
+from Customer.cuss import Cuss
+from Customer.models.customer import Customer
+from .models.Order import Order
+
 class OrderCreateForm(forms.ModelForm):
+ 
     class Meta:
         model = Order
-        fields = ['first_name', 'last_name', 'email', 'address',
-                  'postal_code', 'city']
+        fields = ['username', 'nickname', 'email', 'address',
+                'postal_code', 'city']
+
+
+
+
+            
+
+
+
+                         

@@ -5,6 +5,21 @@
 
 
 <div class="hero">
+  <div class="hero-slide">
+    <div
+      class="img overlay"
+      style="background-image: url('/static/bootstrap5/images/hero_bg_3.jpg')"
+    ></div>
+    <div
+      class="img overlay"
+      style="background-image: url('/static/bootstrap5/images/hero_bg_2.jpg')"
+    ></div>
+    <div
+      class="img overlay"
+      style="background-image: url('/static/bootstrap5/images/hero_bg_1.jpg')"
+    ></div>
+  </div>
+
   <div class="container">
     <div class="row justify-content-center align-items-center">
       <div class="col-lg-9 text-center">
@@ -43,7 +58,6 @@
   </div>
 </div>
 <div class="section section-properties">
-  {% comment %} var= {% endcomment %}
 <div class="container">
   <div class="row">
   {%for l in result%}
@@ -73,7 +87,7 @@
               </div>
               
               <a
-                {% comment %} href="{{l.get_absolute_url}}" {% endcomment %}
+                href="{{l.get_absolute_url}}"
                 class="btn btn-primary py-2 px-3"
                 >See details</a
               >

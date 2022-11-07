@@ -32,9 +32,9 @@ class Cuss(object):
             # self.cuss[cuss_id] = {'quantity': 0,
             #                          'price': str(product.price)}
         # else:
-        #     self.cuss[cuss_id]['nickname'] = request.POST.get('username')
+            # self.cuss[cuss_id]['nickname'] = request.POST.get('username')
         # else:
-        #     self.cuss[cuss_id]['quantity'] += quantity
+            # self.cuss[cuss_id]['quantity'] += quantity
         self.save()
 
     def save(self):
