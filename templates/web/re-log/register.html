@@ -119,21 +119,6 @@
                               <input type="password" id="confirm_password" name="pass" style="height: 50px;margin-bottom: 5px;" class="form-control" placeholder="Confirm_password">
                               <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
 
-                              <div class="form-group">
-                              <p class="login-box-msg" style="color:red">
-                                  {% comment %} {% if request.GET.errinfo == '1' %}
-                                      none！
-                                  {% elif request.GET.errinfo == '2' %}
-                                      Verification code error！
-                                  {% elif request.GET.errinfo == '3' %}
-                                      The login account does not exist!
-                                  {% elif request.GET.errinfo == '4' %}
-                                      Invalid login account！
-                                  {% elif request.GET.errinfo == '5' %}
-                                      Incorrect login password！
-                                  {% endif %}
-                              </p> {% endcomment %}
-                              </div>  
                           </form>
                   </div>
               </div>

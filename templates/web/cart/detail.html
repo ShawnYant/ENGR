@@ -61,8 +61,8 @@
                   <td>{{ item.name }}</td>
                   <td>
                     <form action="{% url "cart:cart_add" item.id %}" method="post">
-                      {{ item.update_quantity_form.quantity }}
-                      {{ item.update_quantity_form.override }}
+                      {{ up.quantity }}
+                      {{ up.override }}
                       <input type="submit" value="Update">
                       {% csrf_token %}
                     </form>
@@ -86,15 +86,21 @@
           </tbody>
         </table>
         <p class="text-right">
-          <a href="{% url "store:product_list" %}" class="button
-          light">Continue shopping</a>
-          <a href="{% url "orders:order_create" %}" class="button">
-            Checkout
-          </a>
+          <a href="{% url "store:product_list" %}" class="btn btn-primary">
+            Continue shopping</a>
+          <a href="{% url "orders:order_create" %}" class="btn btn-primary" style="float: right">
+            Checkout         </a>
         </p>   
     </div>
   </div>
 </div>
+
+<script type="text/javascript" src="/static/bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/tiny-slider.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/aos.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/navbar.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/counter.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/custom.js"></script>  
 
   
 {% endblock %}

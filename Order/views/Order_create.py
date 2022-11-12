@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.shortcuts import render,redirect
-from Customer.models.customer import Customer
+from Customer.cuss import Cuss
 from Order.tasks import order_created
 
 # Create your views here.
@@ -10,6 +10,7 @@ from Cart.cart import Cart
 # from Customer.cuss import Cuss
 def order_create(request):
     cart = Cart(request)
+    
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid():
@@ -23,9 +24,10 @@ def order_create(request):
             cart.clear()
              # launch asynchronous task
             order_created.delay(order.id)
-            return render(request,
-                        'templates/web/Order/created.html',
-                        {'order': order})
+            # set the order in the session
+            request.session['order_id'] = order.id
+            # redirect for payment
+            return redirect(reverse('payment:process'))
     else:
         form = OrderCreateForm()
     return render(request,

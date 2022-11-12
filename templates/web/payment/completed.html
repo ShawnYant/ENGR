@@ -1,6 +1,35 @@
-{% extends "templates/web/Store/base.html" %}
+{% extends "templates/base.html" %}
 {% block title %}Payment successful{% endblock %}
 {% block content %}
-  <h1>Your payment was successful</h1>
-  <p>Your payment has been processed successfully.</p>
+<div
+  class="hero page-inner overlay"
+  style="background-image: url('~/static/bootstrap5/images/hero_bg_1.jpg')"
+  >
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">Thank you!</h1>
+
+        <h1 class="heading" data-aos="fade-up">Your payment was successful</h1>
+        <h1 class="heading" data-aos="fade-up">Your payment has been processed successfully.</h1>
+        <nav
+          aria-label="breadcrumb"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          > 
+          <ol class="breadcrumb text-center justify-content-center">
+            <li class="breadcrumb-item"><a href="/../../">Home</a></li>
+            <li
+              class="breadcrumb-item active text-white-50"
+              aria-current="page"
+              >
+              
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
