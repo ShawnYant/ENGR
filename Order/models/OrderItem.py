@@ -5,6 +5,7 @@ from Order.models.Order import Order
 from Store.models.Product import Product
 
 class OrderItem(models.Model):
+    
     order = models.ForeignKey(Order,
                               related_name='items',
                               on_delete=models.CASCADE)

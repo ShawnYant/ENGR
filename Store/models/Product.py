@@ -26,7 +26,7 @@ class Product(models.Model):
     class Meta:
         ordering = ['name']
         indexes = [
-            models.Index(fields=['id', 'slug']),
+            models.Index(fields=['slug', 'id']),
             models.Index(fields=['name']),
             models.Index(fields=['-created']),
         ]

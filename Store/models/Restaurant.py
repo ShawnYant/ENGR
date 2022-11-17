@@ -3,10 +3,12 @@ from django.urls import reverse
 from Store.models.Category import Category
 
 class Restaurant(models.Model):
-    category = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category,
+                                 related_name='restaurants',
+                                 on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
-    image = models.ImageField(upload_to='products/%Y/%m/%d',
+    image = models.ImageField(upload_to='restaurant/%Y/%m/%d',
                               blank=True)
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -19,7 +21,9 @@ class Restaurant(models.Model):
     class Meta:
         ordering = ['name']
         indexes = [
+            models.Index(fields=['id', 'slug']),
             models.Index(fields=['name']),
+            models.Index(fields=['-created']),
         ]
         verbose_name = 'restaurant'
         verbose_name_plural = 'restaurants'
@@ -27,5 +31,5 @@ class Restaurant(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('store:restaurant_list_by_category',
-                       args=[self.slug])
+        return reverse('store:restaurant_detail',
+                       args=[self.slug,self.id])

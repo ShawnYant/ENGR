@@ -18,12 +18,12 @@
         <link rel="stylesheet" type="text/css" href="/static/fonts/icomoon/style.css" />
         <link rel="stylesheet" type="text/css" href="/static/fonts/flaticon/font/flaticon.css" /> 
 
-        {% comment %} <link rel="stylesheet" type="text/css" href='static/bootstrap5/css/bootstrap-grid.css'> {% endcomment %}
-        {% comment %} <link rel="stylesheet" type="text/css" href="static/bootstrap5/css/bootstrap-reboot.css"> {% endcomment %}
-        {% comment %} <link rel="stylesheet" type="text/css" href="static/bootstrap5/css/bootstrap-utilities.css">  {% endcomment %}
-        {% comment %} <link rel="stylesheet" type="text/css" href="static/bootstrap5/css/bootstrap.css"> {% endcomment %}
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap5/css/bootstrap-grid.css" />
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap5/css/bootstrap-reboot.css" />
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap5/css/bootstrap-utilities.css" /> 
+        {% comment %} <link rel="stylesheet" type="text/css" href="/static/bootstrap5/css/bootstrap.css" /> {% endcomment %}
         <link rel="stylesheet" type="text/css" href="/static/bootstrap5/css/tiny-slider.css" />
-        {% comment %} <link rel="stylesheet" type="text/css" href="static/bootstrap5/css/aos.css" /> {% endcomment %}
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap5/css/aos.css" />
         <link rel="stylesheet" type="text/css" href="/static/bootstrap5/css/style.css" /> 
 
 
@@ -64,12 +64,13 @@
                       <a >{{cus}}</a>
                       <ul class="dropdown">
                           <li><a onclick="window.location.href='/Customer/listinfo'" type="button" id="Myprofile">Myprofile</a></li>
+                          <li><a onclick="window.location.href='/orders/order'" type="button" id="Logout">Myorder</a></li>
                           <li><a onclick="window.location.href='/Customer/update'" type="button" id="Update">Update</a></li>
                           <li><a onclick="window.location.href='/Customer/logout'" type="button" id="Logout">Logout</a></li>
                           {% with total_items=cart|length %}
                           {% if total_items > 0 %}
                             <a>Your cart:</a>
-                            <a href="{% url "cart:cart_detail" %}">
+                            <a href="{% url "cart:cart_detail" %}" >
                               {{ total_items }} item{{ total_items|pluralize }},
                               ${{ cart.get_total_price }}
                             </a>
@@ -80,9 +81,10 @@
                       </ul>
 
                   </li>
-                  <li><a onclick="window.location.href='../store/list'" type="button" id="Restaurant">Restaurants</a></li>
-                  <li><a href="about.html">About</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a onclick="window.location.href='/../store/list'" type="button" id="Restaurant">Restaurants</a></li>
+                  <li><a href="{% url "cart:cart_detail" %}" type="button" id="Restaurant">Cart</a></li>
+                  <li><a a onclick="window.location.href='/about'" type="button" id="about">About</a></li>
+                  <li><a onclick="window.location.href='/contact'" type="button" id="contact">Contact Us</a></li>
                   </ul>
                   
                 {% else %}
@@ -101,8 +103,9 @@
                     </ul>
                   </li>
                   <li><a onclick="window.location.href='/store/list'" type="button" id="Restaurant">Restaurants</a></li>
-                  <li><a href="about.html">About</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="{% url "cart:cart_detail" %}" type="button" id="Restaurant">Cart</a></li>
+                  <li><a onclick="window.location.href='/about'" type="button" id="about">About</a></li>
+                  <li><a onclick="window.location.href='/contact'" type="button" id="contact">Contact Us</a></li>
                   </ul>
                 {% endif %}
 
@@ -127,7 +130,8 @@
               <div class="col-lg-4">
                 <div class="widget">
                   <h3>Contact</h3>
-                  <address>Somewhere in Montreal Quebec Canada </address>
+                  <address>1515 Saint-Catherine, EV building Concordia,  </address>
+                  <address>Montreal, Quebec, H3G 1S6  </address>
                   <ul class="list-unstyled links">
                     <li><a href="tel://11234567890">+1(110)-110-1110</a></li>
                     <li><a href="tel://11234567890">+1(110)-110-1110</a></li>
@@ -144,32 +148,21 @@
                   <h3>Sources</h3>
                   <ul class="list-unstyled float-start links">
                     <li><a href="#">About us</a></li>
-                    {% comment %} <li><a href="#">Services</a></li> {% endcomment %}
-                    {% comment %} <li><a href="#">Vision</a></li> {% endcomment %}
-                    {% comment %} <li><a href="#">Mission</a></li> {% endcomment %}
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Privacy</a></li>
+                    {% comment %} <li><a href="#">Terms</a></li> {% endcomment %}
+                    {% comment %} <li><a href="#">Privacy</a></li> {% endcomment %}
                   </ul>
-                  <!-- <ul class="list-unstyled float-start links">
-                    <li><a href="#">Partners</a></li>
-                    <li><a href="#">Business</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Creative</a></li>
-                  </ul> -->
                 </div>
                 <!-- /.widget -->
               </div>
               <!-- /.col-lg-4 -->
               <div class="col-lg-4">
                 <div class="widget">
-                  <h3>Links</h3>
+                  {% comment %} <h3>Links</h3>
                   <ul class="list-unstyled links">
-                    <li><a href="#">Our Vision</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contact us</a></li>
-                  </ul>
+                    {% comment %} <li><a href="#">Our Vision</a></li> {% endcomment %}
+                    {% comment %} <li><a href="#">About us</a></li> {% endcomment %}
+                    {% comment %} <li><a href="#">Contact us</a></li> {% endcomment %}
+                  {% comment %} </ul> {% endcomment %}
         
                   <ul class="list-unstyled social">
                     <li>

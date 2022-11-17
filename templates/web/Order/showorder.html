@@ -1,0 +1,120 @@
+{% extends "templates/base.html" %}
+<!DOCTYPE html>
+{% block content %}
+
+<div
+  class="hero page-inner overlay"
+  style="background-image: url('/static/bootstrap5/images/hero_bg_1.jpg')"
+  >
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">Your Order</h1>
+
+        <nav
+          aria-label="breadcrumb"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          > 
+          <ol class="breadcrumb text-center justify-content-center">
+            <li class="breadcrumb-item"><a href="../">Home</a></li>
+            <li
+              class="breadcrumb-item active text-white-50"
+              aria-current="page"
+              >
+              Orders
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="row mb-5 align-items-center">
+            <h1>Your Order Details</h1>
+        <table class="cart">
+          <thead>
+            <tr>
+              {% comment %} in product {% endcomment %}
+              <th>Image</th>
+              <th>Product</th>
+              {% comment %} in orderitem {% endcomment %}
+              <th>Quantity</th>
+              <th>Price</th>
+              {% comment %} in order {% endcomment %}
+              <th>Name</th>
+              <th>Address</th>
+              <th>Postal Code</th>
+              {% comment %} in customer  {% endcomment %}
+              <th>Phone</th> 
+            </tr>
+          </thead>
+          {% for o in order %} 
+          
+          <tbody>
+                <tr>
+                  {% comment %} {% for p in product%} {% endcomment %}
+                  <td>
+                      <a href="{{ p.get_absolute_url }}">
+                      <img class="img" style="max-width:25%;
+                      max-height:25%;" src="{{ p.image_url }}">
+                      {% comment %} {% else %}{% static "img/no_image.png" %}{% endif %}"> {% endcomment %}
+                      </a>
+                  </td>
+                  <td>
+                    {{ p.name }}
+                  </td>
+                  {% comment %} {% endfor %} {% endcomment %}
+                  {% comment %} {% for i in item %} {% endcomment %}
+                  <td>
+                    {{ i.quantity }}
+                  </td>
+                  <td class="price">${{ i.quantity }}*{{ i.price }}                    
+                  </td>
+                  {% comment %} {% endfor %} {% endcomment %}
+
+                  <td>
+                    {{ o.username }}
+                  </td>
+                  <td>
+                    {{ o.address }}
+                  </td>
+                  <td>
+                    {{ o.postal_code }}
+                  </td>
+
+                  <td>
+                    {{ c.phoneNo }}
+                  </td>
+
+                </tr>
+
+          </tbody>
+          {% endfor %}
+        </table>
+        <p class="text-right">
+          <a href="{% url "store:product_list" %}" class="btn btn-primary">
+            Continue shopping</a>
+          <a href="{% url "index" %}" class="btn btn-primary" style="float: right">
+            Homepage         </a>
+        </p>   
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/static/bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/tiny-slider.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/aos.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/navbar.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/counter.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/custom.js"></script> 
+
+
+
+
+
+  
+{% endblock %}

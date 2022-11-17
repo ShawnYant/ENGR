@@ -1,0 +1,101 @@
+{% extends "templates/base.html" %}
+<!DOCTYPE html>
+{% block content %}
+
+<div
+  class="hero page-inner overlay"
+  style="background-image: url('/static/bootstrap5/images/hero_bg_1.jpg')"
+  >
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center mt-5">
+        <h1 class="heading" data-aos="fade-up">Result</h1>
+
+        <nav
+          aria-label="breadcrumb"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          > 
+          <ol class="breadcrumb text-center justify-content-center">
+            <li class="breadcrumb-item"><a href="../">Home</a></li>
+            <li
+              class="breadcrumb-item active text-white-50"
+              aria-current="page"
+              >
+              Result
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="row mb-5 align-items-center">
+      {% for r in resultP %}
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <div class="property-item mb-30">
+          <a class="img">
+            <img src="{{r.image.url}}"{{r.image}} alt="Image" class="img-fluid" />
+          </a>
+          <div class="property-content">
+            <div class="price mb-2"><span>{{r.name}}</span></div>
+            <div>
+              <span class="d-block mb-2 text-black-50"
+                ><a class="btn btn-primary py-2 px-3" href="{{ r.get_absolute_url }}">{{ r.name }}</a></span
+              >
+              <span class="city d-block mb-3">{{r.restaurant}}</span>
+              <div class="specs d-flex mb-4">
+                <span class="d-block d-flex align-items-center me-3">
+                  {% comment %} <span class="icon-bed me-2"></span> {% endcomment %}
+                  {% comment %} <span class="caption">{{l.get_absolute_url}}</span> {% endcomment %}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% for r in resultR %}
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <div class="property-item mb-30">
+          <a class="img">
+            <img src="{{r.image.url}}"{{r.image}} alt="Image" class="img-fluid" />
+          </a>
+          <div class="property-content">
+            <div class="price mb-2"><span>{{r.name}}</span></div>
+            <div>
+              <span class="d-block mb-2 text-black-50"
+                ><a class="btn btn-primary py-2 px-3" href="{{ r.get_absolute_url }}">{{ r.name }}</a></span
+              >
+              <span class="city d-block mb-3">{{r.address}}</span>
+              <div class="specs d-flex mb-4">
+                <span class="d-block d-flex align-items-center me-3">
+                  {% comment %} <span class="icon-bed me-2"></span> {% endcomment %}
+                  {% comment %} <span class="caption">{{l.get_absolute_url}}</span> {% endcomment %}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/static/bootstrap5/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/tiny-slider.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/aos.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/navbar.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/counter.js"></script>
+<script type="text/javascript" src="/static/bootstrap5/js/custom.js"></script> 
+
+
+
+
+
+  
+{% endblock %}

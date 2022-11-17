@@ -15,6 +15,6 @@ def List_all(request):
     print(list)
     
     return render(request, 
-                    'templates\web\Store\product\listall.html',
+                    'templates/web/Store/product/listall.html',
                    {'result':list,
                     'cus':Cuss.cuss_id})

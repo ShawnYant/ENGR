@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'bootstrap5',
     'Payment',
     'Cart.apps.CartConfig',
+    'crispy_forms',
+    'crispy_bootstrap5',
 
 
 ]
@@ -271,3 +273,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51LhTVvDHKdy2k4RtABxudIopV6iWSIMXlatbicJ9BGVxKh8O1QrH4S9DRrzWyBOar8ysCSdqnrVLtVB8kj8RgKSJ00wJOaj9DY' # Publishable key
 STRIPE_SECRET_KEY = 'sk_test_51LhTVvDHKdy2k4RtWMU0JMNtSzJhSUDISuKSpvhPOENv7aHBabUsGk5c4P3W0CqjdhTqCGub4KUV7276LdhiWOxk00ua1nahj7'      # Secret key
 STRIPE_API_VERSION = '2022-08-01'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'

@@ -44,12 +44,12 @@
             <img src="{{r.image.url}}"{{r.image}} alt="Image" class="img-fluid" />
           </a>
           <div class="property-content">
-            <div class="price mb-2"><span>{{r.name}}</span></div>
+            <div class="price mb-2"><span>{{r.restaurant.name}}</span></div>
             <div>
               <span class="d-block mb-2 text-black-50"
                 ><a class="btn btn-primary py-2 px-3" href="{{ r.get_absolute_url }}">{{ r.name }}</a></span
               >
-              <span class="city d-block mb-3">{{r.restaurant}}</span>
+              <span class="city d-block mb-3">{{r.restaurant.address}}</span>
               <div class="specs d-flex mb-4">
                 <span class="d-block d-flex align-items-center me-3">
                   {% comment %} <span class="icon-bed me-2"></span> {% endcomment %}
@@ -68,7 +68,7 @@
             <img src="{{r.image.url}}"{{r.image}} alt="Image" class="img-fluid" />
           </a>
           <div class="property-content">
-            <div class="price mb-2"><span>{{r.name}}</span></div>
+            <div class="price mb-2"><span>{{r.category}}</span></div>
             <div>
               <span class="d-block mb-2 text-black-50"
                 ><a class="btn btn-primary py-2 px-3" href="{{ r.get_absolute_url }}">{{ r.name }}</a></span
@@ -89,17 +89,6 @@
   </div>
 </div>
 
-
-<!-- /.site-footer -->
-
-<!-- Preloader -->
-{% comment %} <div id="overlayer"></div>
-<div class="loader">
-  <div class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div> {% endcomment %}
-
 <script type="text/javascript" src="/static/bootstrap5/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="/static/bootstrap5/js/tiny-slider.js"></script>
 <script type="text/javascript" src="/static/bootstrap5/js/aos.js"></script>
@@ -110,38 +99,6 @@
 
 
 
-
-  {% comment %} <div>
-    <h3>Categories</h3>
-    <ul>
-      <li {% if not category %}class="selected"{% endif %}>
-        <a href="{% url "store:restaurant_list" %}">All</a>
-      </li>
-      {% for c in categories %}
-        <li {% if category.slug == c.slug %}class="selected"
-        {% endif %}>
-          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div id="main" class="restaurant-list">
-    <h1>Restaurant
-    </h1>
-    {% for r in result %}
-      <div class="restaurant">
-        <a href="{{ result.get_absolute_url }}">
-          <img src="{% if r.image %}{{ r.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-        </a>
-        <a href="{{ result.get_absolute_url }}">{{ r.name }}</a>
-        <a href="{{ result.get_absolute_url }}">{{ r.category }}</a>
-        <br>
-      
-      </div>
-    {% endfor %}
-    <p>result:{{result}}</p>
-  
-  </div> {% endcomment %}
 
   
 {% endblock %}

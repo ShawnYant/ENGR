@@ -1,12 +1,12 @@
-from unicodedata import name
 from django.shortcuts import render
 from Customer.cuss import Cuss
 from Customer.models.customer import Customer
 
 def Listinfo(request):
     uname = Cuss.cuss_id
-    c = Customer.objects.filter(username=uname).values
+    result = Customer.objects.get(username=uname)
+    
     print(uname)
-    print(c)
+    print(result.username)
     return render(request,"templates/web/re-log/info.html",
-                    {'cus':uname,'user':c})
+                    {'cus':uname,'user':result})

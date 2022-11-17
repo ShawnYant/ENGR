@@ -1,10 +1,21 @@
 {% extends "templates/base.html" %}
-{% load static %}
 
+{% load crispy_forms_tags %}
+
+{% load static %}
+<style>
+  .form{
+    width: 600px;
+    height: 44px;
+    border: 2px solid #4569ff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+</style>
 {% block content %}
 <div
   class="hero page-inner overlay"
-  style="background-image: url('~/static/bootstrap5/images/hero_bg_1.jpg')"
+  style="background-image: url('/../static/bootstrap5/images/hero_bg_1.jpg')"
   >
   <div class="container">
     <div class="row justify-content-center align-items-center">
@@ -16,8 +27,8 @@
           data-aos="fade-up"
           data-aos-delay="200"
           > 
-          <ol class="breadcrumb text-center justify-content-center">
-            <li class="breadcrumb-item"><a href="/../../">Home</a></li>
+          <ol class="">
+            <li class=""><a href="/../../">Home</a></li>
             <li
               class="breadcrumb-item active text-white-50"
               aria-current="page"
@@ -33,7 +44,7 @@
 
 
 <div class="section">
-  <div class="container">
+  <div class="container" style="margin:0px auto">
     <h1>Checkout</h1>
     <div class="order-info">
       <h3>Your order</h3>
@@ -47,11 +58,13 @@
       </ul>
       <p>Total: ${{ cart.get_total_price }}</p>
     </div>
-    <form method="post" class="order-form">
-      {{ form.as_p }}
-      <p><input type="submit" value="Place order"></p>
-      {% csrf_token %}
-    </form>
+    <div class=".form" >
+      <form method="post">
+        {{ form|crispy}}
+        <p><input type="submit" value="Place order" ></p>
+        {% csrf_token %}
+      </form>
+    </div>
   </div>
 </div>
 

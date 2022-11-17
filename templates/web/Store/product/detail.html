@@ -16,7 +16,7 @@
           data-aos-delay="200"
           > 
           <ol class="breadcrumb text-center justify-content-center">
-            <li class="breadcrumb-item"><a href='./../'>Home</a></li>
+            <li class="breadcrumb-item"><a href='/../'>Home</a></li>
             <li
               class="breadcrumb-item active text-white-50"
               aria-current="page"
@@ -38,9 +38,9 @@
           <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="Image" class="img-fluid" />
         </a>
         <div class="property-content">
-          <div class="price mb-2"><span>{{ product.name }}</span></div>
+          <div class="price mb-2"><span>{{ product.restaurant }}</span></div>
           <div class="price mb-2"><span><a href="{{ product.get_absolute_url }}">
-            {{ product.restaurant }}
+            {{ product.name }}
           </a></span></div>
           <div>
             <span class="d-block mb-2 text-black-50"

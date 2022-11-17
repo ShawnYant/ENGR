@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row justify-content-center align-items-center">
       <div class="col-lg-9 text-center mt-5">
-        <h1 class="heading" data-aos="fade-up">Update</h1>
+        <h1 class="heading" data-aos="fade-up">Your info</h1>
         <div class="container" >
           <div >
             <div  style="margin-top:10px;">
@@ -17,21 +17,19 @@
                           {% comment %} <h2 style="font-size:26px;">Registration</h2> {% endcomment %}
                       </div>
 
-                      {% if c.nickname %}
-                      <form action="" method="post">
-                       
-                          <b> Nickname : {{c.nickname}}</b>
-                          <b> Email : {{c.email}}</b>
-                          <input type="text" name="phoneNo" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="Phone">
-                          <input type="text" name="address" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="Address">
-                          <input type="birthdate" name="birthdate" style="height: 50px; margin-bottom: 5px;" class="form-control"  placeholder="DOB YYYY-MM-DD">
-                          <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
+                      {% if user.nickname %}
+                      <form action="" method="post" >
+                          <p> Nickname : {{user.nickname}}</p>
+                          <p> Email : {{user.email}}</p>
+                          <p> PhoneNo : {{user.phoneNo}}</p>
+                          <p> Address : {{user.address}}</p>
                       </form>
                       {% else %}
-                      <form action="" method="post">
-                        
+                      <form action="{% url 'Customer_update' %}" method="post">
+                        {% csrf_token %}
                           <b> username : {{cus}}</b>
-                          <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">submit</button>
+                          <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">update?</button>
+                          
                       </form>
                       {% endif %}
                   </div>

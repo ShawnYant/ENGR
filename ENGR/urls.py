@@ -18,6 +18,8 @@ from django.urls import path,include
 import Customer.views.Index
 import Customer.views.Aftlogin
 import Customer.views.Dologin
+import Customer.views.Contact
+import Customer.views.About
 # from Store import views
 from . import settings
 from django.conf.urls.static import static
@@ -29,6 +31,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Customer.views.Index.Index,name='index'),
+    path('contact/', Customer.views.Contact.Contact,name='contact'),
+    path('about/', Customer.views.About.About,name='about'),
     path('Customer/', include('Customer.urls') ),
     # path('dologin/', Customer.views.Dologin.dologin,name='Customer_dologin'),
     path('cart/', include('Cart.urls', namespace='cart')),

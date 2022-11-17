@@ -19,11 +19,11 @@
           <ol class="breadcrumb text-center justify-content-center">
             <li class="breadcrumb-item"><a href="/../../">Home</a></li>
             <li
-              class="breadcrumb-item active text-white-50"
-              aria-current="page"
-              >
-              
-            </li>
+            class="breadcrumb-item active text-white-50"
+            aria-current="page"
+          >
+            Order Sum
+          </li>
           </ol>
         </nav>
       </div>
@@ -31,18 +31,35 @@
   </div>
 </div>
 
+
+
+
+
+
 <div class="section">
   <div class="container">
-    <div class="order-info">
+    <div class="order-info">          
+      <table class="cart">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Unit price</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
       {% for item in order.items.all %}
         <tr class="row{% cycle "1" "2" %}">
           <td>
-            <img src="{% if item.product.image %}{{ item.product.image.url }}
-            {% else %}{% static "img/no_image.png" %}{% endif %}">
+            <img src="{% if item.product.image %}{{ item.product.image.url }} 
+            {% else %}{% static "img/no_image.png" %}{% endif %}" style="max-width:25%;
+            max-height:25%;">
           </td>
           <td>{{ item.product.name }}</td>
-          <td class="num">${{ item.price }}</td>
           <td class="num">{{ item.quantity }}</td>
+          <td class="num">${{ item.price }}</td>
           <td class="num">${{ item.get_cost }}</td>
         </tr>
       {% endfor %}
@@ -53,7 +70,7 @@
     </tbody>
   </table>
   <form action="{% url "payment:process" %}" method="post">
-    <input type="submit" value="Pay now">
+    <input type="submit" value="Pay now" class="btn btn-primary" style="float: right">
     {% csrf_token %}
   </form>
   </div>

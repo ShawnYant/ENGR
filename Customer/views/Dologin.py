@@ -4,6 +4,7 @@ from Customer.models.customer import Customer
 from Customer.cuss import Cuss
 from django.contrib import messages
 import traceback
+from Store.models.Restaurant import Restaurant
 
 
 
@@ -22,7 +23,8 @@ def do_login(request):
                 print(a)
                 print(b)
                 messages.error(request,'login is success!')
-                return render(request,'templates/web/re-log/aft_login.html',{'cus':a})
+                res=Restaurant.objects.all()
+                return render(request,'templates/web/re-log/index.html',{'res':res,'cus':a})
                 
         else:
                 messages.error(request,'Wrong password!')

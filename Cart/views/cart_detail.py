@@ -13,10 +13,11 @@ def cart_detail(request):
     print("step1")
     cart = Cart(request)
     print("step2")
+    update = None
+    
     for item in cart:
         # item['update_quantity_form'] = CartAddProductForm(initial={'quantity': item['quantity'],
         #                                                            'override': True})
-         up= CartAddProductForm(initial={'quantity': item['quantity'],
-                                                    'override': True}) 
-                                                       
-    return render(request, 'templates/web/Cart/detail.html', {'cart':cart, 'up':up, 'cus':Cuss.cuss_id})
+        update=CartAddProductForm(initial={'quantity': item['quantity'],
+                                                    'override': True})                                          
+    return render(request, 'templates/web/Cart/detail.html', {'cart':cart, 'up':update, 'cus':Cuss.cuss_id})
