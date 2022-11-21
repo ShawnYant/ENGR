@@ -22,34 +22,12 @@ def Search(request):
         print(Q_Product)
         Q_Restaurant = Restaurant.objects.filter(slug__icontains=name)
         print(Q_Restaurant)
-
-        # r= Q_Product and Q_Restaurant
               
         return render(request, 'templates/web/Store/result.html',
                                 {'resultP':Q_Product,
                                 'resultR':Q_Restaurant,
                                 'cus': Cuss.cuss_id})
-
-            # if name in Q_Restaurant:
-            #     # context = {'result': Q_Restaurant}
-            #     return render(request, 'templates/web/re-log/result.html',{'result':Q_Restaurant,
-            #         'name': name,
-            #         'categories': name.slug})
-            # if name in Q_Catagory:
-            #     # conext = {'result': Q_Catagory}
-            #     return render(request, 'templates/web/re-log/result.html',{"result":Q_Catagory,
-            #         'name': name,
-            #         'categories': name.name})
-            # if name in Q_Product:
-            #     # context = {'result': Q_Product}
-            #     return render(request, 'templates/web/re-log/result.html',{"result":Q_Product,
-            #         'name': name,
-            #         'restaurants': name.restaurant})
-            # 
-        print("it is here")
-
-        
     except:
         messages.error(request,'food does not exist!')
         traceback.print_exc()
-        return redirect(reverse('index'))
+        return render(request, 'templates/web/re-log/index.html', {'cus': Cuss.cuss_id} )

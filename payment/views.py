@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect,\
                              get_object_or_404
 from Order.models import Order
 from django.urls import  reverse
+from Customer.cuss import Cuss
 
 # create the Stripe instance
 
@@ -44,10 +45,12 @@ def payment_process(request):
         # redirect to Stripe payment form
         return redirect(session.url, code=303)
     else:
-        return render(request, 'templates/web/payment/process.html', locals())
+        return render(request, 'templates/web/payment/process.html',locals())
 
 
 def payment_completed(request):
-    return render(request, 'templates/web/payment/completed.html')
+    cus=Cuss.cuss_id
+    return render(request, 'templates/web/payment/completed.html',{'cus':cus})
 def payment_canceled(request):
-    return render(request, 'templates/web/payment/canceled.html')
+    cus=Cuss.cuss_id
+    return render(request, 'templates/web/payment/canceled.html',{'cus':cus})

@@ -4,7 +4,7 @@
 {% block content %}
 <div
   class="hero page-inner overlay"
-  style="background-image: url('~/static/bootstrap5/images/hero_bg_1.jpg')"
+  style="background-image: url('/../static/bootstrap5/images/hero_bg_1.jpg')"
   >
   <div class="container">
     <div class="row justify-content-center align-items-center">
@@ -17,7 +17,7 @@
           data-aos-delay="200"
           > 
           <ol class="breadcrumb text-center justify-content-center">
-            <li class="breadcrumb-item"><a href="/../../">Home</a></li>
+            <li class="breadcrumb-item"><a href="/../">Home</a></li>
             <li
             class="breadcrumb-item active text-white-50"
             aria-current="page"
@@ -58,9 +58,9 @@
             max-height:25%;">
           </td>
           <td>{{ item.product.name }}</td>
-          <td class="num">{{ item.quantity }}</td>
-          <td class="num">${{ item.price }}</td>
-          <td class="num">${{ item.get_cost }}</td>
+          <td style="middle">{{ item.quantity }}</td>
+          <td>${{ item.price }}</td>
+          <td>${{ item.get_cost }}</td>
         </tr>
       {% endfor %}
       <tr class="total">

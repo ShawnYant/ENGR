@@ -38,12 +38,12 @@
         <table class="cart">
           <thead>
             <tr>
-              {% comment %} in product {% endcomment %}
+              {% comment %} in product
               <th>Image</th>
               <th>Product</th>
-              {% comment %} in orderitem {% endcomment %}
+              in orderitem 
               <th>Quantity</th>
-              <th>Price</th>
+              <th>Price</th> {% endcomment %}
               {% comment %} in order {% endcomment %}
               <th>Name</th>
               <th>Address</th>
@@ -57,23 +57,22 @@
           <tbody>
                 <tr>
                   {% comment %} {% for p in product%} {% endcomment %}
-                  <td>
+                  {% comment %} <td>
                       <a href="{{ p.get_absolute_url }}">
                       <img class="img" style="max-width:25%;
                       max-height:25%;" src="{{ p.image_url }}">
-                      {% comment %} {% else %}{% static "img/no_image.png" %}{% endif %}"> {% endcomment %}
+                      {% else %}{% static "img/no_image.png" %}{% endif %}">
                       </a>
-                  </td>
-                  <td>
+                  </td> {% endcomment %}
+                  {% comment %} <td>
                     {{ p.name }}
-                  </td>
-                  {% comment %} {% endfor %} {% endcomment %}
+                  </td>{% endcomment %}
                   {% comment %} {% for i in item %} {% endcomment %}
-                  <td>
+                  {% comment %} <td>
                     {{ i.quantity }}
                   </td>
                   <td class="price">${{ i.quantity }}*{{ i.price }}                    
-                  </td>
+                  </td> {% endcomment %}
                   {% comment %} {% endfor %} {% endcomment %}
 
                   <td>

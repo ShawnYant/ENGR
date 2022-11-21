@@ -22,7 +22,7 @@ def do_Update(request):
             ob.save()
          
             context = {'info':"Successfully Add!!"}
-            return render(request,'templates/web/re-log/aft_login.html',{'cus':b})
+            return render(request,'templates/web/re-log/index.html',{'cus':b})
 
         except Exception as err:
             # err.with_traceback()
