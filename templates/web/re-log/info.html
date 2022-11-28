@@ -12,32 +12,43 @@
           <div >
             <div  style="margin-top:10px;">
               <div >
-                  <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
-                      <div class="panel">
-                          {% comment %} <h2 style="font-size:26px;">Registration</h2> {% endcomment %}
-                      </div>
-
-                      {% if user.nickname %}
-                      <form action="" method="post" >
-                          <p> Nickname : {{user.nickname}}</p>
-                          <p> Email : {{user.email}}</p>
-                          <p> PhoneNo : {{user.phoneNo}}</p>
-                          <p> Address : {{user.address}}</p>
-                      </form>
-                      {% else %}
-                      <form action="{% url 'Customer_update' %}" method="post">
-                        {% csrf_token %}
-                          <b> username : {{cus}}</b>
-                          <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">update?</button>
-                          
-                      </form>
-                      {% endif %}
-                  </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="row text-left mb-5">
+      <div class="col-12">
+        <h2 class="font-weight-bold heading text-primary mb-4">Your information</h2>
+        <h3> {{user.username}} </h3>
+      </div>
+      <div class="main-div" style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);border-radius: 20px;">
+        <div class="panel">
+            {% comment %} <h2 style="font-size:26px;">Registration</h2> {% endcomment %}
+        </div>
+
+        {% if user.nickname %}
+        <form action="" method="post" >
+            <p> Nickname : {{user.nickname}}</p>
+            <p> Email : {{user.email}}</p>
+            <p> PhoneNo : {{user.phoneNo}}</p>
+            <p> Address : {{user.address}}</p>
+        </form>
+        {% else %}
+        <form action="{% url 'Customer_update' %}" method="post">
+          {% csrf_token %}
+            <b> username : {{cus}}</b>
+            <button type="submit" style="height:50px; margin-top:30px;width: 100%;" class="btn btn-primary">update?</button>
+            
+        </form>
+        {% endif %}
+    </div>
     </div>
   </div>
 </div>

@@ -12,11 +12,11 @@ def restaurat_detail(request, id, slug):
                                 id=id,
                                 )
     product = Product.objects.filter(restaurant_id=id) 
-   
+    cart_product_form = CartAddProductForm() 
                         
     return render(request,
                   'templates/web/Store/product/restaurant.html',
                   {'restaurant': restaurant,
                    'product': product,
-                #    'productid':product.id,
+                   'cart_product_form': cart_product_form,
                    'cus':Cuss.cuss_id})
